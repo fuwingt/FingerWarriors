@@ -19,7 +19,6 @@ public class TimeCountdownBar : MonoBehaviour
 
 	void Start()
 	{
-		//timeCountdownBar = GetComponent<Image>();
 		timeDuration = 5f;
 		timer = timeDuration;
 		isTimeOver = false;

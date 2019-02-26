@@ -2,9 +2,9 @@
 
 public class Monster : Character
 {
-	private float hp;
-	private float maxHp;
-	private float basicHp;
+	[SerializeField] private float hp;
+	[SerializeField] private float maxHp;
+	[SerializeField] private float basicHp;
 
 	public void Reborn()
 	{

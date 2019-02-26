@@ -25,8 +25,6 @@ public class InputController : MonoBehaviour
 		/* Attack animation will be triggered " */
 		animator.SetTrigger("isAttack01");
 		/*	# Click to deduct the HP from monster */
-		//GlobalManager.monsterList[0].GetComponent<Monster>().setHp(GlobalManager.monsterList[0].GetComponent<Monster>().getHp() - 10);
-
-		GlobalManager.currentHeros[0].GetComponent<Hero>().Attack(GlobalManager.currentEnemy);
+		GlobalManager.currentHeroes[0].GetComponent<Hero>().Attack(GlobalManager.currentEnemy);
 	}
 }

@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GlobalManager : MonoBehaviour {
-
+public class GlobalManager : MonoBehaviour 
+{
+	/* Store all the heroes */
 	public static List<GameObject> heroList = new List<GameObject>();
+	/* Store all the monsters */
 	public static List<GameObject> monsterList = new List<GameObject>();
-	public static GameObject [] currentHeros = new GameObject [5];
+	public static GameObject [] currentHeroes = new GameObject [5];
 	public static GameObject currentEnemy;
+	public static GameObject selectedHero;
 	public static int itemCount;
+	/* monster's HP would be increase in each 10 stage by monsterHpRate */
 	public static float monsterHpRate;
 	public Text InfoBoard;
 	private static string playerName;

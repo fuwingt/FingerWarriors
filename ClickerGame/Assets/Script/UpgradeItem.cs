@@ -35,6 +35,7 @@ public class UpgradeItem : MonoBehaviour {
             GlobalManager.setGold(GlobalManager.getGold() - itemPrice);
             hero.GetComponent<Hero>().setUpgradeCount(hero.GetComponent<Hero>().getUpgradeCount() + 1);
             hero.GetComponent<Hero>().setPower(Mathf.Round(hero.GetComponent<Hero>().getPower() * 1.3f));
+            hero.GetComponent<Hero>().setSkillPower_1(Mathf.Round(hero.GetComponent<Hero>().getSkillPower_1() * 1.1f));
             hero.GetComponent<Hero>().setPrice(Mathf.Round(hero.GetComponent<Hero>().getPrice() * 1.15f));
         }
     }

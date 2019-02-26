@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212219833131255850}
   - component: {fileID: 95435217040306488}
   - component: {fileID: 50887055171191992}
-  - component: {fileID: 114607271958982454}
+  - component: {fileID: 114326870541969508}
   m_Layer: 0
   m_Name: Amon
   m_TagString: Hero
@@ -37,7 +37,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1408781890271014}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.12, y: 0.35, z: 0}
+  m_LocalPosition: {x: 0.64097035, y: -0.26942956, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -81,7 +81,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114607271958982454
+--- !u!114 &114326870541969508
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -89,10 +89,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1408781890271014}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 688ef9263babbc74795ebef3ce5ca489, type: 3}
+  m_Script: {fileID: 11500000, guid: 030a76175bd7235488fc739897f63584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOwned: 1
+  name: 
+  type: 0
+  isOwned: 0
+  skillPower_1: 0
+  power: 0
+  price: 0
+  level: 0
 --- !u!212 &212219833131255850
 SpriteRenderer:
   m_ObjectHideFlags: 1

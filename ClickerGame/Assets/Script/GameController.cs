@@ -6,15 +6,14 @@ public class GameController : MonoBehaviour
 {
 	public ObjectGenerator objectGenerator;
 	public GameObject timeCountdownBar;
-	private bool isBossStagePassed;
 	
 	void Start () {
 		objectGenerator.generateHeros();
-		objectGenerator.generateHeros();
 		objectGenerator.generateMonster();
 
-		GlobalManager.currentHeros[0] = GlobalManager.heroList[0];
+		GlobalManager.currentHeroes[0] = GlobalManager.heroList[0];
 		GlobalManager.currentEnemy = GlobalManager.monsterList[0];
+		GlobalManager.selectedHero = GlobalManager.currentHeroes[0];
 
 	}
 	
@@ -24,17 +23,19 @@ public class GameController : MonoBehaviour
 
 	private void EnemyStatusUpdate(GameObject currentEnemy)
 	{
+		/* If the current monster has been taken down */
 		if(currentEnemy.GetComponent<Monster>().getHp() <= 0 && !timeCountdownBar.GetComponent<TimeCountdownBar>().isTimeOver)
 		{	
 			/* If the player is already in the boss stage */
 			if(GlobalManager.getStage() != 0 && GlobalManager.getStage()%10 == 0)
 			{
+				/* Boss has been defeated, hide and reset the countdown bar */
 				timeCountdownBar.SetActive(false);
 				timeCountdownBar.transform.GetChild(0).gameObject.SetActive(false);
 				timeCountdownBar.transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
 				timeCountdownBar.GetComponent<TimeCountdownBar>().Reset();
 			}
-			/* Reset monster's hp */		
+			/* (Change to next monster)#Reset monster's hp */		
 			currentEnemy.GetComponent<Monster>().setMaxHp(currentEnemy.GetComponent<Monster>().getBasicHp()*GlobalManager.monsterHpRate);
 			currentEnemy.GetComponent<Monster>().setHp(currentEnemy.GetComponent<Monster>().getBasicHp()*GlobalManager.monsterHpRate);
 			/* Get gold */
