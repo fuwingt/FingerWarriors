@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ItemGenerator : MonoBehaviour 
 {
+	public GameObject _globalManager;
 	public GameObject item;
 
 	void Start () 
@@ -13,14 +14,14 @@ public class ItemGenerator : MonoBehaviour
 	
 	void Update () 
 	{
-		int diff = GlobalManager.heroList.Count - GlobalManager.itemCount;
+		int diff = GlobalManager.heroList.Count - _globalManager.GetComponent<GlobalManager>().itemCount;
 		if(diff != 0)
 		{
 			for(int i=0;i<diff;i++)
 			{
 				GameObject newItem = Instantiate(item, this.transform);
 				newItem.name = item.name;
-				GlobalManager.itemCount++;
+				_globalManager.GetComponent<GlobalManager>().itemCount++;
 			}
 		}
 	}

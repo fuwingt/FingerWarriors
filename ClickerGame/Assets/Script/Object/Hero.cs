@@ -5,12 +5,13 @@ public abstract class Hero : Character
 	[HideInInspector] public  bool isOwned;
 	[SerializeField] protected float skillPower_1;
 	[SerializeField] private float power;
+	[SerializeField] private float energy = 0;
 	[SerializeField] private float price;
 	[SerializeField] private int level;
-	
+	private float maxEnergy = 100;
 	private int upgradeCount;
 
-	public void Attack(GameObject monster)
+	public virtual void Attack(GameObject monster)
 	{
 		if(monster != null)
 		{
@@ -18,7 +19,11 @@ public abstract class Hero : Character
 				float result = TypeEffect(getType(),monster.GetComponent<Monster>().getType(),power);
 				/* Do damage */
 				monster.GetComponent<Monster>().setHp(monster.GetComponent<Monster>().getHp() - result);
-
+				/* Add 10 Energy each attack */
+				if(energy < maxEnergy)
+				{
+					energy += 10;
+				}
 				Debug.Log(getName() + ": making damage " + result + " to enemy " + monster.GetComponent<Monster>().getName());
 		}
 	}
@@ -112,6 +117,16 @@ public abstract class Hero : Character
 		return power;
 	}
 
+	public float getEnergy()
+	{
+		return energy;
+	}
+
+	public float getMaxEnergy()
+	{
+		return maxEnergy;
+	}
+
 	public float getPrice()
 	{
 		return price;
@@ -135,6 +150,16 @@ public abstract class Hero : Character
 	public void setPower(float power)
 	{
 		this.power = power;
+	}
+
+	public void setEnergy(float energy)
+	{
+		this.energy = energy;
+	}
+
+	public void setMaxEnergy(float maxEnergy)
+	{
+		this.maxEnergy = maxEnergy;
 	}
 
 	public void setPrice(float price)

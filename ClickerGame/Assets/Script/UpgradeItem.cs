@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UpgradeItem : MonoBehaviour {
-
+public class UpgradeItem : MonoBehaviour 
+{
+    public ItemGenerator _itemGenerator;
     public Text ItemInfo;   
     private GameObject hero;
     private int itemId;
@@ -14,7 +15,8 @@ public class UpgradeItem : MonoBehaviour {
 
     void Start()
     {
-        itemId = GlobalManager.itemCount - 1;
+        _itemGenerator = transform.parent.GetComponentInParent<ItemGenerator>();
+        itemId = _itemGenerator._globalManager.GetComponent<GlobalManager>().itemCount - 1;
         hero = GlobalManager.heroList[itemId];
     }
     void Update()
@@ -30,9 +32,9 @@ public class UpgradeItem : MonoBehaviour {
     
     public void Purchase()
     {
-        if(GlobalManager.getGold() >= itemPrice)
+        if(_itemGenerator._globalManager.GetComponent<GlobalManager>().getGold() >= itemPrice)
         {
-            GlobalManager.setGold(GlobalManager.getGold() - itemPrice);
+            _itemGenerator._globalManager.GetComponent<GlobalManager>().setGold(_itemGenerator._globalManager.GetComponent<GlobalManager>().getGold() - itemPrice);
             hero.GetComponent<Hero>().setUpgradeCount(hero.GetComponent<Hero>().getUpgradeCount() + 1);
             hero.GetComponent<Hero>().setPower(Mathf.Round(hero.GetComponent<Hero>().getPower() * 1.3f));
             hero.GetComponent<Hero>().setSkillPower_1(Mathf.Round(hero.GetComponent<Hero>().getSkillPower_1() * 1.1f));

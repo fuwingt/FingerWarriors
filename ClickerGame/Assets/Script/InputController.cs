@@ -6,25 +6,40 @@ using UnityEngine;
 				instead of a single object. */
 public class InputController : MonoBehaviour 
 {
-	private GameObject Amon;
-	Animator animator;
+	public GameObject _globalManager;
 
 	void Update()
 	{
-		if(Amon == null)
-		{
-			Amon = GlobalManager.heroList[0];
-			animator = Amon.GetComponent<Animator>();
-		}
+		ScreenRayCast();
 	}
 
 	public void Click()
 	{
 		/* To record that how many times the player clicked */
-		GlobalManager.setClickCount(GlobalManager.getClickCount() + 1);
+		_globalManager.GetComponent<GlobalManager>().clickCount++;
 		/* Attack animation will be triggered " */
-		animator.SetTrigger("isAttack01");
+		for(int i=0;i<2/* GlobalManager.currentHeroes.Length */;i++)
+		{
+			GlobalManager.currentHeroes[i].GetComponent<Animator>().SetTrigger("isAttack01");;
+		}
 		/*	# Click to deduct the HP from monster */
-		GlobalManager.currentHeroes[0].GetComponent<Hero>().Attack(GlobalManager.currentEnemy);
+		for(int i=0;i<2/* GlobalManager.currentHeroes.Length */;i++)
+		{
+			GlobalManager.currentHeroes[i].GetComponent<Hero>().Attack(GlobalManager.currentEnemy);
+		}
+	}
+
+	public void ScreenRayCast()
+	{
+		if(Input.GetMouseButtonDown(0))
+		{
+			RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+			if(hit.collider != null)
+			{
+				// Click to select the hero
+				GlobalManager.selectedHero = hit.collider.transform.GetChild(0).gameObject;
+				Debug.Log("Target object: " + GlobalManager.selectedHero.name);
+			}
+		}
 	}
 }

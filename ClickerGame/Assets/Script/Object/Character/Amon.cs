@@ -4,16 +4,39 @@ using UnityEngine;
 
 public class Amon : Hero
 {
+	private GameObject _globalManager;
+	private float requiredEnergy = 50;
+	private float energyPerAttack = 10;
+
+	void Start()
+	{
+		_globalManager = GameObject.Find("GlobalManager").gameObject;
+	}
+
+	public override void Attack(GameObject monster)
+	{
+		base.Attack(monster);
+		
+		_globalManager.GetComponent<GlobalManager>().setEnergy(_globalManager.GetComponent<GlobalManager>().getEnergy() + energyPerAttack);
+	}
 
 	public override void Skill_1(GameObject monster)
 	{
 		if(monster != null)
 		{
-			float result = TypeEffect(getType(), monster.GetComponent<Monster>().getType(), skillPower_1);
+			if(_globalManager.GetComponent<GlobalManager>().getEnergy() >= requiredEnergy)
+			{
+				_globalManager.GetComponent<GlobalManager>().setEnergy(_globalManager.GetComponent<GlobalManager>().getEnergy() - requiredEnergy);
+				float result = TypeEffect(getType(), monster.GetComponent<Monster>().getType(), skillPower_1);
+				monster.GetComponent<Monster>().setHp(monster.GetComponent<Monster>().getHp() - result);
 
-			monster.GetComponent<Monster>().setHp(monster.GetComponent<Monster>().getHp() - skillPower_1);
+				Debug.Log(getName() + ": making damage " + result + " to enemy " + monster.GetComponent<Monster>().getName() + " using Skill!!!");
 
-			Debug.Log(getName() + ": making damage " + result + " to enemy " + monster.GetComponent<Monster>().getName());
+			}
+			else
+			{
+				// Not enough energy
+			}
 		}
 	}
 

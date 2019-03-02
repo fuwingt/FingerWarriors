@@ -12,25 +12,35 @@ public class GlobalManager : MonoBehaviour
 	public static GameObject [] currentHeroes = new GameObject [5];
 	public static GameObject currentEnemy;
 	public static GameObject selectedHero;
-	public static int itemCount;
-	/* monster's HP would be increase in each 10 stage by monsterHpRate */
-	public static float monsterHpRate;
+	public Text HeroNameText;
+	public Text PowerText;
+	public Text SkillPowerText;
 	public Text InfoBoard;
-	private static string playerName;
-	private static int clickCount;
-	private static float gold;
-	private static int stage;
+	public int itemCount;
+	public int clickCount;
+	public int stage;
+	/* monster's HP would be increase in each 10 stage by monsterHpRate */
+	private float monsterHpRate;
+	private float maxEnergy;
+	private float energy;
+	private string playerName;
+	private float gold;
+	
 	private static float bossTimeDuration;
 
 	void Start()
 	{
+		// Default value for beginning
 		itemCount = 0;
 		monsterHpRate = 1;
+		maxEnergy = 100;
+		energy =  maxEnergy;
 	}
 
 	void Update()
 	{
 		UpdateInfoBoard();
+		UpdateSelectedHeroInfo(selectedHero);
 	}
 
 	private void UpdateInfoBoard()
@@ -38,46 +48,78 @@ public class GlobalManager : MonoBehaviour
 		InfoBoard.text = "Click: " + clickCount + "\nGold: " + gold + "\nStage: " + stage;
 	}
 
+	private void UpdateSelectedHeroInfo(GameObject selectedHero)
+	{
+		if(selectedHero != null)
+		{
+			HeroNameText.text = selectedHero.GetComponent<Hero>().getName();
+			PowerText.text = "Power: " + selectedHero.GetComponent<Hero>().getPower();
+			SkillPowerText.text = "Skill Power: " + selectedHero.GetComponent<Hero>().getSkillPower_1();
+		}
+		else
+		{
+			Debug.LogError("Variable - SelectedHero should not be NULL !!");
+		}
+	}
+
 	
 	
 	/* Getter */
-	public static string getName()
+	public string getName()
 	{
 		return playerName;
 	}
-	public static int getClickCount()
-	{
-		return clickCount;
-	}
 
-	public static float getGold()
+	public float getGold()
 	{
 		return gold;
 	}
 
-	public static int getStage()
+	public float getMaxEnergy()
 	{
-		return stage;
+		return maxEnergy;
+	}
+
+	public float getEnergy()
+	{
+		return energy;
+	}
+
+	public float getMonsterHpRate()
+	{
+		return monsterHpRate;
 	}
 
 	/* Setter */
-	public static void setPlayerName(string playerName)
+	public void setPlayerName(string playerName)
 	{
-		GlobalManager.playerName = playerName;
+		this.playerName = playerName;
 	}
 
-	public static void setClickCount(int clickCount)
+	public void setGold(float gold)
 	{
-		GlobalManager.clickCount = clickCount;
+		this.gold = gold;
 	}
 
-	public static void setGold(float gold)
+	public void setMaxEnergy(float maxEnergy)
 	{
-		GlobalManager.gold = gold;
+		this.maxEnergy = maxEnergy;
 	}
 
-	public static void setStage(int stage)
+	public void setEnergy(float energy)
 	{
-		GlobalManager.stage = stage;
+		if(energy > maxEnergy)
+		{
+			this.energy = maxEnergy;
+		}
+		else
+		{
+			this.energy = energy;
+		}
+	}
+
+	public void setMonsterHpRate(float monsterHpRate)
+	{
+		this.monsterHpRate = monsterHpRate;
 	}
 }

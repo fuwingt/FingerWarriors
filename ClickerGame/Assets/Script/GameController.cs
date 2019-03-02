@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour 
 {
+	public GameObject _globalManager;
 	public ObjectGenerator objectGenerator;
 	public GameObject timeCountdownBar;
 	
@@ -11,7 +12,14 @@ public class GameController : MonoBehaviour
 		objectGenerator.generateHeros();
 		objectGenerator.generateMonster();
 
-		GlobalManager.currentHeroes[0] = GlobalManager.heroList[0];
+		if(GlobalManager.heroList.Count <= 5)
+		{
+			for(int i=0;i<GlobalManager.heroList.Count;i++)
+			{
+				GlobalManager.currentHeroes[i] = GlobalManager.heroList[i];
+			}
+		}
+
 		GlobalManager.currentEnemy = GlobalManager.monsterList[0];
 		GlobalManager.selectedHero = GlobalManager.currentHeroes[0];
 
@@ -27,7 +35,7 @@ public class GameController : MonoBehaviour
 		if(currentEnemy.GetComponent<Monster>().getHp() <= 0 && !timeCountdownBar.GetComponent<TimeCountdownBar>().isTimeOver)
 		{	
 			/* If the player is already in the boss stage */
-			if(GlobalManager.getStage() != 0 && GlobalManager.getStage()%10 == 0)
+			if(_globalManager.GetComponent<GlobalManager>().stage != 0 && _globalManager.GetComponent<GlobalManager>().stage % 10 == 0)
 			{
 				/* Boss has been defeated, hide and reset the countdown bar */
 				timeCountdownBar.SetActive(false);
@@ -36,21 +44,19 @@ public class GameController : MonoBehaviour
 				timeCountdownBar.GetComponent<TimeCountdownBar>().Reset();
 			}
 			/* (Change to next monster)#Reset monster's hp */		
-			currentEnemy.GetComponent<Monster>().setMaxHp(currentEnemy.GetComponent<Monster>().getBasicHp()*GlobalManager.monsterHpRate);
-			currentEnemy.GetComponent<Monster>().setHp(currentEnemy.GetComponent<Monster>().getBasicHp()*GlobalManager.monsterHpRate);
+			currentEnemy.GetComponent<Monster>().setMaxHp(currentEnemy.GetComponent<Monster>().getBasicHp()*_globalManager.GetComponent<GlobalManager>().getMonsterHpRate());
+			currentEnemy.GetComponent<Monster>().setHp(currentEnemy.GetComponent<Monster>().getBasicHp()*_globalManager.GetComponent<GlobalManager>().getMonsterHpRate());
 			/* Get gold */
-			GlobalManager.setGold(GlobalManager.getGold() + 10);
+			_globalManager.GetComponent<GlobalManager>().setGold(_globalManager.GetComponent<GlobalManager>().getGold() + 10);
 			/* #Debug: Reborn */
 			currentEnemy.GetComponent<Monster>().Reborn();
-			GlobalManager.setStage(GlobalManager.getStage() + 1);
-
+			_globalManager.GetComponent<GlobalManager>().stage++;
 			/* #Go into Boss stage after each 10 stage */
-			if(GlobalManager.getStage() != 0 && GlobalManager.getStage()%10 == 0)
+			if(_globalManager.GetComponent<GlobalManager>().stage != 0 && _globalManager.GetComponent<GlobalManager>().stage%10 == 0)
 			{
 				/* #Hp upgrade */
 				currentEnemy.GetComponent<Monster>().setMaxHp(currentEnemy.GetComponent<Monster>().getBasicHp()*2.2f);
 				currentEnemy.GetComponent<Monster>().setHp(currentEnemy.GetComponent<Monster>().getBasicHp()*2.2f);
-				Debug.Log("Hi I am Here");
 				/* #Time countdown bar show up */
 				timeCountdownBar.SetActive(true);
 				timeCountdownBar.transform.GetChild(0).gameObject.SetActive(true);
@@ -59,11 +65,11 @@ public class GameController : MonoBehaviour
 		}else if(timeCountdownBar.GetComponent<TimeCountdownBar>().isTimeOver)
 		{
 			/* Reset monster's hp */		
-			currentEnemy.GetComponent<Monster>().setMaxHp(currentEnemy.GetComponent<Monster>().getBasicHp()*GlobalManager.monsterHpRate);
-			currentEnemy.GetComponent<Monster>().setHp(currentEnemy.GetComponent<Monster>().getBasicHp()*GlobalManager.monsterHpRate);
+			currentEnemy.GetComponent<Monster>().setMaxHp(currentEnemy.GetComponent<Monster>().getBasicHp()*_globalManager.GetComponent<GlobalManager>().getMonsterHpRate());
+			currentEnemy.GetComponent<Monster>().setHp(currentEnemy.GetComponent<Monster>().getBasicHp()*_globalManager.GetComponent<GlobalManager>().getMonsterHpRate());
 			/* #Debug: Reborn the monster in previous stage */
 			currentEnemy.GetComponent<Monster>().Reborn();
-			GlobalManager.setStage(GlobalManager.getStage() - 1);
+			_globalManager.GetComponent<GlobalManager>().stage--;
 			/* Reset timer */
 			timeCountdownBar.GetComponent<TimeCountdownBar>().Reset();
 		}
