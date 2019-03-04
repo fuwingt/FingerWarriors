@@ -12,21 +12,16 @@ public class GameController : MonoBehaviour
 		objectGenerator.generateHeros();
 		objectGenerator.generateMonster();
 
-		if(GlobalManager.heroList.Count <= 5)
-		{
-			for(int i=0;i<GlobalManager.heroList.Count;i++)
-			{
-				GlobalManager.currentHeroes[i] = GlobalManager.heroList[i];
-			}
-		}
+		GlobalManager.currentHeroes.Add(GlobalManager.heroList[0]);
 
 		GlobalManager.currentEnemy = GlobalManager.monsterList[0];
-		GlobalManager.selectedHero = GlobalManager.currentHeroes[0];
+		//GlobalManager.selectedHero = GlobalManager.currentHeroes[0];
 
 	}
 	
 	void Update () {
 		EnemyStatusUpdate(GlobalManager.currentEnemy);
+		
 	}
 
 	private void EnemyStatusUpdate(GameObject currentEnemy)

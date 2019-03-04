@@ -9,16 +9,15 @@ public class GlobalManager : MonoBehaviour
 	public static List<GameObject> heroList = new List<GameObject>();
 	/* Store all the monsters */
 	public static List<GameObject> monsterList = new List<GameObject>();
-	public static GameObject [] currentHeroes = new GameObject [5];
+	public static List<GameObject> currentHeroes = new List<GameObject>();
 	public static GameObject currentEnemy;
 	public static GameObject selectedHero;
-	public Text HeroNameText;
-	public Text PowerText;
-	public Text SkillPowerText;
+	
 	public Text InfoBoard;
 	public int itemCount;
 	public int clickCount;
 	public int stage;
+	
 	/* monster's HP would be increase in each 10 stage by monsterHpRate */
 	private float monsterHpRate;
 	private float maxEnergy;
@@ -40,7 +39,6 @@ public class GlobalManager : MonoBehaviour
 	void Update()
 	{
 		UpdateInfoBoard();
-		UpdateSelectedHeroInfo(selectedHero);
 	}
 
 	private void UpdateInfoBoard()
@@ -48,21 +46,6 @@ public class GlobalManager : MonoBehaviour
 		InfoBoard.text = "Click: " + clickCount + "\nGold: " + gold + "\nStage: " + stage;
 	}
 
-	private void UpdateSelectedHeroInfo(GameObject selectedHero)
-	{
-		if(selectedHero != null)
-		{
-			HeroNameText.text = selectedHero.GetComponent<Hero>().getName();
-			PowerText.text = "Power: " + selectedHero.GetComponent<Hero>().getPower();
-			SkillPowerText.text = "Skill Power: " + selectedHero.GetComponent<Hero>().getSkillPower_1();
-		}
-		else
-		{
-			Debug.LogError("Variable - SelectedHero should not be NULL !!");
-		}
-	}
-
-	
 	
 	/* Getter */
 	public string getName()

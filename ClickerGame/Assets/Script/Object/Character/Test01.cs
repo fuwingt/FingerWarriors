@@ -7,6 +7,8 @@ public class Test01 : Hero
 	private GameObject _globalManager;
 	private float requiredEnergy = 40;
 	private float energyPerAttack = 5;
+	private Hero.Type Type = Hero.Type.Melee;
+
 
 	void Start()
 	{
@@ -27,7 +29,7 @@ public class Test01 : Hero
 			if(_globalManager.GetComponent<GlobalManager>().getEnergy() >= requiredEnergy)
 			{
 				_globalManager.GetComponent<GlobalManager>().setEnergy(_globalManager.GetComponent<GlobalManager>().getEnergy() - requiredEnergy);
-				float result = TypeEffect(getType(), monster.GetComponent<Monster>().getType(), skillPower_1);
+				float result = TypeEffect(getElement(), monster.GetComponent<Monster>().getElement(), skillPower_1);
 				monster.GetComponent<Monster>().setHp(monster.GetComponent<Monster>().getHp() - result);
 
 				Debug.Log(getName() + ": making damage " + result + " to enemy " + monster.GetComponent<Monster>().getName() + " using Skill!!!");

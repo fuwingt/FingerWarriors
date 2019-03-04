@@ -54,23 +54,22 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Script\ButtonManager.cs" />
+     <Compile Include="Assets\Script\ButtonManager1.cs" />
      <Compile Include="Assets\Script\EnergyBar.cs" />
      <Compile Include="Assets\Script\GameController.cs" />
      <Compile Include="Assets\Script\GlobalManager.cs" />
      <Compile Include="Assets\Script\HealthBar.cs" />
      <Compile Include="Assets\Script\InputController.cs" />
-     <Compile Include="Assets\Script\ItemGenerator.cs" />
      <Compile Include="Assets\Script\Object\Boss.cs" />
      <Compile Include="Assets\Script\Object\Character.cs" />
      <Compile Include="Assets\Script\Object\Character\Amon.cs" />
      <Compile Include="Assets\Script\Object\Character\Test01.cs" />
      <Compile Include="Assets\Script\Object\Hero.cs" />
      <Compile Include="Assets\Script\Object\Monster.cs" />
+     <Compile Include="Assets\Script\Object\UpgradeHeroItem.cs" />
      <Compile Include="Assets\Script\ObjectGenerator.cs" />
      <Compile Include="Assets\Script\Skill.cs" />
      <Compile Include="Assets\Script\TimeCountdownBar.cs" />
-     <Compile Include="Assets\Script\UIManager.cs" />
-     <Compile Include="Assets\Script\UpgradeItem.cs" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>C:/Users/Wing/Desktop/FingerWarriors/repos/ClickerGame/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>

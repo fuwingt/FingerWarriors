@@ -2,6 +2,12 @@
 
 public abstract class Hero : Character 
 {
+	public enum Type
+	{
+		Melee,
+		Ranged
+	}
+	
 	[HideInInspector] public  bool isOwned;
 	[SerializeField] protected float skillPower_1;
 	[SerializeField] private float power;
@@ -16,7 +22,7 @@ public abstract class Hero : Character
 		if(monster != null)
 		{
 				/* Considering the type */
-				float result = TypeEffect(getType(),monster.GetComponent<Monster>().getType(),power);
+				float result = TypeEffect(getElement(),monster.GetComponent<Monster>().getElement(),power);
 				/* Do damage */
 				monster.GetComponent<Monster>().setHp(monster.GetComponent<Monster>().getHp() - result);
 				/* Add 10 Energy each attack */
@@ -30,75 +36,75 @@ public abstract class Hero : Character
 
 	public abstract void Skill_1(GameObject monster);
 
-	protected float TypeEffect(Character.Type heroType, Character.Type monsterType, float power)
+	protected float TypeEffect(Character.Element heroElement, Character.Element monsterElement, float power)
 	{
 		float _result = power;
-		if(heroType == Character.Type.Fire)
+		if(heroElement == Character.Element.Fire)
 		{
 			/* Strong against with Wind */
 			/* Weak against with Water */
-			if(monsterType == Character.Type.Wind)
+			if(monsterElement == Character.Element.Wind)
 			{
 				_result *= 2;
 			}
 
-			if(monsterType == Character.Type.Water)
+			if(monsterElement == Character.Element.Water)
 			{
 				_result *= 0.5f;
 			}
 		}
-		if(heroType == Character.Type.Water)
+		if(heroElement == Character.Element.Water)
 		{
 			/* Strong against with Fire */
 			/* Weak against with Wind */
-			if(monsterType == Character.Type.Fire)
+			if(monsterElement == Character.Element.Fire)
 			{
 				_result *= 2;
 			}
 
-			if(monsterType == Character.Type.Wind)
+			if(monsterElement == Character.Element.Wind)
 			{
 				_result *= 0.5f;
 			}
 		}
-		if(heroType == Character.Type.Wind)
+		if(heroElement == Character.Element.Wind)
 		{
 			/* Strong against with Water */
 			/* Weak against with Fire */
-			if(monsterType == Character.Type.Water)
+			if(monsterElement == Character.Element.Water)
 			{
 				_result *= 2;
 			}
 
-			if(monsterType == Character.Type.Fire)
+			if(monsterElement == Character.Element.Fire)
 			{
 				_result *= 0.5f;
 			}
 		}
-		if(heroType == Character.Type.Light)
+		if(heroElement == Character.Element.Light)
 		{
 			/* Strong against with Dark */
 			/* Weak against with itself */
-			if(monsterType == Character.Type.Dark)
+			if(monsterElement == Character.Element.Dark)
 			{
 				_result *= 2;
 			}
 
-			if(monsterType == Character.Type.Light)
+			if(monsterElement == Character.Element.Light)
 			{
 				_result *= 0.5f;
 			}
 		}
-		if(heroType == Character.Type.Dark)
+		if(heroElement == Character.Element.Dark)
 		{
 			/* Strong against with Light */
 			/* Weak against with itself */
-			if(monsterType == Character.Type.Light)
+			if(monsterElement == Character.Element.Light)
 			{
 				_result *= 2;
 			}
 
-			if(monsterType == Character.Type.Dark)
+			if(monsterElement == Character.Element.Dark)
 			{
 				_result *= 0.5f;
 			}

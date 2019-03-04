@@ -18,12 +18,12 @@ public class InputController : MonoBehaviour
 		/* To record that how many times the player clicked */
 		_globalManager.GetComponent<GlobalManager>().clickCount++;
 		/* Attack animation will be triggered " */
-		for(int i=0;i<2/* GlobalManager.currentHeroes.Length */;i++)
+		for(int i=0;i<GlobalManager.currentHeroes.Count;i++)
 		{
 			GlobalManager.currentHeroes[i].GetComponent<Animator>().SetTrigger("isAttack01");;
 		}
 		/*	# Click to deduct the HP from monster */
-		for(int i=0;i<2/* GlobalManager.currentHeroes.Length */;i++)
+		for(int i=0;i<GlobalManager.currentHeroes.Count;i++)
 		{
 			GlobalManager.currentHeroes[i].GetComponent<Hero>().Attack(GlobalManager.currentEnemy);
 		}
@@ -37,8 +37,8 @@ public class InputController : MonoBehaviour
 			if(hit.collider != null)
 			{
 				// Click to select the hero
-				GlobalManager.selectedHero = hit.collider.transform.GetChild(0).gameObject;
-				Debug.Log("Target object: " + GlobalManager.selectedHero.name);
+				//GlobalManager.selectedHero = hit.collider.transform.GetChild(0).gameObject;
+				//Debug.Log("Target object: " + GlobalManager.selectedHero.name);
 			}
 		}
 	}

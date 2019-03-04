@@ -2,7 +2,7 @@
 
 public class Character : MonoBehaviour 
 {	
-	public enum Type
+	public enum Element
 	{
 		Fire,
 		Water,
@@ -11,16 +11,16 @@ public class Character : MonoBehaviour
 		Dark
 	}
 	[SerializeField] private new string name;
-	[SerializeField] private Type type = Type.Fire;
+	[SerializeField] private Element element = Element.Fire;
 		
 	public string getName()
 	{
 		return name;
 	}
 
-	public Type getType()
+	public Element getElement()
 	{
-		return type;
+		return element;
 	}
 
 	public void setName(string name)
@@ -28,9 +28,9 @@ public class Character : MonoBehaviour
 		this.name = name;
 	}
 
-	public void setType(Type type)
+	public void setElement(Element element)
 	{
-		this.type = type;
+		this.element = element;
 	}
 
 	
