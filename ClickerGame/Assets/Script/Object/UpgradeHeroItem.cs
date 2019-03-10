@@ -3,121 +3,119 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UpgradeHeroItem : MonoBehaviour {
-
-	
-    public Text NameText;   
-	public Text LevelText;
-	public Text PowerText;
-	public Text LevelUpText;
-
-	public Text status;
-
-	private GlobalManager _globalManager;
+public class UpgradeHeroItem : MonoBehaviour
+{
+    [Header("Color")]
+    public Color standard;
+    public Color unaffordable;
+    [Header("Text")]
+    public Text NameText;
+    public Text LevelText;
+    public Text PowerText;
+    public Text LevelUpText;
+    [Header("Button")]
+    public GameObject JoinButton;
+    public GameObject QuitButton;
+    private GlobalManager _globalManager;
     private GameObject hero;
     private string heroName;
     private float heroPrice;
     private float heroPower;
-	private float heroSkillPower;
-	private float heroLevel;
-	private bool isSelectingField = false;
+    private float heroSkillPower;
+    private float heroLevel;
+    private bool isSelectingField = false;
 
-	// Use this for initialization
-	void Start () {
-		_globalManager = GameObject.Find("GlobalManager").gameObject.GetComponent<GlobalManager>();
-		InfoUpdate();
-	}
-	
-	
-	// Update is called once per frame
-	void Update () 
-	{
-		if(isSelectingField == true)
-		{
-			SwitchHero();
-		}
-	}
-
-	public void Purchase()
+    // Use this for initialization
+    void Start()
     {
-		if(hero == null)	return;
+        _globalManager = GameObject.Find("GlobalManager").gameObject.GetComponent<GlobalManager>();
+        InfoUpdate();
+    }
 
-        if(_globalManager.getGold() >= heroPrice)
+
+    // Update is called once per frame
+    void Update()
+    {
+        InfoUpdate();
+        ButtonStatusUpdate();
+    }
+
+    public void Purchase()
+    {
+        if (hero == null) return;
+
+        if (_globalManager.getGold() >= heroPrice)
         {
-           _globalManager.setGold(_globalManager.getGold() - heroPrice);
+            _globalManager.setGold(_globalManager.getGold() - heroPrice);
             hero.GetComponent<Hero>().setUpgradeCount(hero.GetComponent<Hero>().getUpgradeCount() + 1);
             hero.GetComponent<Hero>().setPower(Mathf.Round(hero.GetComponent<Hero>().getPower() * 1.3f));
             hero.GetComponent<Hero>().setSkillPower_1(Mathf.Round(hero.GetComponent<Hero>().getSkillPower_1() * 1.1f));
             hero.GetComponent<Hero>().setPrice(Mathf.Round(hero.GetComponent<Hero>().getPrice() * 1.15f));
-			hero.GetComponent<Hero>().setLevel(hero.GetComponent<Hero>().getLevel() + 1);
+            hero.GetComponent<Hero>().setLevel(hero.GetComponent<Hero>().getLevel() + 1);
         }
-		InfoUpdate();
+        else
+        {
+            Debug.Log("Not enough gold !!");
+        }
     }
 
-	public void SwitchStatus()
-	{
-		if(hero == null)	return;
 
-		status.text = "Selecting...";
-		isSelectingField = true;
-		// call function "show arrow sign"
-		
-	}
 
-	private void SwitchHero()
-	{
-		if(Input.GetMouseButtonDown(0))
-		{
-			RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-			if(hit.collider != null)
-			{
-				if(hit.collider.gameObject.tag == "Field")
-				{
-					if(hit.collider.transform.childCount == 0)
-					{
-						hero.transform.SetParent(hit.collider.gameObject.transform);
-						
-					}
-					else
-					{
-						// Switch
-					}
-				}
-				else
-				{
-					// Hide the arrow and then return
-				}
-			}
-			status.text = "Select";
-			isSelectingField = false;
-		}
-	}
+    private void InfoUpdate()
+    {
+        if (hero != null)
+        {
+            heroName = hero.GetComponent<Hero>().getName();
+            heroPrice = hero.GetComponent<Hero>().getPrice();
+            heroPower = hero.GetComponent<Hero>().getPower();
+            heroSkillPower = hero.GetComponent<Hero>().getSkillPower_1();
+            heroLevel = hero.GetComponent<Hero>().getLevel();
 
-	private void InfoUpdate()
-	{
-		if(hero != null)
-		{
-			heroName = hero.GetComponent<Hero>().getName();
-        	heroPrice = hero.GetComponent<Hero>().getPrice();
-        	heroPower = hero.GetComponent<Hero>().getPower();
-			heroSkillPower = hero.GetComponent<Hero>().getSkillPower_1();
-			heroLevel = hero.GetComponent<Hero>().getLevel();
-        
-        	NameText.text = heroName;
-			LevelText.text = "Lv. " + heroLevel;
-			PowerText.text = "DPS: " + heroPower
-								+ "\nSkill Power: " + heroSkillPower;
+            NameText.text = heroName;
+            LevelText.text = "Lv. " + heroLevel;
+            PowerText.text = "DPS: " + heroPower
+                                + "\nSkill Power: " + heroSkillPower;
 
-			LevelUpText.text = "$" + heroPrice + " Level Up"
-								+ "\n+ DPS: "
-								+ "\n+ Skill Power: ";
-		}
-	}
+            LevelUpText.text = "$" + heroPrice + " Level Up"
+                                + "\n+ DPS: "
+                                + "\n+ Skill Power: ";
+
+            if (_globalManager.getGold() >= heroPrice)
+            {
+                transform.parent.GetComponent<Image>().color = standard;
+            }
+            else
+            {
+                transform.parent.GetComponent<Image>().color = unaffordable;
+            }
+        }
+    }
+
+    private void ButtonStatusUpdate()
+    {
+        // If hero's level = 0(player haven't own it), 'JoinButton' and 'QuitButton' are not avaliable.
+        // If player has not enough money, 'UpgradeButton' is not avaliable.
+        if (hero.GetComponent<Hero>().getLevel() == 0)
+        {
+            JoinButton.GetComponent<Button>().interactable = false;
+            QuitButton.GetComponent<Button>().interactable = false;
+        }
+        else
+        {
+            JoinButton.GetComponent<Button>().interactable = true;
+            QuitButton.GetComponent<Button>().interactable = true;
+        }
+
+        if (_globalManager.getGold() < hero.GetComponent<Hero>().getPrice())
+            GetComponent<Button>().interactable = false;
+        else
+            GetComponent<Button>().interactable = true;
+    }
 
 
 
-	public void setHero(GameObject hero)
-	{
-		this.hero = hero;
-	}
+    public void setHero(GameObject hero)
+    {
+        this.hero = hero;
+    }
 }

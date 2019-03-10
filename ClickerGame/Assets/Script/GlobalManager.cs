@@ -3,106 +3,106 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GlobalManager : MonoBehaviour 
+public class GlobalManager : MonoBehaviour
 {
-	/* Store all the heroes */
-	public static List<GameObject> heroList = new List<GameObject>();
-	/* Store all the monsters */
-	public static List<GameObject> monsterList = new List<GameObject>();
-	public static List<GameObject> currentHeroes = new List<GameObject>();
-	public static GameObject currentEnemy;
-	public static GameObject selectedHero;
-	
-	public Text InfoBoard;
-	public int itemCount;
-	public int clickCount;
-	public int stage;
-	
-	/* monster's HP would be increase in each 10 stage by monsterHpRate */
-	private float monsterHpRate;
-	private float maxEnergy;
-	private float energy;
-	private string playerName;
-	private float gold;
-	
-	private static float bossTimeDuration;
+    /* Store all the heroes */
+    public static List<GameObject> heroList = new List<GameObject>();
+    /* Store all the monsters */
+    public static List<GameObject> monsterList = new List<GameObject>();
+    public static List<GameObject> currentHeroes = new List<GameObject>();
+    public static GameObject currentEnemy;
+    public static GameObject selectedHero;
 
-	void Start()
-	{
-		// Default value for beginning
-		itemCount = 0;
-		monsterHpRate = 1;
-		maxEnergy = 100;
-		energy =  maxEnergy;
-	}
+    public Text InfoBoard;
+    public int itemCount;
+    public int clickCount;
+    public int stage;
 
-	void Update()
-	{
-		UpdateInfoBoard();
-	}
+    /* monster's HP would be increase in each 10 stage by monsterHpRate */
+    private float monsterHpRate;
+    private float maxEnergy;
+    private float energy;
+    private string playerName;
+    public float gold;
 
-	private void UpdateInfoBoard()
-	{
-		InfoBoard.text = "Click: " + clickCount + "\nGold: " + gold + "\nStage: " + stage;
-	}
+    private static float bossTimeDuration;
 
-	
-	/* Getter */
-	public string getName()
-	{
-		return playerName;
-	}
+    void Start()
+    {
+        // Default value for beginning
+        itemCount = 0;
+        monsterHpRate = 1;
+        maxEnergy = 100;
+        energy = maxEnergy;
+    }
 
-	public float getGold()
-	{
-		return gold;
-	}
+    void Update()
+    {
+        UpdateInfoBoard();
+    }
 
-	public float getMaxEnergy()
-	{
-		return maxEnergy;
-	}
+    private void UpdateInfoBoard()
+    {
+        InfoBoard.text = "Click: " + clickCount + "\nGold: " + gold + "\nStage: " + stage;
+    }
 
-	public float getEnergy()
-	{
-		return energy;
-	}
 
-	public float getMonsterHpRate()
-	{
-		return monsterHpRate;
-	}
+    /* Getter */
+    public string getName()
+    {
+        return playerName;
+    }
 
-	/* Setter */
-	public void setPlayerName(string playerName)
-	{
-		this.playerName = playerName;
-	}
+    public float getGold()
+    {
+        return gold;
+    }
 
-	public void setGold(float gold)
-	{
-		this.gold = gold;
-	}
+    public float getMaxEnergy()
+    {
+        return maxEnergy;
+    }
 
-	public void setMaxEnergy(float maxEnergy)
-	{
-		this.maxEnergy = maxEnergy;
-	}
+    public float getEnergy()
+    {
+        return energy;
+    }
 
-	public void setEnergy(float energy)
-	{
-		if(energy > maxEnergy)
-		{
-			this.energy = maxEnergy;
-		}
-		else
-		{
-			this.energy = energy;
-		}
-	}
+    public float getMonsterHpRate()
+    {
+        return monsterHpRate;
+    }
 
-	public void setMonsterHpRate(float monsterHpRate)
-	{
-		this.monsterHpRate = monsterHpRate;
-	}
+    /* Setter */
+    public void setPlayerName(string playerName)
+    {
+        this.playerName = playerName;
+    }
+
+    public void setGold(float gold)
+    {
+        this.gold = gold;
+    }
+
+    public void setMaxEnergy(float maxEnergy)
+    {
+        this.maxEnergy = maxEnergy;
+    }
+
+    public void setEnergy(float energy)
+    {
+        if (energy > maxEnergy)
+        {
+            this.energy = maxEnergy;
+        }
+        else
+        {
+            this.energy = energy;
+        }
+    }
+
+    public void setMonsterHpRate(float monsterHpRate)
+    {
+        this.monsterHpRate = monsterHpRate;
+    }
 }

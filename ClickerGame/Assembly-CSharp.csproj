@@ -54,8 +54,9 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Script\ButtonManager.cs" />
-     <Compile Include="Assets\Script\ButtonManager1.cs" />
      <Compile Include="Assets\Script\EnergyBar.cs" />
+     <Compile Include="Assets\Script\Field.cs" />
+     <Compile Include="Assets\Script\FloatingText.cs" />
      <Compile Include="Assets\Script\GameController.cs" />
      <Compile Include="Assets\Script\GlobalManager.cs" />
      <Compile Include="Assets\Script\HealthBar.cs" />
@@ -69,6 +70,8 @@
      <Compile Include="Assets\Script\Object\UpgradeHeroItem.cs" />
      <Compile Include="Assets\Script\ObjectGenerator.cs" />
      <Compile Include="Assets\Script\Skill.cs" />
+     <Compile Include="Assets\Script\SkillButton.cs" />
+     <Compile Include="Assets\Script\SwitchField.cs" />
      <Compile Include="Assets\Script\TimeCountdownBar.cs" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>C:/Users/Wing/Desktop/FingerWarriors/repos/ClickerGame/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>

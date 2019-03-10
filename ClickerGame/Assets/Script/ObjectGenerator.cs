@@ -15,6 +15,13 @@ public class ObjectGenerator : MonoBehaviour
 	public GameObject Smile;
 	[Header("Item")]
 	public GameObject UpgradeHeroItem;
+	[Header("Icon")]
+	public Sprite icon_Amon;
+	public Sprite icon_1;
+	public Sprite icon_2;
+	public Sprite icon_3;
+	public Sprite icon_4;
+	
 	[Header("Parent")]
 	public GameObject ScrollPanel;
 
@@ -23,10 +30,11 @@ public class ObjectGenerator : MonoBehaviour
 	{
 		//	First Character
 		Amon = Instantiate(Amon) as GameObject;
-		setHeroValue(Amon, Field_1, "Amon", 10, 35, 100, Character.Element.Fire, 1, true);
+		setHeroValue(Amon, Field_1, "Amon", 10, 35, 100, Character.Element.Fire, 1, true, icon_Amon);
+		Field_1.GetComponent<Field>().activateSkillButton();
 
 		Test01 = Instantiate(Test01) as GameObject;
-		setHeroValue(Test01, Extra, "Test01", 10, 30, 500, Character.Element.Wind, 0, false);
+		setHeroValue(Test01, Extra, "Test01", 10, 30, 500, Character.Element.Wind, 0, false, icon_Amon);
 
 		for(int i=0;i<GlobalManager.heroList.Count;i++)
 		{
@@ -46,9 +54,10 @@ public class ObjectGenerator : MonoBehaviour
 		UpgradeHeroItem = Instantiate(UpgradeHeroItem, ScrollPanel.transform);
 		UpgradeHeroItem.name = "Item";
 		UpgradeHeroItem.GetComponentInChildren<UpgradeHeroItem>().setHero(hero);
+		UpgradeHeroItem.GetComponentInChildren<SwitchField>().setHero(hero);
 	}
 
-	private void setHeroValue(GameObject hero, GameObject position, string name, float power, float skillPower_1, float price, Character.Element type, int level, bool active)
+	private void setHeroValue(GameObject hero, GameObject position, string name, float power, float skillPower_1, float price, Character.Element type, int level, bool active, Sprite icon)
 	{
 		hero.GetComponent<Hero>().setName(name);
 		hero.transform.SetParent(position.transform);
@@ -58,6 +67,7 @@ public class ObjectGenerator : MonoBehaviour
 		hero.GetComponent<Hero>().setElement(type);
 		hero.GetComponent<Hero>().setLevel(level);
 		hero.SetActive(active);
+		hero.GetComponent<Hero>().Icon = icon;
 		
 		GlobalManager.heroList.Add(hero);
 

@@ -5,6 +5,11 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour 
 {
+	public Sprite Sprite_Fire;
+	public Sprite Sprite_Water;
+	public Sprite Sprite_Wind;
+	public Sprite Sprite_Light;
+	public Sprite Sprite_Dark;
 	private Image healthBar;
 	private float maxHp;
 	private float currentHp;
@@ -14,11 +19,41 @@ public class HealthBar : MonoBehaviour
 	}
 	
 	void Update () {
-		if(GlobalManager.monsterList.Count!=0)
+		if(GlobalManager.currentEnemy != null)
 		{
-			maxHp = GlobalManager.monsterList[0].GetComponent<Monster>().getMaxHp();
-			currentHp = GlobalManager.monsterList[0].GetComponent<Monster>().getHp();
+			maxHp = GlobalManager.currentEnemy.GetComponent<Monster>().getMaxHp();
+			currentHp = GlobalManager.currentEnemy.GetComponent<Monster>().getHp();
+			ChangeBarColor();
 			healthBar.fillAmount = currentHp / maxHp;
+		}
+		else
+		{
+			Debug.Log("GlobalManager.currentEnemy should not be null.");
+		}
+	}
+
+	private void ChangeBarColor()
+	{
+		switch(GlobalManager.currentEnemy.GetComponent<Monster>().getElement())
+		{
+			case Character.Element.Fire:
+				GetComponent<Image>().sprite = Sprite_Fire;
+				break;
+			case Character.Element.Water:
+				GetComponent<Image>().sprite = Sprite_Water;
+				break;
+			case Character.Element.Wind:
+				GetComponent<Image>().sprite = Sprite_Wind;
+				break;
+			case Character.Element.Light:
+				GetComponent<Image>().sprite = Sprite_Light;
+				break;
+			case Character.Element.Dark:
+				GetComponent<Image>().sprite = Sprite_Dark;
+				break;
+			default:
+				Debug.Log("Error in switch case.");
+				break;
 		}
 	}
 }

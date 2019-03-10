@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Skill : MonoBehaviour {
+public class Skill : MonoBehaviour 
+{
+	[HideInInspector] public Hero hero;
 
-	
-	void Update () {
-		
-	}
-
-	public void activateSkill_1()
+	public void activateSkill()
 	{
-			GlobalManager.selectedHero.GetComponent<Hero>().Skill_1(GlobalManager.currentEnemy);
+			hero.Skill(GlobalManager.currentEnemy);
 	}
 }

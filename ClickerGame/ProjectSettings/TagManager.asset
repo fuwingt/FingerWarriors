@@ -43,3 +43,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: sprite
+    uniqueID: 2218731333
+    locked: 0
+  - name: FloatingText
+    uniqueID: 1134585407
+    locked: 0

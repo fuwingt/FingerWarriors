@@ -2,44 +2,44 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-/* 19/2/2019 - InputContorller should be control the input for the object which store in "current" list
-				instead of a single object. */
-public class InputController : MonoBehaviour 
+
+public class InputController : MonoBehaviour
 {
-	public GameObject _globalManager;
+    public GameObject _globalManager;
+    public GameObject Field1;
+    public GameObject Field2;
+    public GameObject Field3;
+    public GameObject Field4;
+    public GameObject Field5;
+    public GameObject Field6;
+    private GameObject[] FieldArray = new GameObject[6];
+    void Start()
+    {
+        FieldArray[0] = Field1;
+        FieldArray[1] = Field2;
+        FieldArray[2] = Field3;
+        FieldArray[3] = Field4;
+        FieldArray[4] = Field5;
+        FieldArray[5] = Field6;
+    }
 
-	void Update()
-	{
-		ScreenRayCast();
-	}
+    public void Click()
+    {
+        /* To record that how many times the player clicked */
+        _globalManager.GetComponent<GlobalManager>().clickCount++;
+        for (int i = 0; i < FieldArray.Length; i++)
+        {
+            if (FieldArray[i].transform.childCount != 0)
+            {
+                /* Attack animation will be triggered " */
+                FieldArray[i].GetComponentInChildren<Animator>().SetTrigger("isAttack01");
+                /*	# Click to deduct the HP from monster */
+                FieldArray[i].GetComponentInChildren<Hero>().Attack(GlobalManager.currentEnemy);
+            }
+        }
 
-	public void Click()
-	{
-		/* To record that how many times the player clicked */
-		_globalManager.GetComponent<GlobalManager>().clickCount++;
-		/* Attack animation will be triggered " */
-		for(int i=0;i<GlobalManager.currentHeroes.Count;i++)
-		{
-			GlobalManager.currentHeroes[i].GetComponent<Animator>().SetTrigger("isAttack01");;
-		}
-		/*	# Click to deduct the HP from monster */
-		for(int i=0;i<GlobalManager.currentHeroes.Count;i++)
-		{
-			GlobalManager.currentHeroes[i].GetComponent<Hero>().Attack(GlobalManager.currentEnemy);
-		}
-	}
 
-	public void ScreenRayCast()
-	{
-		if(Input.GetMouseButtonDown(0))
-		{
-			RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-			if(hit.collider != null)
-			{
-				// Click to select the hero
-				//GlobalManager.selectedHero = hit.collider.transform.GetChild(0).gameObject;
-				//Debug.Log("Target object: " + GlobalManager.selectedHero.name);
-			}
-		}
-	}
+    }
+
+
 }
