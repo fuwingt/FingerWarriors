@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 4cdab475520e9684dbb5af08c157d3d7
+guid: 4ed26565b16568c40b31fa9c9ba4edcb
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Amon_Attack1_0
-    21300002: Amon_Attack1_1
-    21300004: Amon_Attack1_2
-    21300006: Amon_Attack1_3
+    21300000: Amon_Attack03_0
+    21300002: Amon_Attack03_1
+    21300004: Amon_Attack03_2
+    21300006: Amon_Attack03_3
   externalObjects: {}
   serializedVersion: 5
   mipmaps:
@@ -86,13 +86,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Amon_Attack1_0
+      name: Amon_Attack03_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 480
-        height: 242
+        height: 254
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -100,19 +100,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9478398e12db33340a86999e73ec66d1
+      spriteID: c3e78b44e0fe769478fbe077976241b3
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Amon_Attack1_1
+      name: Amon_Attack03_1
       rect:
         serializedVersion: 2
         x: 480
         y: 0
         width: 480
-        height: 242
+        height: 254
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -120,19 +120,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f74b16f667c6254992459a2f8961879
+      spriteID: f22dd867d3cb21149bd6bac4b7158bb5
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Amon_Attack1_2
+      name: Amon_Attack03_2
       rect:
         serializedVersion: 2
         x: 960
         y: 0
         width: 480
-        height: 242
+        height: 254
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,19 +140,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 492e37b4014092b4ba6a518d124a3549
+      spriteID: fc999d404b770b64396dbf3538d9f199
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Amon_Attack1_3
+      name: Amon_Attack03_3
       rect:
         serializedVersion: 2
         x: 1440
         y: 0
         width: 480
-        height: 242
+        height: 254
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -160,7 +160,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aec977f5340472c43a7b1125dd161bf0
+      spriteID: c57255f4d3375e149a33fc3687f03344
       vertices: []
       indices: 
       edges: []
@@ -168,7 +168,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 9d8a15ae1b0da3940949ffe541f1ae40
+    spriteID: 7d45dd320bbfa1546ab0e991c0fc50cc
     vertices: []
     indices: 
     edges: []

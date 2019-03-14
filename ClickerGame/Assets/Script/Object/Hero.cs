@@ -9,7 +9,7 @@ public abstract class Hero : Character
     }
     public Sprite Icon;
     public GameObject FloatingText;
-    [SerializeField] protected float skillPower_1;
+    [SerializeField] protected float skillPower;
     [SerializeField] private float power;
     [SerializeField] private float energy = 0;
     [SerializeField] private float price;
@@ -23,22 +23,24 @@ public abstract class Hero : Character
         {
             // Calculate the damage result with element
             float result = ElementEffect(getElement(), monster.GetComponent<Monster>().getElement(), power);
+            // Animaition
+            transform.GetComponent<Animator>().SetTrigger("isAttack");
             // Do damage
-            monster.GetComponent<Monster>().setHp(monster.GetComponent<Monster>().getHp() - result);
+            monster.GetComponent<Monster>().BeingAttacked(result);
             // Add 10 Energy each attack
             if (energy < maxEnergy)
             {
                 energy += 10;
             }
             // Show damage by FloatingText
-            ShowFloatingText();
+            ShowFloatingText(power);
             Debug.Log(getName() + ": making damage " + result + " to enemy " + monster.GetComponent<Monster>().getName());
         }
     }
 
     public abstract void Skill(GameObject monster);
 
-    private void ShowFloatingText()
+    protected void ShowFloatingText(float power)
     {
         var damageText = Instantiate(FloatingText, transform.position, Quaternion.identity, transform);
         damageText.GetComponent<TextMesh>().text = power.ToString();
@@ -121,9 +123,9 @@ public abstract class Hero : Character
         return _result;
     }
 
-    public float getSkillPower_1()
+    public float getSkillPower()
     {
-        return skillPower_1;
+        return skillPower;
     }
 
     public float getPower()
@@ -156,9 +158,9 @@ public abstract class Hero : Character
         return upgradeCount;
     }
 
-    public void setSkillPower_1(float skillPower_1)
+    public void setSkillPower(float skillPower)
     {
-        this.skillPower_1 = skillPower_1;
+        this.skillPower = skillPower;
     }
 
     public void setPower(float power)

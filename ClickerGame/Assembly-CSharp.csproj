@@ -70,7 +70,6 @@
      <Compile Include="Assets\Script\Object\UpgradeHeroItem.cs" />
      <Compile Include="Assets\Script\ObjectGenerator.cs" />
      <Compile Include="Assets\Script\Skill.cs" />
-     <Compile Include="Assets\Script\SkillButton.cs" />
      <Compile Include="Assets\Script\SwitchField.cs" />
      <Compile Include="Assets\Script\TimeCountdownBar.cs" />
  <Reference Include="UnityEditor.StandardEvents">

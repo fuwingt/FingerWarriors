@@ -31,12 +31,10 @@ public class InputController : MonoBehaviour
         {
             if (FieldArray[i].transform.childCount != 0)
             {
-                /* Attack animation will be triggered " */
-                FieldArray[i].GetComponentInChildren<Animator>().SetTrigger("isAttack01");
-                /*	# Click to deduct the HP from monster */
                 FieldArray[i].GetComponentInChildren<Hero>().Attack(GlobalManager.currentEnemy);
             }
         }
+
 
 
     }

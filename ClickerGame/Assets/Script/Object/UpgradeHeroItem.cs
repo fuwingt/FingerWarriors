@@ -49,7 +49,7 @@ public class UpgradeHeroItem : MonoBehaviour
             _globalManager.setGold(_globalManager.getGold() - heroPrice);
             hero.GetComponent<Hero>().setUpgradeCount(hero.GetComponent<Hero>().getUpgradeCount() + 1);
             hero.GetComponent<Hero>().setPower(Mathf.Round(hero.GetComponent<Hero>().getPower() * 1.3f));
-            hero.GetComponent<Hero>().setSkillPower_1(Mathf.Round(hero.GetComponent<Hero>().getSkillPower_1() * 1.1f));
+            hero.GetComponent<Hero>().setSkillPower(Mathf.Round(hero.GetComponent<Hero>().getSkillPower() * 1.1f));
             hero.GetComponent<Hero>().setPrice(Mathf.Round(hero.GetComponent<Hero>().getPrice() * 1.15f));
             hero.GetComponent<Hero>().setLevel(hero.GetComponent<Hero>().getLevel() + 1);
         }
@@ -68,7 +68,7 @@ public class UpgradeHeroItem : MonoBehaviour
             heroName = hero.GetComponent<Hero>().getName();
             heroPrice = hero.GetComponent<Hero>().getPrice();
             heroPower = hero.GetComponent<Hero>().getPower();
-            heroSkillPower = hero.GetComponent<Hero>().getSkillPower_1();
+            heroSkillPower = hero.GetComponent<Hero>().getSkillPower();
             heroLevel = hero.GetComponent<Hero>().getLevel();
 
             NameText.text = heroName;
