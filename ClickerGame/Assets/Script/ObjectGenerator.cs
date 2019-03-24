@@ -11,7 +11,7 @@ public class ObjectGenerator : MonoBehaviour
 
     [Header("Hero")]
     public GameObject Amon;
-    public GameObject Test01;
+    public GameObject Freyr;
     [Header("Monster")]
     public GameObject Smile;
     [Header("Item")]
@@ -29,14 +29,14 @@ public class ObjectGenerator : MonoBehaviour
 
     public void generateHeros()
     {
-        //	First Character
+        //	First hero  
         Amon = Instantiate(Amon) as GameObject;
         setHeroValue(Amon, Field_1, "Amon", 10, 35, 100, Character.Element.Fire, 1, true, icon_Amon);
         Field_1.GetComponent<Field>().activateSkillButton();
-
-        Test01 = Instantiate(Test01) as GameObject;
-        setHeroValue(Test01, Extra, "Test01", 10, 30, 500, Character.Element.Wind, 0, false, icon_Amon);
-
+        //  Other hero
+        Freyr = Instantiate(Freyr) as GameObject;
+        setHeroValue(Freyr, Extra, "Freyr", 10, 30, 500, Character.Element.Water, 0, false, icon_Amon);
+        //  Upgrade column for each hero
         for (int i = 0; i < GlobalManager.heroList.Count; i++)
         {
             createUpgradeItem(GlobalManager.heroList[i]);

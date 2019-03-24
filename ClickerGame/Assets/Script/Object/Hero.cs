@@ -44,6 +44,7 @@ public abstract class Hero : Character
     {
         var damageText = Instantiate(FloatingText, transform.position, Quaternion.identity, transform);
         damageText.GetComponent<TextMesh>().text = power.ToString();
+
     }
 
     protected float ElementEffect(Character.Element heroElement, Character.Element monsterElement, float power)

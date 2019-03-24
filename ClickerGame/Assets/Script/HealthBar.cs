@@ -6,20 +6,30 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     [Header("BarColor")]
-    public Sprite Sprite_Fire;
-    public Sprite Sprite_Water;
-    public Sprite Sprite_Wind;
-    public Sprite Sprite_Light;
-    public Sprite Sprite_Dark;
-    [Header("Text")]
+    public Sprite BarSprite_Fire;
+    public Sprite BarSprite_Water;
+    public Sprite BarSprite_Wind;
+    public Sprite BarSprite_Light;
+    public Sprite BarSprite_Dark;
+
+    [Header("Icon")]
+    public Sprite IconSprite_Fire;
+    public Sprite IconSprite_Water;
+    public Sprite IconSprite_Wind;
+    public Sprite IconSprite_Light;
+    public Sprite IconSprite_Dark;
+
+    [Header("Objects")]
     public GameObject HpText;
+    public GameObject ElementIcon;
+
     private Image healthBar;
     private float maxHp;
     private float currentHp;
 
     void Start()
     {
-        healthBar = GetComponent<Image>();
+        //healthBar = GetComponent<Image>();
     }
 
     void Update()
@@ -30,7 +40,7 @@ public class HealthBar : MonoBehaviour
             currentHp = GlobalManager.currentEnemy.GetComponent<Monster>().getHp();
             ChangeBarColor();
             HpText.GetComponent<TextMesh>().text = currentHp.ToString();
-            healthBar.fillAmount = currentHp / maxHp;
+            GetComponent<Image>().fillAmount = currentHp / maxHp;
         }
         else
         {
@@ -43,19 +53,25 @@ public class HealthBar : MonoBehaviour
         switch (GlobalManager.currentEnemy.GetComponent<Monster>().getElement())
         {
             case Character.Element.Fire:
-                GetComponent<Image>().sprite = Sprite_Fire;
+                GetComponent<Image>().sprite = BarSprite_Fire;
+                ElementIcon.GetComponent<Image>().sprite = IconSprite_Fire;
                 break;
             case Character.Element.Water:
-                GetComponent<Image>().sprite = Sprite_Water;
+                GetComponent<Image>().sprite = BarSprite_Water;
+                ElementIcon.GetComponent<Image>().sprite = IconSprite_Water;
+
                 break;
             case Character.Element.Wind:
-                GetComponent<Image>().sprite = Sprite_Wind;
+                GetComponent<Image>().sprite = BarSprite_Wind;
+                ElementIcon.GetComponent<Image>().sprite = IconSprite_Wind;
                 break;
             case Character.Element.Light:
-                GetComponent<Image>().sprite = Sprite_Light;
+                GetComponent<Image>().sprite = BarSprite_Light;
+                ElementIcon.GetComponent<Image>().sprite = IconSprite_Light;
                 break;
             case Character.Element.Dark:
-                GetComponent<Image>().sprite = Sprite_Dark;
+                GetComponent<Image>().sprite = BarSprite_Dark;
+                ElementIcon.GetComponent<Image>().sprite = IconSprite_Dark;
                 break;
             default:
                 Debug.Log("Error in switch case.");

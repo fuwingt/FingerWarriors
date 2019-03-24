@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 50887055171191992}
   - component: {fileID: 114326870541969508}
   - component: {fileID: 114829068588167058}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Amon
   m_TagString: Hero
   m_Icon: {fileID: 0}
@@ -143,16 +143,16 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
-  m_Sprite: {fileID: 21300000, guid: c9b50f7642e897a488e79d035cc8b5ef, type: 3}
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 8966efca28a97554e827a74763a76812, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 4.8, y: 2.54}
+  m_Size: {x: 4.7999997, y: 2.54}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
 --- !u!224 &224173088157574380
 RectTransform:

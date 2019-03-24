@@ -2,9 +2,15 @@
 
 public class Monster : Character
 {
+    public GameObject _inventoryManager;
     [SerializeField] private float hp;
     [SerializeField] private float maxHp;
     [SerializeField] private float basicHp;
+
+    void Start()
+    {
+        _inventoryManager = GameObject.Find("InventoryManager");
+    }
 
     public void BeingAttacked(float result)
     {
@@ -15,7 +21,13 @@ public class Monster : Character
     }
     public void Reborn()
     {
+        // This function will be chnaged to "Death" 
         hp = maxHp;
+        // Test:
+        // Drop equipment to player
+        // Automatically collected into inventory
+        _inventoryManager.GetComponent<Inventory>().equipment.Drop();
+        _inventoryManager.GetComponent<Inventory>().AddEquipment(_inventoryManager.GetComponent<Inventory>().equipment);
     }
 
     public float getHp()
