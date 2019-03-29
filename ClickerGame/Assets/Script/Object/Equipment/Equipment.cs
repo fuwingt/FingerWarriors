@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Equipment", menuName = "Equipment")]
-public class Equipment : ScriptableObject
+public class Equipment : MonoBehaviour
 {
-
+    public GameObject SelectingBorder;
+    public GameObject User = null;
     public new string name;
     public string description;
     public float price;
@@ -25,13 +25,23 @@ public class Equipment : ScriptableObject
     public Type type = Type.Weapon;
     public Rank rank = Rank.Bronze;
     public int value;
+    public bool isEquiped = false;
 
-    public void Drop()
+    public void CreateEquip()
     {
+        // This function is to Create the equipment
+        name = "Bronze Sword";
         value = Random.Range(10, 15);
+        description = "increase " + value + " power to hero.";
     }
 
-    public void EquipmentEffect(Character obj)
+    public void SelectEquip()
+    {
+        // Called by button click
+        Inventory.ShowSelectingBorder(transform.gameObject);
+    }
+
+    public void EquipmentEffect(GameObject hero)
     {
         switch (type)
         {
@@ -39,7 +49,7 @@ public class Equipment : ScriptableObject
                 if (rank == Rank.Bronze)
                 {
                     // Bronze weapon, increase hero's power with the value between 10 - 15
-                    obj.GetComponent<Hero>().setPower(obj.GetComponent<Hero>().getPower() + value);
+                    hero.GetComponent<Hero>().setExtraPower(value);
                 }
                 break;
 
@@ -53,6 +63,18 @@ public class Equipment : ScriptableObject
                 Debug.Log("");
                 break;
         }
+    }
+
+    public void SellOut()
+    {
+        if (isEquiped == false)
+        {
+            GlobalManager.setGold(GlobalManager.getGold() + price);
+            Destroy(gameObject);
+        }
+        else
+            Debug.Log("Equipment cannot be sell while it is equiped.");
+
     }
 
 }

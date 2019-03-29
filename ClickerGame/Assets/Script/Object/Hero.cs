@@ -11,18 +11,23 @@ public abstract class Hero : Character
     public GameObject FloatingText;
     [SerializeField] protected float skillPower;
     [SerializeField] private float power;
+    [SerializeField] private float extraPower = 0;
+    [SerializeField] protected float extraSkillPower = 0;
     [SerializeField] private float energy = 0;
     [SerializeField] private float price;
     [SerializeField] private int level;
+    [SerializeField] public GameObject currentEquipment = null;
     private float maxEnergy = 100;
     private int upgradeCount;
+
+    public abstract void Skill(GameObject monster);
 
     public virtual void Attack(GameObject monster)
     {
         if (monster != null)
         {
             // Calculate the damage result with element
-            float result = ElementEffect(getElement(), monster.GetComponent<Monster>().getElement(), power);
+            float result = ElementEffect(getElement(), monster.GetComponent<Monster>().getElement(), power, extraPower);
             // Animaition
             transform.GetComponent<Animator>().SetTrigger("isAttack");
             // Do damage
@@ -38,7 +43,25 @@ public abstract class Hero : Character
         }
     }
 
-    public abstract void Skill(GameObject monster);
+    public void SuitUp(GameObject Equipment)
+    {
+        currentEquipment = Equipment;
+        currentEquipment.GetComponent<Equipment>().EquipmentEffect(gameObject);
+        currentEquipment.GetComponent<Equipment>().isEquiped = true;
+        currentEquipment.GetComponent<Equipment>().User = gameObject;
+    }
+
+    public void PeelOff()
+    {
+        if (currentEquipment != null)
+        {
+            currentEquipment.GetComponent<Equipment>().User = gameObject;
+            currentEquipment.GetComponent<Equipment>().isEquiped = false;
+            extraPower = 0; extraSkillPower = 0;
+            currentEquipment = null;
+        }
+    }
+
 
     protected void ShowFloatingText(float power)
     {
@@ -47,9 +70,9 @@ public abstract class Hero : Character
 
     }
 
-    protected float ElementEffect(Character.Element heroElement, Character.Element monsterElement, float power)
+    protected float ElementEffect(Character.Element heroElement, Character.Element monsterElement, float power, float exPower)
     {
-        float _result = power;
+        float _result = power + exPower;
         if (heroElement == Character.Element.Fire)
         {
             /* Strong against with Wind */
@@ -134,6 +157,16 @@ public abstract class Hero : Character
         return power;
     }
 
+    public float getExtraPower()
+    {
+        return extraPower;
+    }
+
+    public float getExtraSkillPower()
+    {
+        return extraSkillPower;
+    }
+
     public float getEnergy()
     {
         return energy;
@@ -167,6 +200,16 @@ public abstract class Hero : Character
     public void setPower(float power)
     {
         this.power = power;
+    }
+
+    public void setExtraPower(float extraPower)
+    {
+        this.extraPower = extraPower;
+    }
+
+    public void setExtraSkillPower(float extraSkillPower)
+    {
+        this.extraSkillPower = extraSkillPower;
     }
 
     public void setEnergy(float energy)

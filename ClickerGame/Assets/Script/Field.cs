@@ -15,8 +15,17 @@ public class Field : MonoBehaviour
     public Sprite Border_Wind;
     public Sprite Border_Light;
     public Sprite Border_Dark;
+    [Header("Logo")]
+    public Sprite ArrowLogo;
 
     private Hero Hero;
+
+    public void activateLogo()
+    {
+        Animator animator = gameObject.GetComponent<Animator>();
+        bool isLogoShowUp = animator.GetBool("isLogoShowUp");
+        animator.SetBool("isLogoShowUp", !isLogoShowUp);
+    }
 
 
     public void activateSkillButton()

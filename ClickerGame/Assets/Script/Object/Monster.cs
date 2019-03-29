@@ -26,8 +26,8 @@ public class Monster : Character
         // Test:
         // Drop equipment to player
         // Automatically collected into inventory
-        _inventoryManager.GetComponent<Inventory>().equipment.Drop();
-        _inventoryManager.GetComponent<Inventory>().AddEquipment(_inventoryManager.GetComponent<Inventory>().equipment);
+        _inventoryManager.GetComponent<Inventory>().EquipmentPrefab.GetComponent<Equipment>().CreateEquip();
+        _inventoryManager.GetComponent<Inventory>().AddEquipment(_inventoryManager.GetComponent<Inventory>().EquipmentPrefab);
     }
 
     public float getHp()

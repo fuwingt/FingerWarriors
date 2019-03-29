@@ -41,7 +41,7 @@ public class GameController : MonoBehaviour
             currentEnemy.GetComponent<Monster>().setMaxHp(currentEnemy.GetComponent<Monster>().getBasicHp() * _globalManager.GetComponent<GlobalManager>().getMonsterHpRate());
             currentEnemy.GetComponent<Monster>().setHp(currentEnemy.GetComponent<Monster>().getBasicHp() * _globalManager.GetComponent<GlobalManager>().getMonsterHpRate());
             /* Get gold */
-            _globalManager.GetComponent<GlobalManager>().setGold(_globalManager.GetComponent<GlobalManager>().getGold() + 10);
+            GlobalManager.setGold(GlobalManager.getGold() + 10);
             /* #Debug: Reborn */
             currentEnemy.GetComponent<Monster>().Reborn();
             _globalManager.GetComponent<GlobalManager>().stage++;

@@ -12,7 +12,7 @@ public class InputController : MonoBehaviour
     public GameObject Field4;
     public GameObject Field5;
     public GameObject Field6;
-    private GameObject[] FieldArray = new GameObject[6];
+    public static GameObject[] FieldArray = new GameObject[6];
     void Start()
     {
         FieldArray[0] = Field1;

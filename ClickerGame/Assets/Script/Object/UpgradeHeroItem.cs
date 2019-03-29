@@ -21,7 +21,9 @@ public class UpgradeHeroItem : MonoBehaviour
     private string heroName;
     private float heroPrice;
     private float heroPower;
+    private float heroExtraPower;
     private float heroSkillPower;
+    private float heroExtraSkillPower;
     private float heroLevel;
     private bool isSelectingField = false;
 
@@ -44,9 +46,9 @@ public class UpgradeHeroItem : MonoBehaviour
     {
         if (hero == null) return;
 
-        if (_globalManager.getGold() >= heroPrice)
+        if (GlobalManager.getGold() >= heroPrice)
         {
-            _globalManager.setGold(_globalManager.getGold() - heroPrice);
+            GlobalManager.setGold(GlobalManager.getGold() - heroPrice);
             hero.GetComponent<Hero>().setUpgradeCount(hero.GetComponent<Hero>().getUpgradeCount() + 1);
             hero.GetComponent<Hero>().setPower(Mathf.Round(hero.GetComponent<Hero>().getPower() * 1.3f));
             hero.GetComponent<Hero>().setSkillPower(Mathf.Round(hero.GetComponent<Hero>().getSkillPower() * 1.1f));
@@ -68,19 +70,21 @@ public class UpgradeHeroItem : MonoBehaviour
             heroName = hero.GetComponent<Hero>().getName();
             heroPrice = hero.GetComponent<Hero>().getPrice();
             heroPower = hero.GetComponent<Hero>().getPower();
+            heroExtraPower = hero.GetComponent<Hero>().getExtraPower();
             heroSkillPower = hero.GetComponent<Hero>().getSkillPower();
+            heroExtraSkillPower = hero.GetComponent<Hero>().getExtraSkillPower();
             heroLevel = hero.GetComponent<Hero>().getLevel();
 
             NameText.text = heroName;
             LevelText.text = "Lv. " + heroLevel;
-            PowerText.text = "DPS: " + heroPower
-                                + "\nSkill Power: " + heroSkillPower;
+            PowerText.text = "DPS: " + (heroPower + heroExtraPower)
+                                + "\nSkill Power: " + (heroSkillPower + heroExtraSkillPower);
 
             LevelUpText.text = "$" + heroPrice + " Level Up"
                                 + "\n+ DPS: "
                                 + "\n+ Skill Power: ";
 
-            if (_globalManager.getGold() >= heroPrice)
+            if (GlobalManager.getGold() >= heroPrice)
             {
                 transform.parent.GetComponent<Image>().color = standard;
             }
@@ -106,7 +110,7 @@ public class UpgradeHeroItem : MonoBehaviour
             QuitButton.GetComponent<Button>().interactable = true;
         }
 
-        if (_globalManager.getGold() < hero.GetComponent<Hero>().getPrice())
+        if (GlobalManager.getGold() < hero.GetComponent<Hero>().getPrice())
             GetComponent<Button>().interactable = false;
         else
             GetComponent<Button>().interactable = true;

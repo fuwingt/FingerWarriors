@@ -23,7 +23,7 @@ public class GlobalManager : MonoBehaviour
     private float maxEnergy;
     private float energy;
     private string playerName;
-    public float gold;
+    private static float gold = 500;
 
     private static float bossTimeDuration;
 
@@ -53,7 +53,7 @@ public class GlobalManager : MonoBehaviour
         return playerName;
     }
 
-    public float getGold()
+    public static float getGold()
     {
         return gold;
     }
@@ -79,9 +79,9 @@ public class GlobalManager : MonoBehaviour
         this.playerName = playerName;
     }
 
-    public void setGold(float gold)
+    public static void setGold(float gold)
     {
-        this.gold = gold;
+        GlobalManager.gold = gold;
     }
 
     public void setMaxEnergy(float maxEnergy)
