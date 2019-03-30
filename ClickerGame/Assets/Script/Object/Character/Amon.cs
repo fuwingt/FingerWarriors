@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Amon : Hero
 {
+    public GameObject AmonSkillObjectPrefab;
+    private GameObject AmonSkillObject;
     private GameObject _globalManager;
+    private GameObject _monsterPanel;
     private float requiredEnergy = 50;
     private float energyPerAttack = 10;
     private Hero.Type Type = Hero.Type.Melee;
@@ -13,6 +16,7 @@ public class Amon : Hero
     void Start()
     {
         _globalManager = GameObject.Find("GlobalManager").gameObject;
+        _monsterPanel = GameObject.Find("MonsterPanel").gameObject;
     }
 
     public override void Attack(GameObject monster)
@@ -30,9 +34,11 @@ public class Amon : Hero
             {
                 _globalManager.GetComponent<GlobalManager>().setEnergy(_globalManager.GetComponent<GlobalManager>().getEnergy() - requiredEnergy);
                 float result = ElementEffect(getElement(), monster.GetComponent<Monster>().getElement(), skillPower, extraSkillPower);
-                monster.GetComponent<Monster>().setHp(monster.GetComponent<Monster>().getHp() - result);
-                ShowFloatingText(skillPower);
-                Debug.Log(getName() + ": making damage " + result + " to enemy " + monster.GetComponent<Monster>().getName() + " using Skill!!!");
+                //monster.GetComponent<Monster>().setHp(monster.GetComponent<Monster>().getHp() - result);
+                //ShowFloatingText(skillPower);
+                AmonSkillObject = Instantiate(AmonSkillObjectPrefab, _monsterPanel.transform);
+                AmonSkillObject.GetComponent<AmonSkillObject>().setResult(result);
+                //Debug.Log(getName() + ": making damage " + result + " to enemy " + monster.GetComponent<Monster>().getName() + " using Skill!!!");
             }
             else
             {

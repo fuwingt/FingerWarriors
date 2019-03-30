@@ -66,6 +66,7 @@
      <Compile Include="Assets\Script\Object\Boss.cs" />
      <Compile Include="Assets\Script\Object\Character.cs" />
      <Compile Include="Assets\Script\Object\Character\Amon.cs" />
+     <Compile Include="Assets\Script\Object\Character\AmonSkillObject.cs" />
      <Compile Include="Assets\Script\Object\Character\Freyr.cs" />
      <Compile Include="Assets\Script\Object\Character\Test01.cs" />
      <Compile Include="Assets\Script\Object\Equipment\Equipment.cs" />

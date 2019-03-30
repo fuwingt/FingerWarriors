@@ -87,9 +87,14 @@ MonoBehaviour:
     type: 2}
   skillPower: 0
   power: 0
+  extraPower: 0
+  extraSkillPower: 0
   energy: 0
   price: 0
   level: 0
+  currentEquipment: {fileID: 0}
+  AmonSkillObjectPrefab: {fileID: 1706595649075364, guid: 8161da4f10839a74eb65ee00abbf472a,
+    type: 2}
 --- !u!114 &114829068588167058
 MonoBehaviour:
   m_ObjectHideFlags: 1

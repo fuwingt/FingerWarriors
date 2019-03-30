@@ -43,7 +43,7 @@ MonoBehaviour:
     y: 0
     width: 1504
     height: 920
-  m_MinSize: {x: 950, y: 300}
+  m_MinSize: {x: 950, y: 321}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &3
 MonoBehaviour:
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_MinSize: {x: 817, y: 271}
   m_MaxSize: {x: 22012, y: 10021}
   vertical: 0
-  controlID: 59
+  controlID: 49
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -246,6 +246,7 @@ MonoBehaviour:
     - {fileID: 1107225878969915504, guid: 14832d64695190546a115c542df7decf, type: 2}
     - {fileID: 1107041108554163904, guid: 8ab97eb96f6a8934fb7f7b58ca336a86, type: 2}
     - {fileID: 1107726244940553872, guid: 21311f43df8caa548b451ee02e5e263e, type: 2}
+    - {fileID: 1107071302702094658, guid: 2d6fe0a3d60413d4ebc53dfbcc29169e, type: 2}
     m_ValueSerializationHelper:
     - e00: 1.135609
       e01: 0
@@ -327,6 +328,22 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
+    - e00: 1
+      e01: 0
+      e02: 0
+      e03: 0
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
   m_PreviewAnimator: {fileID: 0}
   m_AnimatorController: {fileID: 0}
   m_BreadCrumbs: []
@@ -386,7 +403,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 1
+    m_EnableMouseInput: 0
     m_EnableSliderZoom: 0
     m_UniformScale: 1
     m_UpDirection: 1
@@ -442,14 +459,14 @@ MonoBehaviour:
     height: 849
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SceneLighting: 1
-  lastFramingTime: 35580.33644143207
+  lastFramingTime: 2234.965969272653
   m_2DMode: 1
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 1.4688026, y: -1.8306375, z: 89.90292}
+    m_Target: {x: 0.68568283, y: 0.5819669, z: 89.99121}
     speed: 2
-    m_Value: {x: 1.4688026, y: -1.8306375, z: 89.90292}
+    m_Value: {x: 0.68568283, y: 0.5819669, z: 89.99121}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -481,15 +498,15 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 8.699479
+    m_Target: 7.0176907
     speed: 2
-    m_Value: 8.699479
+    m_Value: 7.0176907
   m_Ortho:
     m_Target: 1
     speed: 2
     m_Value: 1
   m_ShowGlobalGrid: 1
-  m_LastSceneViewRotation: {x: 0.08717229, y: -0.89959055, z: 0.21045254, w: 0.3726226}
+  m_LastSceneViewRotation: {x: -0.08717229, y: 0.89959055, z: -0.21045254, w: -0.3726226}
   m_LastSceneViewOrtho: 0
   m_ReplacementShader: {fileID: 0}
   m_ReplacementString: 
@@ -522,9 +539,9 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: fa96d6ff
+    m_SelectedIDs: 40060000
     m_LastClickedID: 0
-    m_ExpandedIDs: be26d8ff6435d8ff0643d8ffc6ecdbffacd1defff0fbffff000000005a2d0000ac2d0000be2d00006a2e0000782e0000ec2e0000062f00004a2f0000602f0000
+    m_ExpandedIDs: f0fbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -585,20 +602,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Animation/Controller
+    - Assets/Script
   m_ViewMode: 1
   m_StartGridSize: 67
   m_LastFolders:
-  - Assets/Animation/Controller
+  - Assets/Script
   m_LastFoldersGridSize: 67
   m_LastProjectPath: C:\Users\Wing\Desktop\FingerWarriors\repos\ClickerGame
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: c2290000
-    m_LastClickedID: 10690
-    m_ExpandedIDs: 0000000076290000842b0000f82b0000322c00007c2c0000e42c0000f42c0000ba300000bc30000000ca9a3bffffff7f
+    m_SelectedIDs: a62c0000
+    m_LastClickedID: 11430
+    m_ExpandedIDs: 0000000078290000822b0000882b0000f02b00006c2c0000a62c0000f42c00006c2d0000822d0000ba310000bc31000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -626,7 +643,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000076290000842b0000f82b0000322c00007c2c0000e42c0000f42c0000ba300000bc300000
+    m_ExpandedIDs: 0000000078290000822b0000882b0000f02b00006c2c0000a62c0000f42c00006c2d0000822d0000ba310000bc310000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -678,7 +695,7 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
     m_NewAssetIndexInList: -1
-    m_ScrollPosition: {x: 0, y: 0}
+    m_ScrollPosition: {x: 0, y: 240}
     m_GridSize: 67
   m_DirectoriesAreaWidth: 110
 --- !u!114 &15
@@ -711,7 +728,7 @@ MonoBehaviour:
   m_LockTracker:
     m_IsLocked: 0
   m_PreviewResizer:
-    m_CachedPref: -160
+    m_CachedPref: -277
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
   m_PreviewWindow: {fileID: 0}
