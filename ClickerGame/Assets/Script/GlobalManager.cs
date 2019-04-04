@@ -12,7 +12,7 @@ public class GlobalManager : MonoBehaviour
     public static List<GameObject> currentHeroes = new List<GameObject>();
     public static GameObject currentEnemy;
     public static GameObject selectedHero;
-
+    public static float gold10xChance = 10;
     public Text InfoBoard;
     public int itemCount;
     public int clickCount;
@@ -24,7 +24,6 @@ public class GlobalManager : MonoBehaviour
     private float energy;
     private string playerName;
     private static float gold = 500;
-
     private static float bossTimeDuration;
 
     void Start()
@@ -43,7 +42,8 @@ public class GlobalManager : MonoBehaviour
 
     private void UpdateInfoBoard()
     {
-        InfoBoard.text = "Click: " + clickCount + "\nGold: " + gold + "\nStage: " + stage;
+        InfoBoard.text = "Stage: " + stage
+                        + "\nGold: " + gold;
     }
 
 

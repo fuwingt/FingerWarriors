@@ -51,13 +51,13 @@ public class SwitchField : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
             if (hit.collider != null)
             {
-                if (hit.collider.gameObject.tag == "Field")
+                if (hit.collider.gameObject.tag == "FrontField" || hit.collider.gameObject.tag == "BackField")
                 {
                     if (hit.collider.transform.childCount == 0)
                     {
                         // Join
                         hero.SetActive(true);
-                        if (hero.transform.parent.tag == "Field")
+                        if (hero.transform.parent.tag == "FrontField" || hero.transform.parent.tag == "BackField")
                             hero.transform.parent.GetComponent<Field>().deactivateSkillButton();
                         hero.transform.SetParent(hit.collider.gameObject.transform);
 

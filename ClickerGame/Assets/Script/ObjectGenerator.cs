@@ -50,6 +50,7 @@ public class ObjectGenerator : MonoBehaviour
         setMonsterValue(Smile, "Smile", 100, Character.Element.Water);
     }
 
+
     private void createUpgradeItem(GameObject hero)
     {
         UpgradeHeroItem = Instantiate(UpgradeHeroItem, ScrollPanel.transform);

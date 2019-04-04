@@ -29,7 +29,7 @@ public class Test01 : Hero
             if (_globalManager.GetComponent<GlobalManager>().getEnergy() >= requiredEnergy)
             {
                 _globalManager.GetComponent<GlobalManager>().setEnergy(_globalManager.GetComponent<GlobalManager>().getEnergy() - requiredEnergy);
-                float result = ElementEffect(getElement(), monster.GetComponent<Monster>().getElement(), skillPower, extraSkillPower);
+                float result = ElementEffect(getElement(), monster.GetComponent<Monster>().getElement(), skillPower + extraSkillPower);
                 monster.GetComponent<Monster>().setHp(monster.GetComponent<Monster>().getHp() - result);
 
                 Debug.Log(getName() + ": making damage " + result + " to enemy " + monster.GetComponent<Monster>().getName() + " using Skill!!!");

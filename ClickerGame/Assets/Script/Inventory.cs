@@ -98,7 +98,7 @@ public class Inventory : MonoBehaviour
             if (hit.collider != null)
             {
                 // If player clicks on the Field
-                if (hit.collider.tag == "Field")
+                if (hit.collider.tag == "FrontField" || hit.collider.tag == "BackField")
                 {
                     // If there is a hero on the Field
                     if (hit.collider.transform.childCount == 1)

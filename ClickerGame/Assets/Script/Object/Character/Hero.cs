@@ -7,15 +7,20 @@ public abstract class Hero : Character
         Melee,
         Ranged
     }
+
     public Sprite Icon;
     public GameObject FloatingText;
     [SerializeField] protected float skillPower;
-    [SerializeField] private float power;
-    [SerializeField] private float extraPower = 0;
+    [SerializeField] protected float power;
+    [SerializeField] protected float extraPower = 0;
     [SerializeField] protected float extraSkillPower = 0;
+    [SerializeField] protected float criticalChance = 10;
+    [SerializeField] protected float criticalRatio = 1.5f;
     [SerializeField] private float energy = 0;
     [SerializeField] private float price;
     [SerializeField] private int level;
+
+
     [SerializeField] public GameObject currentEquipment = null;
     private float maxEnergy = 100;
     private int upgradeCount;
@@ -26,8 +31,9 @@ public abstract class Hero : Character
     {
         if (monster != null)
         {
-            // Calculate the damage result with element
-            float result = ElementEffect(getElement(), monster.GetComponent<Monster>().getElement(), power, extraPower);
+            // Calculate the damage result with element and Critical chance
+            float result = ElementEffect(getElement(), monster.GetComponent<Monster>().getElement(), CriticalChanceSystem(power, extraPower, criticalChance, criticalRatio));
+
             // Animaition
             transform.GetComponent<Animator>().SetTrigger("isAttack");
             // Do damage
@@ -37,8 +43,6 @@ public abstract class Hero : Character
             {
                 energy += 10;
             }
-            // Show damage by FloatingText
-            ShowFloatingText(power);
             Debug.Log(getName() + ": making damage " + result + " to enemy " + monster.GetComponent<Monster>().getName());
         }
     }
@@ -62,17 +66,9 @@ public abstract class Hero : Character
         }
     }
 
-
-    protected void ShowFloatingText(float power)
+    protected float ElementEffect(Character.Element heroElement, Character.Element monsterElement, float power)
     {
-        var damageText = Instantiate(FloatingText, transform.position, Quaternion.identity, transform);
-        damageText.GetComponent<TextMesh>().text = power.ToString();
-
-    }
-
-    protected float ElementEffect(Character.Element heroElement, Character.Element monsterElement, float power, float exPower)
-    {
-        float _result = power + exPower;
+        float _result = power;
         if (heroElement == Character.Element.Fire)
         {
             /* Strong against with Wind */
@@ -147,6 +143,23 @@ public abstract class Hero : Character
         return _result;
     }
 
+    protected float CriticalChanceSystem(float power, float extraPower, float criticalChance, float criticalRatio)
+    {
+        float result;
+        float randValue = Random.Range(0, 100);
+        if (randValue <= criticalChance)
+        {
+            // do critical attack
+            result = (power + extraPower) * criticalRatio;
+        }
+        else
+        {
+            // critical attack not happen
+            result = (power + extraPower);
+        }
+        return result;
+    }
+
     public float getSkillPower()
     {
         return skillPower;
@@ -192,6 +205,16 @@ public abstract class Hero : Character
         return upgradeCount;
     }
 
+    public float getCriticalChance()
+    {
+        return criticalChance;
+    }
+
+    public float getCriticalRatio()
+    {
+        return criticalRatio;
+    }
+
     public void setSkillPower(float skillPower)
     {
         this.skillPower = skillPower;
@@ -235,5 +258,15 @@ public abstract class Hero : Character
     public void setUpgradeCount(int upgradeCount)
     {
         this.upgradeCount = upgradeCount;
+    }
+
+    public void setCriticalChance(float criticalChance)
+    {
+        this.criticalChance = criticalChance;
+    }
+
+    public void setCriticalRatio(float criticalRatio)
+    {
+        this.criticalRatio = criticalRatio;
     }
 }

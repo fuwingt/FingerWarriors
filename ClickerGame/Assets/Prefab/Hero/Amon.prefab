@@ -89,6 +89,8 @@ MonoBehaviour:
   power: 0
   extraPower: 0
   extraSkillPower: 0
+  criticalChance: 50
+  criticalRatio: 1.5
   energy: 0
   price: 0
   level: 0

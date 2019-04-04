@@ -33,7 +33,7 @@ public class Field : MonoBehaviour
         Hero = transform.GetComponentInChildren<Hero>();
         Image_icon.GetComponent<Image>().sprite = Hero.Icon;
         SkillButton.SetActive(true);
-        SkillButton.GetComponent<Skill>().hero = Hero;
+        SkillButton.GetComponent<SkillButton>().hero = Hero;
 
         switch (Hero.getElement())
         {

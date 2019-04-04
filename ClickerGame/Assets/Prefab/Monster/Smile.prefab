@@ -80,6 +80,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: 
   element: 0
+  _inventoryManager: {fileID: 0}
+  FloatingTextPrefab: {fileID: 1193224117081010, guid: cb90b3cc5c9ec26458f21b62fd7fb965,
+    type: 2}
+  GoldParticPrefab: {fileID: 1957621756793834, guid: f364eb8531235d04894d86b85acd07e4,
+    type: 2}
+  EquipmentGetCtrPrefab: {fileID: 1807189342875894, guid: f7e5460f840f8c342b95e92dc964c88d,
+    type: 2}
   hp: 0
   maxHp: 0
   basicHp: 0

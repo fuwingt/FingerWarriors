@@ -3,9 +3,13 @@
 public class Monster : Character
 {
     public GameObject _inventoryManager;
+    public GameObject FloatingTextPrefab;
+    public GameObject GoldParticPrefab;
+    public GameObject EquipmentGetCtrPrefab;
     [SerializeField] private float hp;
     [SerializeField] private float maxHp;
     [SerializeField] private float basicHp;
+    protected float goldDrop = 10;
 
     void Start()
     {
@@ -15,7 +19,9 @@ public class Monster : Character
     public void BeingAttacked(float result)
     {
         // Deduct hp
-        hp -= result;
+        hp -= (int)result;
+        // Show floating text
+        ShowFloatingText((int)result);
         // Animation
         transform.GetComponent<Animator>().SetTrigger("IsBeingAttacked");
     }
@@ -23,11 +29,31 @@ public class Monster : Character
     {
         // This function will be chnaged to "Death" 
         hp = maxHp;
+        // Drop gold
+        DropGold();
         // Test:
         // Drop equipment to player
         // Automatically collected into inventory
         _inventoryManager.GetComponent<Inventory>().EquipmentPrefab.GetComponent<Equipment>().CreateEquip();
         _inventoryManager.GetComponent<Inventory>().AddEquipment(_inventoryManager.GetComponent<Inventory>().EquipmentPrefab);
+        // Gold brust out 
+        Instantiate(GoldParticPrefab, gameObject.transform.position, Quaternion.identity);
+        // "Equipment Get" textbox
+        Instantiate(EquipmentGetCtrPrefab, gameObject.transform.position, Quaternion.identity, transform.parent.parent);
+
+    }
+
+    private void DropGold()
+    {
+        float randValue = Random.Range(0, 100);
+        if (randValue <= GlobalManager.gold10xChance)
+        {
+            GlobalManager.setGold(GlobalManager.getGold() + goldDrop * 10);
+        }
+        else
+        {
+            GlobalManager.setGold(GlobalManager.getGold() + goldDrop);
+        }
     }
 
     public float getHp()
@@ -57,6 +83,13 @@ public class Monster : Character
     public void setBasicHp(float basicHp)
     {
         this.basicHp = basicHp;
+    }
+
+    protected void ShowFloatingText(float power)
+    {
+        var damageText = Instantiate(FloatingTextPrefab, transform.parent.position, Quaternion.identity, transform);
+        damageText.GetComponent<TextMesh>().text = power.ToString();
+
     }
 
 

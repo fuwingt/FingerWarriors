@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Hero
   - Field
+  - FrontField
+  - BackField
   layers:
   - Default
   - TransparentFX
@@ -20,7 +22,7 @@ TagManager:
   - F1
   - F4
   - F5
-  - F2
+  - GoldBlocker
   - 
   - 
   - 

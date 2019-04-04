@@ -6,7 +6,7 @@ public class FloatingText : MonoBehaviour
 {
     public float DestroyTime = 1;
     public Vector3 Offset = new Vector3(0, 1, 0);
-    public Vector3 RandomIntensity = new Vector3(0.5f, 0.1f, 0);
+    public Vector3 RandomIntensity = new Vector3(1f, 0.5f, 0);
 
     void Start()
     {
