@@ -13,6 +13,15 @@ public class GlobalManager : MonoBehaviour
     public static GameObject currentEnemy;
     public static GameObject selectedHero;
     public static float gold10xChance = 10;
+    public GameObject[] FieldArray = new GameObject[6];
+    [Header("Field")]
+    public GameObject Field1;
+    public GameObject Field2;
+    public GameObject Field3;
+    public GameObject Field4;
+    public GameObject Field5;
+    public GameObject Field6;
+
     public Text InfoBoard;
     public int itemCount;
     public int clickCount;
@@ -33,6 +42,13 @@ public class GlobalManager : MonoBehaviour
         monsterHpRate = 1;
         maxEnergy = 100;
         energy = maxEnergy;
+
+        FieldArray[0] = Field1;
+        FieldArray[1] = Field2;
+        FieldArray[2] = Field3;
+        FieldArray[3] = Field4;
+        FieldArray[4] = Field5;
+        FieldArray[5] = Field6;
     }
 
     void Update()

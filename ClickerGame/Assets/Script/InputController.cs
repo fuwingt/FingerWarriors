@@ -12,15 +12,11 @@ public class InputController : MonoBehaviour
     public GameObject Field4;
     public GameObject Field5;
     public GameObject Field6;
-    public static GameObject[] FieldArray = new GameObject[6];
+
+    private GameObject[] FieldArray;
     void Start()
     {
-        FieldArray[0] = Field1;
-        FieldArray[1] = Field2;
-        FieldArray[2] = Field3;
-        FieldArray[3] = Field4;
-        FieldArray[4] = Field5;
-        FieldArray[5] = Field6;
+        FieldArray = _globalManager.GetComponent<GlobalManager>().FieldArray;
     }
 
     public void Click()

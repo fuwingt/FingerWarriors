@@ -7,9 +7,7 @@ public class SwitchField : MonoBehaviour
 {
     public Text status;
     private GlobalManager _globalManager;
-    private GameObject Field1;
-    private GameObject Field2;
-
+    private GameObject[] FieldArray;
     private GameObject ExtraField;
     private GameObject hero;
 
@@ -21,8 +19,9 @@ public class SwitchField : MonoBehaviour
     void Start()
     {
         _globalManager = GameObject.Find("GlobalManager").gameObject.GetComponent<GlobalManager>();
-        Field1 = GameObject.Find("Field1");
+        FieldArray = _globalManager.FieldArray;
         ExtraField = GameObject.Find("ExtraField");
+
     }
 
     // Update is called once per frame
@@ -40,8 +39,8 @@ public class SwitchField : MonoBehaviour
         if (hero == null) return;
         isSelectingField = true;
         // Show arrow logo
-        for (int i = 0; i < InputController.FieldArray.Length; i++)
-            InputController.FieldArray[i].GetComponent<Field>().activateLogo();
+        for (int i = 0; i < FieldArray.Length; i++)
+            FieldArray[i].GetComponent<Field>().activateLogo();
     }
 
     private void SwitchHero()
@@ -84,8 +83,8 @@ public class SwitchField : MonoBehaviour
             }
             isSelectingField = false;
             // Hide arrow logo
-            for (int i = 0; i < InputController.FieldArray.Length; i++)
-                InputController.FieldArray[i].GetComponent<Field>().activateLogo();
+            for (int i = 0; i < FieldArray.Length; i++)
+                FieldArray[i].GetComponent<Field>().activateLogo();
         }
     }
 

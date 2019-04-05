@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
+    public GameObject _globalManager;
     public GameObject EquipmentMenu;
     public GameObject EquipmentPrefab;
     public Text EquipmentNameText;
@@ -16,8 +17,13 @@ public class Inventory : MonoBehaviour
     public static GameObject currentSelectingEquip = null;
     public static GameObject lastSelectingEquip = null;
     private bool isSelectingHero = false;
+    private GameObject[] FieldArray;
 
 
+    void Start()
+    {
+        FieldArray = _globalManager.GetComponent<GlobalManager>().FieldArray;
+    }
     void Update()
     {
         UpdateInfo();
@@ -153,11 +159,11 @@ public class Inventory : MonoBehaviour
 
     private void TriggerHeroesShiningAnim(bool isShining)
     {
-        for (int i = 0; i < InputController.FieldArray.Length; i++)
+        for (int i = 0; i < FieldArray.Length; i++)
         {
-            if (InputController.FieldArray[i].transform.childCount == 1)
+            if (FieldArray[i].transform.childCount == 1)
             {
-                InputController.FieldArray[i].transform.GetChild(0).GetComponent<Animator>().SetBool("isShining", isShining);
+                FieldArray[i].transform.GetChild(0).GetComponent<Animator>().SetBool("isShining", isShining);
             }
         }
     }
