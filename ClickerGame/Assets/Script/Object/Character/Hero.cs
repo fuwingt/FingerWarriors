@@ -13,10 +13,10 @@ public abstract class Hero : Character
 
     [SerializeField] protected float power = 1;
     [SerializeField] protected float extraPower = 1;
-    [SerializeField] protected float extraPowerRatio = 1;
+    [SerializeField] protected float powerRatio = 1;
     [SerializeField] protected float skillPower = 1;
     [SerializeField] protected float extraSkillPower = 1;
-    [SerializeField] protected float extraSkillPowerRatio = 1;
+    [SerializeField] protected float skillPowerRatio = 1;
     [SerializeField] protected float criticalChance = 10;
     [SerializeField] protected float criticalRatio = 1.5f;
 
@@ -199,14 +199,14 @@ public abstract class Hero : Character
         return price;
     }
 
-    public float getExtraPowerRatio()
+    public float getPowerRatio()
     {
-        return extraPowerRatio;
+        return powerRatio;
     }
 
-    public float getExtraSkillPowerRatio()
+    public float getSkillPowerRatio()
     {
-        return extraSkillPowerRatio;
+        return skillPowerRatio;
     }
 
     public int getLevel()
@@ -279,14 +279,14 @@ public abstract class Hero : Character
         this.criticalChance = criticalChance;
     }
 
-    public void setExtraPowerRatio(float extraPowerRatio)
+    public void setPowerRatio(float powerRatio)
     {
-        this.extraPowerRatio = extraPowerRatio;
+        this.powerRatio = powerRatio;
     }
 
-    public void setExtraSkillPowerRatio(float extraSkillPowerRatio)
+    public void setSkillPowerRatio(float skillPowerRatio)
     {
-        this.extraSkillPowerRatio = extraSkillPowerRatio;
+        this.skillPowerRatio = skillPowerRatio;
     }
 
     public void setCriticalRatio(float criticalRatio)

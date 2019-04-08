@@ -22,7 +22,7 @@ public class Inventory : MonoBehaviour
 
     void Start()
     {
-        FieldArray = _globalManager.GetComponent<GlobalManager>().FieldArray;
+        FieldArray = GlobalManager.FieldArray;
     }
     void Update()
     {

@@ -16,7 +16,7 @@ public class InputController : MonoBehaviour
     private GameObject[] FieldArray;
     void Start()
     {
-        FieldArray = _globalManager.GetComponent<GlobalManager>().FieldArray;
+        FieldArray = GlobalManager.FieldArray;
     }
 
     public void Click()

@@ -10,12 +10,10 @@ public abstract class Pet : MonoBehaviour
     protected float price;
     protected float priceRate;
     protected float skillBuffRate;
-    protected GlobalManager _globalManager;
+    public string description;
+    //protected GameObject _globalManager;
+    protected GameObject[] FieldArray = GlobalManager.FieldArray;
 
-    void Start()
-    {
-        _globalManager = GameObject.Find("GlobalManager").GetComponent<GlobalManager>();
-    }
 
     public abstract void PetEffectOn();
     public abstract void PetEffectOff();

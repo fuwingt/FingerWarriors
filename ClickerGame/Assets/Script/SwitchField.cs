@@ -19,7 +19,7 @@ public class SwitchField : MonoBehaviour
     void Start()
     {
         _globalManager = GameObject.Find("GlobalManager").gameObject.GetComponent<GlobalManager>();
-        FieldArray = _globalManager.FieldArray;
+        FieldArray = GlobalManager.FieldArray;
         ExtraField = GameObject.Find("ExtraField");
 
     }

@@ -13,7 +13,7 @@ public class GlobalManager : MonoBehaviour
     public static GameObject currentEnemy;
     public static GameObject selectedHero;
     public static float gold10xChance = 10;
-    public GameObject[] FieldArray = new GameObject[6];
+    public static GameObject[] FieldArray = new GameObject[6];
     [Header("Field")]
     public GameObject Field1;
     public GameObject Field2;

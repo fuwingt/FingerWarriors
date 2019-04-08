@@ -8,14 +8,18 @@ public class ObjectGenerator : MonoBehaviour
     public GameObject Field_2;
     public GameObject Extra;
     public GameObject MonsterField;
+    public GameObject PetExtraField;
 
     [Header("Hero")]
     public GameObject Amon;
     public GameObject Freyr;
     [Header("Monster")]
     public GameObject Smile;
+    [Header("Pet")]
+    public GameObject Rah;
     [Header("Item")]
-    public GameObject UpgradeHeroItem;
+    public GameObject HeroItemPrefab;
+    public GameObject PetItemPrefab;
     [Header("Icon")]
     public Sprite icon_Amon;
     public Sprite icon_1;
@@ -24,10 +28,11 @@ public class ObjectGenerator : MonoBehaviour
     public Sprite icon_4;
 
     [Header("Parent")]
-    public GameObject ScrollPanel;
+    public GameObject heroPanel;
+    public GameObject petPanel;
 
 
-    public void generateHeros()
+    public void generateHeroes()
     {
         //	First hero  
         Amon = Instantiate(Amon) as GameObject;
@@ -50,19 +55,33 @@ public class ObjectGenerator : MonoBehaviour
         setMonsterValue(Smile, "Smile", 100, Character.Element.Water);
     }
 
+    public void generatePet()
+    {
+        Rah = Instantiate(Rah, PetExtraField.transform, false) as GameObject;
+        createPetItem(Rah);
+        Rah.SetActive(false);
+    }
+
 
     private void createUpgradeItem(GameObject hero)
     {
-        UpgradeHeroItem = Instantiate(UpgradeHeroItem, ScrollPanel.transform);
-        UpgradeHeroItem.name = "Item";
-        UpgradeHeroItem.GetComponentInChildren<UpgradeHeroItem>().setHero(hero);
-        UpgradeHeroItem.GetComponentInChildren<SwitchField>().setHero(hero);
+        HeroItemPrefab = Instantiate(HeroItemPrefab, heroPanel.transform);
+        HeroItemPrefab.name = "Item";
+        HeroItemPrefab.GetComponentInChildren<UpgradeHeroItem>().setHero(hero);
+        HeroItemPrefab.GetComponentInChildren<SwitchField>().setHero(hero);
     }
 
-    private void setHeroValue(GameObject hero, GameObject position, string name, float power, float skillPower_1, float price, Character.Element type, int level, bool active, Sprite icon)
+    private void createPetItem(GameObject pet)
+    {
+        PetItemPrefab = Instantiate(PetItemPrefab, petPanel.transform);
+        PetItemPrefab.name = "Item";
+        PetItemPrefab.GetComponent<PetItem>().SetPet(pet.GetComponent<Pet>());
+    }
+
+    private void setHeroValue(GameObject hero, GameObject parentField, string name, float power, float skillPower_1, float price, Character.Element type, int level, bool active, Sprite icon)
     {
         hero.GetComponent<Hero>().setName(name);
-        hero.transform.SetParent(position.transform);
+        hero.transform.SetParent(parentField.transform);
         hero.GetComponent<Hero>().setPower(power);
         hero.GetComponent<Hero>().setSkillPower(skillPower_1);
         hero.GetComponent<Hero>().setPrice(price);

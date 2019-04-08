@@ -6,8 +6,9 @@ using UnityEngine.UI;
 public class PetItem : MonoBehaviour
 {
     [Header("Text")]
-    public Text NameText;
-    public Text description;
+    public Text nameText;
+    public Text levelText;
+    public Text descriptionText;
 
     [Header("Button")]
     public GameObject JoinButton;
@@ -25,7 +26,8 @@ public class PetItem : MonoBehaviour
 
     void Update()
     {
-
+        descriptionText.text = pet.description;
+        levelText.text = "Lv. " + pet.getlevel();
     }
 
     public void Upgrade()
@@ -48,18 +50,25 @@ public class PetItem : MonoBehaviour
     public void Join()
     {
         pet.transform.SetParent(PetField.transform);
+        pet.gameObject.SetActive(true);
         pet.PetEffectOn();
     }
 
     public void Quit()
     {
         pet.transform.SetParent(ExtraField.transform);
+        pet.gameObject.SetActive(false);
         pet.PetEffectOff();
     }
 
-    public void setPet(Pet pet)
+    public void SetPet(Pet pet)
     {
         this.pet = pet;
+        nameText.text = pet.getName();
     }
 
+    private void UpdateInfo()
+    {
+
+    }
 }

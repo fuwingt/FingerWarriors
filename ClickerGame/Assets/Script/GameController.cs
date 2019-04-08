@@ -10,8 +10,9 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        objectGenerator.generateHeros();
+        objectGenerator.generateHeroes();
         objectGenerator.generateMonster();
+        objectGenerator.generatePet();
 
 
         GlobalManager.currentEnemy = GlobalManager.monsterList[0];

@@ -7,23 +7,24 @@ public class Rah : Pet
     public Rah()
     {
         name = "Rah";
-        level = 1;
+        level = 0;
         price = 100;
         priceRate = 1.5f;
         skillBuffRate = 1.5f;
+        description = "Fire Attack x " + skillBuffRate;
     }
 
     public override void PetEffectOn()
     {
-        for (int i = 0; i < _globalManager.FieldArray.Length; i++)
+        for (int i = 0; i < FieldArray.Length; i++)
         {
             // If there are any hero on field
-            if (_globalManager.FieldArray[i].transform.childCount == 1)
+            if (FieldArray[i].transform.childCount == 1)
             {
                 // If the element of hero is Fire
-                if (_globalManager.FieldArray[i].transform.GetChild(0).GetComponent<Hero>().getElement() == Character.Element.Fire)
+                if (FieldArray[i].transform.GetChild(0).GetComponent<Hero>().getElement() == Character.Element.Fire)
                 {
-                    _globalManager.FieldArray[i].transform.GetChild(0).GetComponent<Hero>().setExtraPowerRatio(skillBuffRate);
+                    FieldArray[i].transform.GetChild(0).GetComponent<Hero>().setPowerRatio(skillBuffRate);
                 }
             }
         }
@@ -31,15 +32,15 @@ public class Rah : Pet
 
     public override void PetEffectOff()
     {
-        for (int i = 0; i < _globalManager.FieldArray.Length; i++)
+        for (int i = 0; i < FieldArray.Length; i++)
         {
             // If there are any hero on field
-            if (_globalManager.FieldArray[i].transform.childCount == 1)
+            if (FieldArray[i].transform.childCount == 1)
             {
                 // If the element of hero is Fire
-                if (_globalManager.FieldArray[i].transform.GetChild(0).GetComponent<Hero>().getElement() == Character.Element.Fire)
+                if (FieldArray[i].transform.GetChild(0).GetComponent<Hero>().getElement() == Character.Element.Fire)
                 {
-                    _globalManager.FieldArray[i].transform.GetChild(0).GetComponent<Hero>().setExtraPowerRatio(1f);
+                    FieldArray[i].transform.GetChild(0).GetComponent<Hero>().setPowerRatio(1f);
                 }
             }
         }
