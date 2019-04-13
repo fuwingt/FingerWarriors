@@ -41,6 +41,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
+  PetItemPrefab: {fileID: 1259081984719740, guid: 63d2ded69b0da284297e7b800d42eb45,
+    type: 2}
   description: Fire Attack x 1.5
 --- !u!114 &114324176863879940
 MonoBehaviour:

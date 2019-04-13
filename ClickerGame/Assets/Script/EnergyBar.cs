@@ -7,7 +7,7 @@ public class EnergyBar : MonoBehaviour
 {
 
     public GameObject _globalManager;
-    public GameObject EnergyText;
+    public Text EnergyText;
     private Image energyBar;
 
     void Start()
@@ -17,7 +17,7 @@ public class EnergyBar : MonoBehaviour
 
     void Update()
     {
-        EnergyText.GetComponent<TextMesh>().text = _globalManager.GetComponent<GlobalManager>().getEnergy() + "/" + _globalManager.GetComponent<GlobalManager>().getMaxEnergy();
+        EnergyText.text = _globalManager.GetComponent<GlobalManager>().getEnergy() + "/" + _globalManager.GetComponent<GlobalManager>().getMaxEnergy();
         energyBar.fillAmount = _globalManager.GetComponent<GlobalManager>().getEnergy() / _globalManager.GetComponent<GlobalManager>().getMaxEnergy();
     }
 }

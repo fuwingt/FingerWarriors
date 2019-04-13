@@ -5,18 +5,33 @@ using UnityEngine;
 public abstract class Pet : MonoBehaviour
 {
     public Sprite sprite;
+    public GameObject PetItemPrefab;
+    public string description;
     protected new string name;
     protected int level;
     protected float price;
     protected float priceRate;
     protected float skillBuffRate;
-    public string description;
-    //protected GameObject _globalManager;
     protected GameObject[] FieldArray = GlobalManager.FieldArray;
+    private GameObject ScrollPanel_Pet;
 
 
     public abstract void PetEffectOn();
     public abstract void PetEffectOff();
+
+    void Start()
+    {
+        ScrollPanel_Pet = GameObject.Find("ScrollPanel_Pet");
+        gameObject.SetActive(false);
+        createPetItem();
+    }
+
+    protected void createPetItem()
+    {
+        PetItemPrefab = Instantiate(PetItemPrefab, ScrollPanel_Pet.transform);
+        PetItemPrefab.name = "Item";
+        PetItemPrefab.GetComponent<PetItem>().SetPet(this);
+    }
 
     public string getName()
     {

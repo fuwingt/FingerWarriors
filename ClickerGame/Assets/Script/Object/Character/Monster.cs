@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 
 public class Monster : Character
 {
     public GameObject _inventoryManager;
-    public GameObject FloatingTextPrefab;
+    public Text FloatingTextPrefab;
     public GameObject GoldParticPrefab;
     public GameObject EquipmentGetCtrPrefab;
     [SerializeField] private float hp;
@@ -56,6 +57,19 @@ public class Monster : Character
         }
     }
 
+    private void EnhanceToBeBoss()
+    {
+        //maxHp = 
+    }
+
+    private void ShowFloatingText(float power)
+    {
+        Text damageText = Instantiate(FloatingTextPrefab, transform.parent.position, Quaternion.identity, transform);
+        damageText.transform.localScale = new Vector3(0.001f, 0.001f, 0.001f);
+        damageText.text = power.ToString();
+
+    }
+
     public float getHp()
     {
         return hp;
@@ -85,12 +99,7 @@ public class Monster : Character
         this.basicHp = basicHp;
     }
 
-    protected void ShowFloatingText(float power)
-    {
-        var damageText = Instantiate(FloatingTextPrefab, transform.parent.position, Quaternion.identity, transform);
-        damageText.GetComponent<TextMesh>().text = power.ToString();
 
-    }
 
 
 }

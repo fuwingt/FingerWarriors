@@ -43,7 +43,7 @@ MonoBehaviour:
     y: 0
     width: 1504
     height: 920
-  m_MinSize: {x: 950, y: 321}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &3
 MonoBehaviour:
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_MinSize: {x: 813, y: 271}
   m_MaxSize: {x: 22008, y: 10021}
   vertical: 0
-  controlID: 64
+  controlID: 11
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -476,14 +476,14 @@ MonoBehaviour:
     height: 849
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SceneLighting: 1
-  lastFramingTime: 23810.054463545057
+  lastFramingTime: 6167.315379799597
   m_2DMode: 1
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -1.6328402, y: 1.0977535, z: 90.11719}
+    m_Target: {x: 0.26119283, y: -0.67824256, z: 89.90039}
     speed: 2
-    m_Value: {x: -1.6328402, y: 1.0977535, z: 90.11719}
+    m_Value: {x: 0.26119283, y: -0.67824256, z: 89.90039}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -515,9 +515,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 7.903947
+    m_Target: 8.985846
     speed: 2
-    m_Value: 7.903947
+    m_Value: 8.985846
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -556,9 +556,9 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 68300000
-    m_LastClickedID: 12392
-    m_ExpandedIDs: 92abf4ff7833fdff9ed7feffa6d7feff2888ffffeefbfffff0fbffff00000000242e0000882e0000de2e00007c2f0000683000008c300000a2300000ba300000
+    m_SelectedIDs: de070000
+    m_LastClickedID: 0
+    m_ExpandedIDs: f0fbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -619,20 +619,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Prefab/Pet
+    - Assets/Script/Object/Character
   m_ViewMode: 1
   m_StartGridSize: 67
   m_LastFolders:
-  - Assets/Prefab/Pet
+  - Assets/Script/Object/Character
   m_LastFoldersGridSize: 67
   m_LastProjectPath: C:\Users\Wing\Desktop\FingerWarriors\repos\ClickerGame
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: de290000
-    m_LastClickedID: 10718
-    m_ExpandedIDs: 0000000080290000982b00009e2b0000062c0000842c0000be2c0000122d00008c2d0000a82d0000983200009a32000000ca9a3bffffff7f
+    m_SelectedIDs: ac2a0000
+    m_LastClickedID: 10924
+    m_ExpandedIDs: 0000000086290000b62b0000bc2b0000242c0000a22c0000dc2c00002e2d0000a82d0000c42d00003a3300003c33000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -660,7 +660,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000080290000982b00009e2b0000062c0000842c0000be2c0000122d00008c2d0000a82d0000983200009a320000
+    m_ExpandedIDs: 0000000086290000b62b0000bc2b0000242c0000a22c0000dc2c00002e2d0000a82d0000c42d00003a3300003c330000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -688,21 +688,21 @@ MonoBehaviour:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: 022d0000542d0000083c0000e42c0000b80900002a0a00006a0a00006c0a0000920a0000782f000010340000f64f000068300000f04d0000f82b000000000000
+    m_ExpandedInstanceIDs: 022d0000542d0000083c0000e42c0000b80900002a0a00006a0a00006c0a0000920a0000782f000010340000f64f000068300000f04d0000f82b0000062b00009c2d000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Pet
-      m_OriginalName: Pet
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 10718
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 8}
     m_CreateAssetUtility:

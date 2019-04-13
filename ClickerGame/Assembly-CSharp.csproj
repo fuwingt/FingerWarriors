@@ -63,6 +63,9 @@
      <Compile Include="Assets\Script\HealthBar.cs" />
      <Compile Include="Assets\Script\InputController.cs" />
      <Compile Include="Assets\Script\Inventory.cs" />
+     <Compile Include="Assets\Script\Object\Achievement.cs" />
+     <Compile Include="Assets\Script\Object\AchievementItem.cs" />
+     <Compile Include="Assets\Script\Object\AchievementManager.cs" />
      <Compile Include="Assets\Script\Object\Character\Amon.cs" />
      <Compile Include="Assets\Script\Object\Character\AmonSkillObject.cs" />
      <Compile Include="Assets\Script\Object\Character\Boss.cs" />

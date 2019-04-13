@@ -86,11 +86,11 @@ public class UpgradeHeroItem : MonoBehaviour
 
             if (GlobalManager.getGold() >= heroPrice)
             {
-                transform.parent.GetComponent<Image>().color = standard;
+                //transform.parent.GetComponent<Image>().color = standard;
             }
             else
             {
-                transform.parent.GetComponent<Image>().color = unaffordable;
+                //transform.parent.GetComponent<Image>().color = unaffordable;
             }
         }
     }

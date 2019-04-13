@@ -22,12 +22,16 @@ public class PetItem : MonoBehaviour
     {
         PetField = GameObject.Find("PetField");
         ExtraField = GameObject.Find("ExtraField");
+
+        if (pet.getlevel() == 0)
+            JoinButton.GetComponent<Button>().interactable = false;
+
+        QuitButton.GetComponent<Button>().interactable = false;
     }
 
     void Update()
     {
-        descriptionText.text = pet.description;
-        levelText.text = "Lv. " + pet.getlevel();
+        UpdateInfo();
     }
 
     public void Upgrade()
@@ -40,6 +44,9 @@ public class PetItem : MonoBehaviour
             pet.setSkillBuffRate(pet.getSkillBuffRate() * 1.2f);
             pet.setLevel(pet.getlevel() + 1);
             pet.setPrice(pet.getPrice() * pet.getPriceRate());
+
+            if (pet.getlevel() == 1)
+                JoinButton.GetComponent<Button>().interactable = true;
         }
         else
         {
@@ -49,16 +56,32 @@ public class PetItem : MonoBehaviour
 
     public void Join()
     {
+        if (pet.getlevel() == 0) return;
+
+        // If there is a pet already
+        if (PetField.transform.childCount != 0)
+        {
+            PetField.transform.GetChild(0).GetComponent<Pet>().PetItemPrefab.GetComponent<PetItem>().Quit();
+        }
+
         pet.transform.SetParent(PetField.transform);
         pet.gameObject.SetActive(true);
         pet.PetEffectOn();
+
+
+        JoinButton.GetComponent<Button>().interactable = false;
+        QuitButton.GetComponent<Button>().interactable = true;
     }
 
     public void Quit()
     {
+        if (pet.getlevel() == 0) return;
         pet.transform.SetParent(ExtraField.transform);
         pet.gameObject.SetActive(false);
         pet.PetEffectOff();
+
+        JoinButton.GetComponent<Button>().interactable = true;
+        QuitButton.GetComponent<Button>().interactable = false;
     }
 
     public void SetPet(Pet pet)
@@ -69,6 +92,13 @@ public class PetItem : MonoBehaviour
 
     private void UpdateInfo()
     {
+        descriptionText.text = pet.description;
+        levelText.text = "Lv. " + pet.getlevel();
+
+        if (GlobalManager.getGold() >= pet.getPrice())
+            UpgradeButton.GetComponent<Button>().interactable = true;
+        else
+            UpgradeButton.GetComponent<Button>().interactable = false;
 
     }
 }

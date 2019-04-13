@@ -11,7 +11,7 @@ public class GlobalManager : MonoBehaviour
     public static List<GameObject> monsterList = new List<GameObject>();
     public static List<GameObject> currentHeroes = new List<GameObject>();
     public static GameObject currentEnemy;
-    public static GameObject selectedHero;
+    public static GameObject currentPet;
     public static float gold10xChance = 10;
     public static GameObject[] FieldArray = new GameObject[6];
     [Header("Field")]
