@@ -68,12 +68,12 @@
      <Compile Include="Assets\Script\Object\AchievementManager.cs" />
      <Compile Include="Assets\Script\Object\Character\Amon.cs" />
      <Compile Include="Assets\Script\Object\Character\AmonSkillObject.cs" />
-     <Compile Include="Assets\Script\Object\Character\Boss.cs" />
      <Compile Include="Assets\Script\Object\Character\Character.cs" />
      <Compile Include="Assets\Script\Object\Character\Freyr.cs" />
      <Compile Include="Assets\Script\Object\Character\Hero.cs" />
-     <Compile Include="Assets\Script\Object\Character\Monster.cs" />
-     <Compile Include="Assets\Script\Object\Character\Test01.cs" />
+     <Compile Include="Assets\Script\Object\Character\Monster\Monster.cs" />
+     <Compile Include="Assets\Script\Object\Character\Monster\MonsterManager.cs" />
+     <Compile Include="Assets\Script\Object\Character\Monster\Smile.cs" />
      <Compile Include="Assets\Script\Object\Equipment\Equipment.cs" />
      <Compile Include="Assets\Script\Object\GoldPrefab.cs" />
      <Compile Include="Assets\Script\Object\Pet\Pet.cs" />

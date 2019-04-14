@@ -8,11 +8,11 @@ public class GlobalManager : MonoBehaviour
     /* Store all the heroes */
     public static List<GameObject> heroList = new List<GameObject>();
     /* Store all the monsters */
-    public static List<GameObject> monsterList = new List<GameObject>();
     public static List<GameObject> currentHeroes = new List<GameObject>();
     public static GameObject currentEnemy;
     public static GameObject currentPet;
     public static float gold10xChance = 10;
+    public static float bossHpRatio = 10;
     public static GameObject[] FieldArray = new GameObject[6];
     [Header("Field")]
     public GameObject Field1;
@@ -54,6 +54,8 @@ public class GlobalManager : MonoBehaviour
     void Update()
     {
         UpdateInfoBoard();
+
+
     }
 
     private void UpdateInfoBoard()

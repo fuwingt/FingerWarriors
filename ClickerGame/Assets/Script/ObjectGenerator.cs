@@ -97,6 +97,6 @@ public class ObjectGenerator : MonoBehaviour
         monster.GetComponent<Monster>().setBasicHp(hp);
         monster.GetComponent<Monster>().setElement(type);
         monster.transform.SetParent(MonsterField.transform);
-        GlobalManager.monsterList.Add(monster);
+        MonsterManager.monsterList.Add(monster);
     }
 }

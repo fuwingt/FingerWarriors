@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 224803137967759440}
   - component: {fileID: 95928677985004890}
   - component: {fileID: 212044093346172850}
-  - component: {fileID: 114990688340754972}
   - component: {fileID: 114214102056649194}
+  - component: {fileID: 114776078135130964}
   m_Layer: 0
   m_Name: Smile
   m_TagString: Untagged
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
---- !u!114 &114990688340754972
+--- !u!114 &114776078135130964
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -75,12 +75,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1193654855579574}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19f95c08c5f5ba14bb57f34bd4fd3ed1, type: 3}
+  m_Script: {fileID: 11500000, guid: eaa96b69eeb9a634bb93f4d87e14ac9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   name: 
   element: 0
-  _inventoryManager: {fileID: 0}
   FloatingTextPrefab: {fileID: 114274698517134494, guid: 8d698adf4e478794db39e2a50ed05eef,
     type: 2}
   GoldParticPrefab: {fileID: 1957621756793834, guid: f364eb8531235d04894d86b85acd07e4,
@@ -89,7 +88,6 @@ MonoBehaviour:
     type: 2}
   hp: 0
   maxHp: 0
-  basicHp: 0
 --- !u!212 &212044093346172850
 SpriteRenderer:
   m_ObjectHideFlags: 1
