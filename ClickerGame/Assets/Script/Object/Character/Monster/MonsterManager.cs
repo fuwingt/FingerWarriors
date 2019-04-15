@@ -82,6 +82,7 @@ public class MonsterManager : MonoBehaviour
         if (timeCountdownBar.GetComponent<TimeCountdownBar>().isTimeOver)
         {
             globalManager.stage--;
+            isBossStage = false;
             timeCountdownBar.GetComponent<TimeCountdownBar>().Reset();
             NextMonster();
         }
@@ -99,6 +100,11 @@ public class MonsterManager : MonoBehaviour
         currentMonster.transform.SetParent(MonsterField.transform);
         currentMonster.SetActive(true);
         currentMonster.GetComponent<Monster>().Init();
+    }
+
+    public GameObject GetCurrentMonster()
+    {
+        return currentMonster;
     }
 
 

@@ -37,10 +37,11 @@ public class Rah : Pet
             // If there are any hero on field
             if (FieldArray[i].transform.childCount == 1)
             {
+                Hero h = FieldArray[i].transform.GetChild(0).GetComponent<Hero>();
                 // If the element of hero is Fire
-                if (FieldArray[i].transform.GetChild(0).GetComponent<Hero>().getElement() == Character.Element.Fire)
+                if (h.getElement() == Character.Element.Fire)
                 {
-                    FieldArray[i].transform.GetChild(0).GetComponent<Hero>().setPowerRatio(1f);
+                    h.setPowerRatio(h.getPowerRatio() / skillBuffRate);
                 }
             }
         }

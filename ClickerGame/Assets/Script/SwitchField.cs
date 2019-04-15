@@ -56,21 +56,26 @@ public class SwitchField : MonoBehaviour
                     {
                         // Join
                         hero.SetActive(true);
+
                         if (hero.transform.parent.tag == "FrontField" || hero.transform.parent.tag == "BackField")
                             hero.transform.parent.GetComponent<Field>().deactivateSkillButton();
                         hero.transform.SetParent(hit.collider.gameObject.transform);
+                        hero.GetComponent<Hero>().PassiveSkill(true);
 
                         hit.collider.GetComponent<Field>().activateSkillButton();
+
                     }
                     else if (hit.collider.transform.childCount == 1)
                     {
                         // Replace
+                        hit.collider.transform.GetChild(0).gameObject.GetComponent<Hero>().PassiveSkill(false);
                         hit.collider.transform.GetChild(0).gameObject.SetActive(false);
                         hit.collider.transform.GetChild(0).SetParent(ExtraField.transform);
 
                         hero.SetActive(true);
                         hero.transform.parent.GetComponent<Field>().deactivateSkillButton();
                         hero.transform.SetParent(hit.collider.gameObject.transform);
+                        hero.GetComponent<Hero>().PassiveSkill(true);
 
                         hit.collider.GetComponent<Field>().activateSkillButton();
 
@@ -92,6 +97,8 @@ public class SwitchField : MonoBehaviour
     {
         if (hero == null) return;
         hero.SetActive(false);
+        hero.GetComponent<Hero>().PassiveSkill(false);
+
         hero.transform.parent.GetComponent<Field>().deactivateSkillButton();
 
         hero.transform.SetParent(ExtraField.transform);

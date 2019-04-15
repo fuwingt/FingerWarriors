@@ -11,7 +11,7 @@ public class Smile : Monster
     {
         if (!monsterManager.isBossStage) return;
 
-        coolDown -= Time.deltaTime;
+        coolDown -= Time.deltaTime * 1.5f;
         PassiveSkill();
         if (coolDown <= 0)
         {

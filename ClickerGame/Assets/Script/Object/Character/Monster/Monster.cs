@@ -59,7 +59,7 @@ public class Monster : Character
         // Gold brust out 
         Instantiate(GoldParticPrefab, gameObject.transform.position, Quaternion.identity);
         // "Equipment Get" textbox
-        Instantiate(EquipmentGetCtrPrefab, gameObject.transform.position, Quaternion.identity, transform.parent.parent);
+        Instantiate(EquipmentGetCtrPrefab, transform.parent.parent);
 
     }
 

@@ -5,35 +5,35 @@ using UnityEngine;
 public class Freyr : Hero
 {
 
-    private GameObject _globalManager;
+    private GlobalManager globalManager;
+    private MonsterManager monsterManager;
     private float requiredEnergy = 30;
     private float energyPerAttack = 3;
     private Hero.Type Type = Hero.Type.Ranged;
     private Character.Element Element = Character.Element.Water;
-    private int id = 1;
 
     void Start()
     {
-        _globalManager = GameObject.Find("GlobalManager").gameObject;
+        globalManager = GameObject.Find("GlobalManager").GetComponent<GlobalManager>();
+        monsterManager = GameObject.Find("MonsterManager").GetComponent<MonsterManager>();
     }
 
     public override void Attack(GameObject monster)
     {
         base.Attack(monster);
 
-        _globalManager.GetComponent<GlobalManager>().setEnergy(_globalManager.GetComponent<GlobalManager>().getEnergy() + energyPerAttack);
+        globalManager.setEnergy(globalManager.getEnergy() + energyPerAttack);
     }
 
-    public override void Skill(GameObject monster)
+    public override void ActiveSkill()
     {
-        if (monster != null)
+        if (monsterManager.GetCurrentMonster() != null)
         {
-            if (_globalManager.GetComponent<GlobalManager>().getEnergy() >= requiredEnergy)
+            if (globalManager.getEnergy() >= requiredEnergy)
             {
-                _globalManager.GetComponent<GlobalManager>().setEnergy(_globalManager.GetComponent<GlobalManager>().getEnergy() - requiredEnergy);
-                float result = ElementEffect(getElement(), monster.GetComponent<Monster>().getElement(), skillPower + extraSkillPower);
-                GlobalManager.currentEnemy.GetComponent<Monster>().BeingAttacked(result);
-                Debug.Log(getName() + ": making damage " + result + " to enemy " + monster.GetComponent<Monster>().getName() + " using Skill!!!");
+                globalManager.setEnergy(globalManager.getEnergy() - requiredEnergy);
+                float result = ElementEffect(getElement(), monsterManager.GetCurrentMonster().GetComponent<Monster>().getElement(), skillPower + extraSkillPower);
+                monsterManager.GetCurrentMonster().GetComponent<Monster>().BeingAttacked(result);
 
             }
             else
@@ -43,8 +43,9 @@ public class Freyr : Hero
         }
     }
 
-    public int getID()
+    public override void PassiveSkill(bool isActivated)
     {
-        return id;
+
     }
+
 }

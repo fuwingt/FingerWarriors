@@ -20,14 +20,8 @@ public class AchievementManager : MonoBehaviour
 
     public void createAchievement(string keyword)
     {
-        GameObject achievementObject = (GameObject)Instantiate(AchievementItemPrefab);
-        SetAchievementObjectInfo(achievementObject, keyword);
+        GameObject achievementObject = (GameObject)Instantiate(AchievementItemPrefab, ScrollPanel.transform);
+        achievementObject.GetComponent<AchievementItem>().SetAchievement(Achievements[keyword]);
     }
 
-    private void SetAchievementObjectInfo(GameObject achievementObject, string keyword)
-    {
-        achievementObject.GetComponent<AchievementItem>().SetAchievement(Achievements[keyword]);
-        achievementObject.transform.SetParent(ScrollPanel.transform);
-        achievementObject.transform.localScale = new Vector3(1, 1, 1);
-    }
 }

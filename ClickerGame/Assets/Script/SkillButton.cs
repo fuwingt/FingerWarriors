@@ -8,6 +8,6 @@ public class SkillButton : MonoBehaviour
 
     public void activateSkill()
     {
-        hero.Skill(GlobalManager.currentEnemy);
+        hero.ActiveSkill();
     }
 }

@@ -38,6 +38,7 @@ public class ObjectGenerator : MonoBehaviour
         Amon = Instantiate(Amon) as GameObject;
         setHeroValue(Amon, Field_1, "Amon", 10, 35, 100, Character.Element.Fire, 1, true, icon_Amon);
         Field_1.GetComponent<Field>().activateSkillButton();
+        Amon.GetComponent<Hero>().PassiveSkill(true);
         //  Other hero
         Freyr = Instantiate(Freyr) as GameObject;
         setHeroValue(Freyr, Extra, "Freyr", 10, 30, 500, Character.Element.Water, 0, false, icon_Amon);

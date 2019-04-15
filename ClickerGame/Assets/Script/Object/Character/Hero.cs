@@ -11,6 +11,7 @@ public abstract class Hero : Character
     public Sprite Icon;
     public GameObject FloatingText;
 
+    [SerializeField] public float fieldBuff = 1;
     [SerializeField] protected float power = 1;
     [SerializeField] protected float extraPower = 1;
     [SerializeField] protected float powerRatio = 1;
@@ -29,14 +30,15 @@ public abstract class Hero : Character
     private float maxEnergy = 100;
     private int upgradeCount;
 
-    public abstract void Skill(GameObject monster);
+    public abstract void ActiveSkill();
+    public abstract void PassiveSkill(bool isActivated);
 
     public virtual void Attack(GameObject monster)
     {
         if (monster != null)
         {
             // Calculate the damage result with element and Critical chance
-            float result = ElementEffect(getElement(), monster.GetComponent<Monster>().getElement(), CriticalChanceSystem(power, extraPower, powerRatio, criticalChance, criticalRatio));
+            float result = ElementEffect(getElement(), monster.GetComponent<Monster>().getElement(), CriticalChanceSystem(power, extraPower, powerRatio, fieldBuff, criticalChance, criticalRatio));
 
             // Animaition
             transform.GetComponent<Animator>().SetTrigger("isAttack");
@@ -147,19 +149,19 @@ public abstract class Hero : Character
         return _result;
     }
 
-    protected float CriticalChanceSystem(float power, float extraPower, float powerRatio, float criticalChance, float criticalRatio)
+    protected float CriticalChanceSystem(float power, float extraPower, float powerRatio, float fieldBuff, float criticalChance, float criticalRatio)
     {
         float result;
         float randValue = Random.Range(0, 100);
         if (randValue <= criticalChance)
         {
             // do critical attack
-            result = ((power + extraPower) * powerRatio) * criticalRatio;
+            result = ((power + extraPower) * powerRatio * fieldBuff) * criticalRatio;
         }
         else
         {
             // critical attack not happen
-            result = (power + extraPower) * powerRatio;
+            result = (power + extraPower) * powerRatio * fieldBuff;
         }
         return result;
     }

@@ -37,7 +37,7 @@ public class HealthBar : MonoBehaviour
         if (GlobalManager.currentEnemy != null)
         {
             maxHp = GlobalManager.currentEnemy.GetComponent<Monster>().getMaxHp();
-            currentHp = GlobalManager.currentEnemy.GetComponent<Monster>().getHp();
+            currentHp = (int)GlobalManager.currentEnemy.GetComponent<Monster>().getHp();
             ChangeBarColor();
             HpText.text = currentHp.ToString();
             GetComponent<Image>().fillAmount = currentHp / maxHp;

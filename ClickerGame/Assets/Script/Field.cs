@@ -17,8 +17,17 @@ public class Field : MonoBehaviour
     public Sprite Border_Dark;
     [Header("Logo")]
     public Sprite ArrowLogo;
+    public float fieldBuff = 1;
 
     private Hero Hero;
+
+    void Update()
+    {
+        if (transform.childCount != 0)
+        {
+            transform.GetChild(0).GetComponent<Hero>().fieldBuff = fieldBuff;
+        }
+    }
 
     public void activateLogo()
     {
