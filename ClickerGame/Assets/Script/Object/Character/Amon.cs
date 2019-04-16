@@ -1,23 +1,17 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Amon : Hero
 {
     public GameObject AmonSkillObjectPrefab;
-    private GlobalManager globalManager;
-    private MonsterManager monsterManager;
-    private GameObject monsterPanel;
-    private float requiredEnergy = 50;
-    private float energyPerAttack = 10;
-    private Hero.Type Type = Hero.Type.Melee;
 
-    void Start()
+    protected override void Start()
     {
-        globalManager = GameObject.Find("GlobalManager").GetComponent<GlobalManager>();
-        monsterManager = GameObject.Find("MonsterManager").GetComponent<MonsterManager>();
-        monsterPanel = GameObject.Find("MonsterPanel").gameObject;
-
+        base.Start();
+        element = Character.Element.Fire;
+        type = Hero.Type.Melee;
+        requiredEnergy = 50;
+        energyPerAttack = 10;
     }
 
     public override void Attack(GameObject monster)

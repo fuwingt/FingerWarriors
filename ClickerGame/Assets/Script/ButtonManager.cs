@@ -4,25 +4,36 @@ using UnityEngine;
 
 public class ButtonManager : MonoBehaviour
 {
+    [Header("MenuButton")]
     public GameObject HeroesMenu;
     public GameObject EquipmentMenu;
     public GameObject PetMenu;
     public GameObject AchievementMneu;
-    private GameObject[] MenuArray = new GameObject[4];
+    [Header("Others")]
+    public GameObject isFarmingButton;
+    public GlobalManager globalManager;
+    public MonsterManager monsterManager;
 
-    private Animator hMenuAnimator;
-    private Animator eMenuAnimator;
-    private Animator pMenuAnimator;
+    /*  Variables  */
+    private GameObject[] MenuArray = new GameObject[4];
 
     private bool isPopUp;
 
     void Start()
     {
-        //MenuArray = new GameObject [4];
         MenuArray[0] = HeroesMenu;
         MenuArray[1] = EquipmentMenu;
         MenuArray[2] = PetMenu;
         MenuArray[3] = AchievementMneu;
+    }
+
+    void Update()
+    {
+        if (monsterManager.isFarming)
+            isFarmingButton.SetActive(true);
+        else
+            isFarmingButton.SetActive(false);
+
     }
 
     public void PopUpHeroesMenu(int id)
@@ -34,6 +45,17 @@ public class ButtonManager : MonoBehaviour
             if (i != id)
                 MenuArray[i].GetComponent<Animator>().SetBool("popUp", false);
 
+    }
+
+    public void GoToBossStage()
+    {
+        if (monsterManager.isFarming)
+        {
+            globalManager.stage++;
+            monsterManager.isFarming = !monsterManager.isFarming;
+            monsterManager.NextMonster();
+            monsterManager.EntryBossStage(monsterManager.isBossStage = true);
+        }
     }
 
 

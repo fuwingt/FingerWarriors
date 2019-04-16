@@ -9,9 +9,14 @@ public abstract class Hero : Character
     }
 
     public Sprite Icon;
+    public GameObject currentEquipment = null;
     public GameObject FloatingText;
-
-    [SerializeField] public float fieldBuff = 1;
+    public float fieldBuff = 1;
+    public float requiredEnergy = 50;
+    public float energyPerAttack = 10;
+    protected GlobalManager globalManager;
+    protected MonsterManager monsterManager;
+    protected GameObject monsterPanel;
     [SerializeField] protected float power = 1;
     [SerializeField] protected float extraPower = 1;
     [SerializeField] protected float powerRatio = 1;
@@ -20,18 +25,20 @@ public abstract class Hero : Character
     [SerializeField] protected float skillPowerRatio = 1;
     [SerializeField] protected float criticalChance = 10;
     [SerializeField] protected float criticalRatio = 1.5f;
-
-    [SerializeField] private float energy = 0;
+    protected Type type;
     [SerializeField] private float price;
     [SerializeField] private int level;
-
-
-    [SerializeField] public GameObject currentEquipment = null;
-    private float maxEnergy = 100;
     private int upgradeCount;
 
     public abstract void ActiveSkill();
     public abstract void PassiveSkill(bool isActivated);
+
+    protected virtual void Start()
+    {
+        globalManager = GameObject.Find("GlobalManager").GetComponent<GlobalManager>();
+        monsterManager = GameObject.Find("MonsterManager").GetComponent<MonsterManager>();
+        monsterPanel = GameObject.Find("MonsterPanel").gameObject;
+    }
 
     public virtual void Attack(GameObject monster)
     {
@@ -45,9 +52,9 @@ public abstract class Hero : Character
             // Do damage
             monster.GetComponent<Monster>().BeingAttacked(result);
             // Add 10 Energy each attack
-            if (energy < maxEnergy)
+            if (globalManager.getEnergy() < globalManager.getMaxEnergy())
             {
-                energy += 10;
+                globalManager.setEnergy(globalManager.getEnergy() + 10);
             }
             Debug.Log(getName() + ": making damage " + result + " to enemy " + monster.GetComponent<Monster>().getName());
         }
@@ -186,16 +193,6 @@ public abstract class Hero : Character
         return extraSkillPower;
     }
 
-    public float getEnergy()
-    {
-        return energy;
-    }
-
-    public float getMaxEnergy()
-    {
-        return maxEnergy;
-    }
-
     public float getPrice()
     {
         return price;
@@ -249,16 +246,6 @@ public abstract class Hero : Character
     public void setExtraSkillPower(float extraSkillPower)
     {
         this.extraSkillPower = extraSkillPower;
-    }
-
-    public void setEnergy(float energy)
-    {
-        this.energy = energy;
-    }
-
-    public void setMaxEnergy(float maxEnergy)
-    {
-        this.maxEnergy = maxEnergy;
     }
 
     public void setPrice(float price)

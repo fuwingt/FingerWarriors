@@ -59,16 +59,14 @@ public class ObjectGenerator : MonoBehaviour
     public void generatePet()
     {
         Rah = Instantiate(Rah, PetExtraField.transform, false) as GameObject;
-        //createPetItem(Rah);
-        //Rah.SetActive(false);
-    }
 
+    }
 
     private void createUpgradeItem(GameObject hero)
     {
         HeroItemPrefab = Instantiate(HeroItemPrefab, heroPanel.transform);
         HeroItemPrefab.name = "Item";
-        HeroItemPrefab.GetComponentInChildren<UpgradeHeroItem>().setHero(hero);
+        HeroItemPrefab.GetComponentInChildren<HeroItem>().setHero(hero.GetComponent<Hero>());
         HeroItemPrefab.GetComponentInChildren<SwitchField>().setHero(hero);
     }
 
@@ -100,4 +98,5 @@ public class ObjectGenerator : MonoBehaviour
         monster.transform.SetParent(MonsterField.transform);
         MonsterManager.monsterList.Add(monster);
     }
+
 }

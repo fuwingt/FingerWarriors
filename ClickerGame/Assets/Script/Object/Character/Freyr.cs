@@ -4,18 +4,13 @@ using UnityEngine;
 
 public class Freyr : Hero
 {
-
-    private GlobalManager globalManager;
-    private MonsterManager monsterManager;
-    private float requiredEnergy = 30;
-    private float energyPerAttack = 3;
-    private Hero.Type Type = Hero.Type.Ranged;
-    private Character.Element Element = Character.Element.Water;
-
-    void Start()
+    protected override void Start()
     {
-        globalManager = GameObject.Find("GlobalManager").GetComponent<GlobalManager>();
-        monsterManager = GameObject.Find("MonsterManager").GetComponent<MonsterManager>();
+        base.Start();
+        element = Character.Element.Water;
+        type = Hero.Type.Ranged;
+        requiredEnergy = 30;
+        energyPerAttack = 3;
     }
 
     public override void Attack(GameObject monster)

@@ -15,6 +15,7 @@ public class MonsterManager : MonoBehaviour
 
     private GameObject currentMonster;
     public bool isBossStage = false;
+    public bool isFarming = false;
 
     void Start()
     {
@@ -42,6 +43,9 @@ public class MonsterManager : MonoBehaviour
         if (currentMonster.GetComponent<Monster>().getHp() <= 0)
         {
             currentMonster.GetComponent<Monster>().Death();
+
+            if (!isFarming) globalManager.stage++;
+
             //	If player beat the boss
             if (isBossStage)
             {
@@ -51,7 +55,7 @@ public class MonsterManager : MonoBehaviour
                 timeCountdownBar.GetComponent<TimeCountdownBar>().Reset();
             }
             //	Entry next stage after monster dead
-            if (++globalManager.stage % 10 == 0 && globalManager.stage != 0)
+            if (globalManager.stage % 10 == 0 && globalManager.stage != 0)
                 isBossStage = true;
             else
                 isBossStage = false;
@@ -63,7 +67,7 @@ public class MonsterManager : MonoBehaviour
         }
     }
 
-    private void EntryBossStage(bool isBossStage)
+    public void EntryBossStage(bool isBossStage)
     {
         if (isBossStage)
         {
@@ -83,13 +87,14 @@ public class MonsterManager : MonoBehaviour
         {
             globalManager.stage--;
             isBossStage = false;
+            isFarming = true;
             timeCountdownBar.GetComponent<TimeCountdownBar>().Reset();
             NextMonster();
         }
 
     }
 
-    private void NextMonster()
+    public void NextMonster()
     {
         //	Move the current monster to extra field
         currentMonster.transform.SetParent(MonsterExtraField.transform);

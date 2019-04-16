@@ -1,38 +1,38 @@
 ﻿using UnityEngine;
 
-public class Character : MonoBehaviour 
-{	
-	public enum Element
-	{
-		Fire,
-		Water,
-		Wind,
-		Light,
-		Dark
-	}
-	[SerializeField] private new string name;
-	[SerializeField] private Element element = Element.Fire;
-		
-	public string getName()
-	{
-		return name;
-	}
+public class Character : MonoBehaviour
+{
+    public enum Element
+    {
+        Fire,
+        Water,
+        Wind,
+        Light,
+        Dark
+    }
+    [SerializeField] private new string name;
+    [SerializeField] protected Element element;
 
-	public Element getElement()
-	{
-		return element;
-	}
+    public string getName()
+    {
+        return name;
+    }
 
-	public void setName(string name)
-	{
-		this.name = name;
-	}
+    public Element getElement()
+    {
+        return element;
+    }
 
-	public void setElement(Element element)
-	{
-		this.element = element;
-	}
+    public void setName(string name)
+    {
+        this.name = name;
+    }
 
-	
+    public void setElement(Element element)
+    {
+        this.element = element;
+    }
+
+
 
 }

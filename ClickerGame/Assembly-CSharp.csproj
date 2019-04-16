@@ -76,10 +76,10 @@
      <Compile Include="Assets\Script\Object\Character\Monster\Smile.cs" />
      <Compile Include="Assets\Script\Object\Equipment\Equipment.cs" />
      <Compile Include="Assets\Script\Object\GoldPrefab.cs" />
+     <Compile Include="Assets\Script\Object\HeroItem.cs" />
      <Compile Include="Assets\Script\Object\Pet\Pet.cs" />
      <Compile Include="Assets\Script\Object\Pet\PetItem.cs" />
      <Compile Include="Assets\Script\Object\Pet\Rah.cs" />
-     <Compile Include="Assets\Script\Object\UpgradeHeroItem.cs" />
      <Compile Include="Assets\Script\ObjectGenerator.cs" />
      <Compile Include="Assets\Script\SkillButton.cs" />
      <Compile Include="Assets\Script\SwitchField.cs" />
