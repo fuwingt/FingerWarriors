@@ -42,12 +42,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Default
-    uniqueID: 0
-    locked: 0
-  - name: sprite
+  - name: Background
     uniqueID: 2218731333
+    locked: 0
+  - name: Character
+    uniqueID: 1339186107
     locked: 0
   - name: FloatingText
     uniqueID: 1134585407
+    locked: 0
+  - name: UI
+    uniqueID: 3760717921
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0

@@ -13,6 +13,7 @@ public class GlobalManager : MonoBehaviour
     public static GameObject currentPet;
     public static float gold10xChance = 10;
     public static float bossHpRatio = 10;
+    public static bool isInfoPanelOpen = false;
     public static GameObject[] FieldArray = new GameObject[6];
     [Header("Field")]
     public GameObject Field1;

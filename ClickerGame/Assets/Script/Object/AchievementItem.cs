@@ -38,7 +38,7 @@ public class AchievementItem : MonoBehaviour
         {
             descriptionText.text = achievement.GetDesc();
             progressText.text = achievement.currentProgress + "/" + achievement.maxProgress;
-            rewardText.text = achievement.GetReward() + "";
+            //rewardText.text = achievement.GetReward() + "";
         }
 
     }

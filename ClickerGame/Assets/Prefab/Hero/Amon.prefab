@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 50887055171191992}
   - component: {fileID: 114326870541969508}
   - component: {fileID: 114829068588167058}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: Amon
   m_TagString: Hero
   m_Icon: {fileID: 0}
@@ -83,18 +83,22 @@ MonoBehaviour:
   name: 
   element: 0
   Icon: {fileID: 0}
+  currentEquipment: {fileID: 0}
   FloatingText: {fileID: 1193224117081010, guid: cb90b3cc5c9ec26458f21b62fd7fb965,
     type: 2}
-  skillPower: 0
+  fieldBuff: 1
+  requiredEnergy: 50
+  energyPerAttack: 10
   power: 0
   extraPower: 0
+  powerRatio: 1
+  skillPower: 0
   extraSkillPower: 0
+  skillPowerRatio: 1
   criticalChance: 50
   criticalRatio: 1.5
-  energy: 0
   price: 0
   level: 0
-  currentEquipment: {fileID: 0}
   AmonSkillObjectPrefab: {fileID: 1706595649075364, guid: 8161da4f10839a74eb65ee00abbf472a,
     type: 2}
 --- !u!114 &114829068588167058
@@ -148,8 +152,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1339186107
+  m_SortingLayer: -3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8966efca28a97554e827a74763a76812, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

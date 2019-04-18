@@ -26,6 +26,8 @@ public abstract class Hero : Character
     [SerializeField] protected float criticalChance = 10;
     [SerializeField] protected float criticalRatio = 1.5f;
     protected Type type;
+    protected string activeSkillDesc;
+    protected string passiveSkillDesc;
     [SerializeField] private float price;
     [SerializeField] private int level;
     private int upgradeCount;
@@ -228,6 +230,16 @@ public abstract class Hero : Character
         return criticalRatio;
     }
 
+    public string getActiveSkillDesc()
+    {
+        return activeSkillDesc;
+    }
+
+    public string getPassiveSkillDesc()
+    {
+        return passiveSkillDesc;
+    }
+
     public void setSkillPower(float skillPower)
     {
         this.skillPower = skillPower;
@@ -282,4 +294,6 @@ public abstract class Hero : Character
     {
         this.criticalRatio = criticalRatio;
     }
+
+
 }

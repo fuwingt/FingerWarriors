@@ -14,6 +14,7 @@ public class HeroItem : MonoBehaviour
     public GameObject JoinButton;
     public GameObject QuitButton;
     public GameObject UpgradeButton;
+    private GameObject heroInfoPanel;
     private Hero hero;
     private string heroName;
     private float upgradePrice;
@@ -23,6 +24,7 @@ public class HeroItem : MonoBehaviour
     private float heroExtraSkillPower;
     private float heroLevel;
     private bool isSelectingField = false;
+
 
     void Start()
     {
@@ -54,6 +56,12 @@ public class HeroItem : MonoBehaviour
         }
     }
 
+    public void ShowHeroInfoPanel()
+    {
+        GlobalManager.isInfoPanelOpen = true;
+        heroInfoPanel.SetActive(true);
+        heroInfoPanel.GetComponent<HeroInfoPanel>().SetHeroInfo(hero, this);
+    }
 
 
     private void InfoUpdate()
@@ -76,7 +84,15 @@ public class HeroItem : MonoBehaviour
             UpgradeText.text = "$" + upgradePrice + " Level Up"
                                 + "\n+ DPS: "
                                 + "\n+ Skill Power: ";
+        }
 
+        if (heroInfoPanel == null)
+        {
+            heroInfoPanel = GameObject.Find("HeroInfoPanel");
+        }
+        else if (heroInfoPanel != null && !GlobalManager.isInfoPanelOpen)
+        {
+            heroInfoPanel.SetActive(false);
         }
     }
 

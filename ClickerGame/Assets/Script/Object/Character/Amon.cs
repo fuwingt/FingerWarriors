@@ -12,6 +12,8 @@ public class Amon : Hero
         type = Hero.Type.Melee;
         requiredEnergy = 50;
         energyPerAttack = 10;
+        activeSkillDesc = "Fire slash attack with damage " + skillPower + " 3 times";
+        passiveSkillDesc = "Attack of All the heroes in front x 1.5";
     }
 
     public override void Attack(GameObject monster)

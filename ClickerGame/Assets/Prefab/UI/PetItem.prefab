@@ -763,7 +763,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 73.6, y: 2.5}
-  m_SizeDelta: {x: 117.2, y: 117.2}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224365477879571688
 RectTransform:
@@ -787,7 +787,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1200, y: 175.8}
+  m_SizeDelta: {x: 1080, y: 175.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224433289173834580
 RectTransform:
@@ -840,8 +840,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -421, y: 43.95}
-  m_SizeDelta: {x: 325.3, y: 87.9}
+  m_AnchoredPosition: {x: -394.01, y: 43.95}
+  m_SizeDelta: {x: 265.28, y: 87.9}
   m_Pivot: {x: 0.5503188, y: 0.5}
 --- !u!224 &224746288223958200
 RectTransform:
@@ -859,7 +859,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 448, y: -0.000024319}
+  m_AnchoredPosition: {x: 392, y: 2.5}
   m_SizeDelta: {x: 273.9, y: 122.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224773677421057510
@@ -877,8 +877,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -437.3, y: -43.95}
-  m_SizeDelta: {x: 325.3, y: 87.9}
+  m_AnchoredPosition: {x: -407.33, y: -43.95}
+  m_SizeDelta: {x: 265.35, y: 87.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224789410001595724
 RectTransform:
@@ -932,6 +932,6 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 221.2, y: 0.2694}
-  m_SizeDelta: {x: 121.6, y: 121.66}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 192, y: 2.5}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5000003, y: 0.5}
