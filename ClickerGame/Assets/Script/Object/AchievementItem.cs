@@ -23,12 +23,9 @@ public class AchievementItem : MonoBehaviour
     // Call by Reward button
     public void ReceiveReward()
     {
-        // 1. Receive reward
-        // 2. Upgrade the achievement 
         if (achievement != null)
         {
-            GlobalManager.setGold(GlobalManager.getGold() + achievement.GetReward());
-            achievement.Upgrade();
+            achievement.ReceiveReward();
         }
     }
 
@@ -38,7 +35,19 @@ public class AchievementItem : MonoBehaviour
         {
             descriptionText.text = achievement.GetDesc();
             progressText.text = achievement.currentProgress + "/" + achievement.maxProgress;
-            //rewardText.text = achievement.GetReward() + "";
+
+            if (achievement.currentProgress >= achievement.maxProgress)
+            {
+                rewardButton.GetComponent<Button>().interactable = true;
+                achievement.currentProgress = achievement.maxProgress;
+                achievement.isAchieved = true;
+            }
+            else
+            {
+                rewardButton.GetComponent<Button>().interactable = false;
+                achievement.isAchieved = false;
+            }
+
         }
 
     }

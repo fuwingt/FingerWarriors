@@ -14,6 +14,8 @@ public class GlobalManager : MonoBehaviour
     public static float gold10xChance = 10;
     public static float bossHpRatio = 10;
     public static bool isInfoPanelOpen = false;
+    public static int tapCount = 0;
+
     public static GameObject[] FieldArray = new GameObject[6];
     [Header("Field")]
     public GameObject Field1;
@@ -23,9 +25,9 @@ public class GlobalManager : MonoBehaviour
     public GameObject Field5;
     public GameObject Field6;
 
+
     public Text InfoBoard;
     public int itemCount;
-    public int clickCount;
     public int stage;
 
     /* monster's HP would be increase in each 10 stage by monsterHpRate */
@@ -55,8 +57,6 @@ public class GlobalManager : MonoBehaviour
     void Update()
     {
         UpdateInfoBoard();
-
-
     }
 
     private void UpdateInfoBoard()

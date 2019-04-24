@@ -67,13 +67,13 @@
      <Compile Include="Assets\Script\Object\AchievementItem.cs" />
      <Compile Include="Assets\Script\Object\AchievementManager.cs" />
      <Compile Include="Assets\Script\Object\Character\Amon.cs" />
-     <Compile Include="Assets\Script\Object\Character\AmonSkillObject.cs" />
      <Compile Include="Assets\Script\Object\Character\Character.cs" />
      <Compile Include="Assets\Script\Object\Character\Freyr.cs" />
      <Compile Include="Assets\Script\Object\Character\Hero.cs" />
      <Compile Include="Assets\Script\Object\Character\Monster\Monster.cs" />
      <Compile Include="Assets\Script\Object\Character\Monster\MonsterManager.cs" />
      <Compile Include="Assets\Script\Object\Character\Monster\Smile.cs" />
+     <Compile Include="Assets\Script\Object\Character\SkillObject.cs" />
      <Compile Include="Assets\Script\Object\Equipment\Equipment.cs" />
      <Compile Include="Assets\Script\Object\GoldPrefab.cs" />
      <Compile Include="Assets\Script\Object\HeroInfoPanel.cs" />
@@ -83,7 +83,6 @@
      <Compile Include="Assets\Script\Object\Pet\Rah.cs" />
      <Compile Include="Assets\Script\ObjectGenerator.cs" />
      <Compile Include="Assets\Script\SkillButton.cs" />
-     <Compile Include="Assets\Script\SwitchField.cs" />
      <Compile Include="Assets\Script\TimeCountdownBar.cs" />
      <None Include="Assets\Font\LICENSE.txt" />
  <Reference Include="UnityEditor.StandardEvents">

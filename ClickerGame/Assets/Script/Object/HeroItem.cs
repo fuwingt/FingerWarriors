@@ -15,6 +15,9 @@ public class HeroItem : MonoBehaviour
     public GameObject QuitButton;
     public GameObject UpgradeButton;
     private GameObject heroInfoPanel;
+    private GlobalManager globalManager;
+    private GameObject[] FieldArray;
+    private GameObject ExtraField;
     private Hero hero;
     private string heroName;
     private float upgradePrice;
@@ -29,13 +32,102 @@ public class HeroItem : MonoBehaviour
     void Start()
     {
         InfoUpdate();
+        globalManager = GameObject.Find("GlobalManager").gameObject.GetComponent<GlobalManager>();
+        FieldArray = GlobalManager.FieldArray;
+        ExtraField = GameObject.Find("ExtraField");
     }
 
     void Update()
     {
         InfoUpdate();
         ButtonStatusUpdate();
+
+        if (isSelectingField == true)
+        {
+            SwitchHero();
+        }
     }
+
+    /* Call by Join button */
+    public void SwitchStatus()
+    {
+        if (hero == null) return;
+        isSelectingField = true;
+        // Show arrow logo
+        for (int i = 0; i < FieldArray.Length; i++)
+            FieldArray[i].GetComponent<Field>().activateLogo();
+    }
+
+
+    /* Call by Quit button */
+    public void QuitField()
+    {
+        if (hero == null) return;
+        hero.gameObject.SetActive(false);
+        hero.isOnField = false;
+        hero.PassiveSkill(false);
+
+        hero.transform.parent.GetComponent<Field>().deactivateSkillButton();
+
+        hero.isOnField = false;
+
+        hero.transform.SetParent(ExtraField.transform);
+    }
+
+
+    private void SwitchHero()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+            if (hit.collider != null)
+            {
+                if (hit.collider.gameObject.tag == "FrontField" || hit.collider.gameObject.tag == "BackField")
+                {
+                    if (hit.collider.transform.childCount == 0)
+                    {
+                        // Join
+                        hero.gameObject.SetActive(true);
+                        hero.isOnField = true;
+
+                        if (hero.transform.parent.tag == "FrontField" || hero.transform.parent.tag == "BackField")
+                            hero.transform.parent.GetComponent<Field>().deactivateSkillButton();
+                        hero.transform.SetParent(hit.collider.gameObject.transform);
+                        //hero.PassiveSkill(false);
+                        hero.PassiveSkill(true);
+
+                        hit.collider.GetComponent<Field>().activateSkillButton();
+
+                    }
+                    else if (hit.collider.transform.childCount == 1)
+                    {
+                        // Replace
+                        hit.collider.transform.GetChild(0).gameObject.GetComponent<Hero>().PassiveSkill(false);
+                        hit.collider.transform.GetChild(0).gameObject.SetActive(false);
+                        hit.collider.transform.GetChild(0).SetParent(ExtraField.transform);
+
+                        hero.gameObject.SetActive(true);
+                        hero.isOnField = true;
+                        hero.transform.parent.GetComponent<Field>().deactivateSkillButton();
+                        hero.transform.SetParent(hit.collider.gameObject.transform);
+                        hero.PassiveSkill(true);
+
+                        hit.collider.GetComponent<Field>().activateSkillButton();
+
+                    }
+                }
+                else
+                {
+                    // Hide the arrow and then return
+                }
+            }
+            isSelectingField = false;
+            // Hide arrow logo
+            for (int i = 0; i < FieldArray.Length; i++)
+                FieldArray[i].GetComponent<Field>().activateLogo();
+        }
+    }
+
 
     public void Upgrade()
     {
@@ -108,7 +200,18 @@ public class HeroItem : MonoBehaviour
         else
         {
             JoinButton.GetComponent<Button>().interactable = true;
-            QuitButton.GetComponent<Button>().interactable = true;
+            if (hero.isOnField)
+            {
+                JoinButton.GetComponent<Button>().interactable = false;
+                QuitButton.GetComponent<Button>().interactable = true;
+            }
+            else
+            {
+                JoinButton.GetComponent<Button>().interactable = true;
+                QuitButton.GetComponent<Button>().interactable = false;
+            }
+
+
         }
 
         if (GlobalManager.getGold() < hero.getPrice())
@@ -117,10 +220,9 @@ public class HeroItem : MonoBehaviour
             UpgradeButton.GetComponent<Button>().interactable = true;
     }
 
-
-
     public void setHero(Hero hero)
     {
         this.hero = hero;
     }
+
 }

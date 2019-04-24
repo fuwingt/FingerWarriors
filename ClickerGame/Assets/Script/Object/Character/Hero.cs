@@ -9,11 +9,14 @@ public abstract class Hero : Character
     }
 
     public Sprite Icon;
+    public GameObject SkillObjectPrefab;
     public GameObject currentEquipment = null;
     public GameObject FloatingText;
     public float fieldBuff = 1;
     public float requiredEnergy = 50;
     public float energyPerAttack = 10;
+    public bool isOnField = false;
+
     protected GlobalManager globalManager;
     protected MonsterManager monsterManager;
     protected GameObject monsterPanel;
@@ -26,11 +29,12 @@ public abstract class Hero : Character
     [SerializeField] protected float criticalChance = 10;
     [SerializeField] protected float criticalRatio = 1.5f;
     protected Type type;
-    protected string activeSkillDesc;
-    protected string passiveSkillDesc;
+    [SerializeField] protected string activeSkillDesc;
+    [SerializeField] protected string passiveSkillDesc;
     [SerializeField] private float price;
     [SerializeField] private int level;
     private int upgradeCount;
+
 
     public abstract void ActiveSkill();
     public abstract void PassiveSkill(bool isActivated);
@@ -42,24 +46,20 @@ public abstract class Hero : Character
         monsterPanel = GameObject.Find("MonsterPanel").gameObject;
     }
 
-    public virtual void Attack(GameObject monster)
+    public float Attack(GameObject monster)
     {
-        if (monster != null)
-        {
-            // Calculate the damage result with element and Critical chance
-            float result = ElementEffect(getElement(), monster.GetComponent<Monster>().getElement(), CriticalChanceSystem(power, extraPower, powerRatio, fieldBuff, criticalChance, criticalRatio));
 
-            // Animaition
-            transform.GetComponent<Animator>().SetTrigger("isAttack");
-            // Do damage
-            monster.GetComponent<Monster>().BeingAttacked(result);
-            // Add 10 Energy each attack
-            if (globalManager.getEnergy() < globalManager.getMaxEnergy())
-            {
-                globalManager.setEnergy(globalManager.getEnergy() + 10);
-            }
-            Debug.Log(getName() + ": making damage " + result + " to enemy " + monster.GetComponent<Monster>().getName());
-        }
+        // Calculate the damage result with element and Critical chance
+        float result = ElementEffect(getElement(), monster.GetComponent<Monster>().getElement(), CriticalChanceSystem(power, extraPower, powerRatio, fieldBuff, criticalChance, criticalRatio));
+
+        // Animaition
+        transform.GetComponent<Animator>().SetTrigger("isAttack");
+
+        globalManager.setEnergy(globalManager.getEnergy() + energyPerAttack);
+
+        Debug.Log(getName() + ": making damage " + result + " to enemy " + monster.GetComponent<Monster>().getName());
+
+        return result;
     }
 
     public void SuitUp(GameObject Equipment)
@@ -293,6 +293,16 @@ public abstract class Hero : Character
     public void setCriticalRatio(float criticalRatio)
     {
         this.criticalRatio = criticalRatio;
+    }
+
+    public void setActiveSkillDesc(string activeSkillDesc)
+    {
+        this.activeSkillDesc = activeSkillDesc;
+    }
+
+    public void setPassiveSkillDesc(string passiveSkillDesc)
+    {
+        this.passiveSkillDesc = passiveSkillDesc;
     }
 
 

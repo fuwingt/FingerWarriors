@@ -83,12 +83,15 @@ MonoBehaviour:
   name: 
   element: 0
   Icon: {fileID: 0}
+  SkillObjectPrefab: {fileID: 1706595649075364, guid: 8161da4f10839a74eb65ee00abbf472a,
+    type: 2}
   currentEquipment: {fileID: 0}
   FloatingText: {fileID: 1193224117081010, guid: cb90b3cc5c9ec26458f21b62fd7fb965,
     type: 2}
   fieldBuff: 1
   requiredEnergy: 50
   energyPerAttack: 10
+  isOnField: 0
   power: 0
   extraPower: 0
   powerRatio: 1
@@ -99,8 +102,6 @@ MonoBehaviour:
   criticalRatio: 1.5
   price: 0
   level: 0
-  AmonSkillObjectPrefab: {fileID: 1706595649075364, guid: 8161da4f10839a74eb65ee00abbf472a,
-    type: 2}
 --- !u!114 &114829068588167058
 MonoBehaviour:
   m_ObjectHideFlags: 1

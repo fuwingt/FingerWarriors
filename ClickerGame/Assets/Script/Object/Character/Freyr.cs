@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Freyr : Hero
 {
+    private TimeCountdownBar timeCountdownBar;
     protected override void Start()
     {
         base.Start();
@@ -11,13 +12,8 @@ public class Freyr : Hero
         type = Hero.Type.Ranged;
         requiredEnergy = 30;
         energyPerAttack = 3;
-    }
-
-    public override void Attack(GameObject monster)
-    {
-        base.Attack(monster);
-
-        globalManager.setEnergy(globalManager.getEnergy() + energyPerAttack);
+        activeSkillDesc = "Make water attack with " + skillPower + " damage. " + "Stop the time 1 second in Boss stage.";
+        passiveSkillDesc = "Attack of All the heroes in back x 1.2";
     }
 
     public override void ActiveSkill()
@@ -28,8 +24,10 @@ public class Freyr : Hero
             {
                 globalManager.setEnergy(globalManager.getEnergy() - requiredEnergy);
                 float result = ElementEffect(getElement(), monsterManager.GetCurrentMonster().GetComponent<Monster>().getElement(), skillPower + extraSkillPower);
-                monsterManager.GetCurrentMonster().GetComponent<Monster>().BeingAttacked(result);
-
+                // Skill object
+                GameObject SkillObject = Instantiate(SkillObjectPrefab, monsterPanel.transform);
+                SkillObject.GetComponent<SkillObject>().setResult(result);
+                ActiveSkillEffect();
             }
             else
             {
@@ -40,7 +38,30 @@ public class Freyr : Hero
 
     public override void PassiveSkill(bool isActivated)
     {
+        float extraBuff = 1.2f;
 
+        for (int i = 0; i < GlobalManager.FieldArray.Length; i++)
+        {
+            Field f = GlobalManager.FieldArray[i].GetComponent<Field>();
+
+            if (f.tag != "BackField") continue;
+
+            if (isActivated)
+                f.fieldBuff *= extraBuff;
+            else
+                f.fieldBuff /= extraBuff;
+        }
+    }
+
+    private void ActiveSkillEffect()
+    {
+        if (monsterManager.isBossStage)
+        {
+            if (timeCountdownBar == null)
+                timeCountdownBar = GameObject.Find("TimeCountdownBar").GetComponent<TimeCountdownBar>();
+
+            timeCountdownBar.StopCounting(1);
+        }
     }
 
 }

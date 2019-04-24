@@ -6,10 +6,11 @@ public class Achievement
 {
     public int currentProgress = 0;
     public int maxProgress;
+    public bool isAchieved;
     private new string name;
     private string description;
     private float reward;
-
+    private GameObject itemPrefab;
 
 
     public Achievement(string name, string description, float reward, int currentProgress, int maxProgress)
@@ -21,11 +22,17 @@ public class Achievement
         this.maxProgress = maxProgress;
     }
 
-    public void Upgrade()
+    public void ReceiveReward()
+    {
+        GlobalManager.setGold(GlobalManager.getGold() + reward);
+        Renew();
+    }
+
+    private void Renew()
     {
         reward *= 10;
-        currentProgress = 0;
         maxProgress *= 10;
+        isAchieved = false;
     }
 
     //	Getter
@@ -43,6 +50,11 @@ public class Achievement
         return reward;
     }
 
+    public GameObject GetItemPrefab()
+    {
+        return itemPrefab;
+    }
+
 
     //	Setter
     public void SetName(string name)
@@ -58,6 +70,11 @@ public class Achievement
     public void SetReward(float reward)
     {
         this.reward = reward;
+    }
+
+    public void SetItemPrefab(GameObject itemPrefab)
+    {
+        this.itemPrefab = itemPrefab;
     }
 
 

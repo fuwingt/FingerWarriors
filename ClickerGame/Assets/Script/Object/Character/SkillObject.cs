@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AmonSkillObject : MonoBehaviour
+public class SkillObject : MonoBehaviour
 {
-
     private float result;
+
     void activateSkill()
     {
         GlobalManager.currentEnemy.GetComponent<Monster>().BeingAttacked(result);

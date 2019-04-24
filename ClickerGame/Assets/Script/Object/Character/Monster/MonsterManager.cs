@@ -52,7 +52,7 @@ public class MonsterManager : MonoBehaviour
                 timeCountdownBar.SetActive(false);
                 timeCountdownBar.transform.GetChild(0).gameObject.SetActive(false);
                 timeCountdownBar.transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
-                timeCountdownBar.GetComponent<TimeCountdownBar>().Reset();
+                timeCountdownBar.GetComponent<TimeCountdownBar>().Start();
             }
             //	Entry next stage after monster dead
             if (globalManager.stage % 10 == 0 && globalManager.stage != 0)
@@ -88,7 +88,7 @@ public class MonsterManager : MonoBehaviour
             globalManager.stage--;
             isBossStage = false;
             isFarming = true;
-            timeCountdownBar.GetComponent<TimeCountdownBar>().Reset();
+            timeCountdownBar.GetComponent<TimeCountdownBar>().Start();
             NextMonster();
         }
 

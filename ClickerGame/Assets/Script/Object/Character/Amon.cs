@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class Amon : Hero
 {
-    public GameObject AmonSkillObjectPrefab;
-
     protected override void Start()
     {
         base.Start();
@@ -14,13 +12,6 @@ public class Amon : Hero
         energyPerAttack = 10;
         activeSkillDesc = "Fire slash attack with damage " + skillPower + " 3 times";
         passiveSkillDesc = "Attack of All the heroes in front x 1.5";
-    }
-
-    public override void Attack(GameObject monster)
-    {
-        base.Attack(monster);
-
-        globalManager.setEnergy(globalManager.getEnergy() + energyPerAttack);
     }
 
     public override void ActiveSkill()
@@ -33,8 +24,8 @@ public class Amon : Hero
                 globalManager.setEnergy(globalManager.getEnergy() - requiredEnergy);
                 float result = ElementEffect(getElement(), monsterManager.GetCurrentMonster().GetComponent<Monster>().getElement(), skillPower + extraSkillPower);
                 // Skill object
-                GameObject AmonSkillObject = Instantiate(AmonSkillObjectPrefab, monsterPanel.transform);
-                AmonSkillObject.GetComponent<AmonSkillObject>().setResult(result);
+                GameObject SkillObject = Instantiate(SkillObjectPrefab, monsterPanel.transform);
+                SkillObject.GetComponent<SkillObject>().setResult(result);
                 //Debug.Log(getName() + ": making damage " + result + " to enemy " + monster.GetComponent<Monster>().getName() + " using Skill!!!");
             }
             else

@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
-    public GameObject _globalManager;
     public GameObject EquipmentMenu;
     public GameObject EquipmentPrefab;
     public Text EquipmentNameText;
@@ -31,7 +30,11 @@ public class Inventory : MonoBehaviour
         if (currentSelectingEquip != null && isSelectingHero == true)
         {
             if (!currentSelectingEquip.GetComponent<Equipment>().isEquiped)
+            {
                 EquipButtonText.text = "Selecting...";
+                EquipButtonText.fontSize = 35;
+            }
+
             Equip();
         }
     }
@@ -144,9 +147,16 @@ public class Inventory : MonoBehaviour
             EquipmentNameText.text = currentSelectingEquip.GetComponent<Equipment>().name;
             EquipmentDescText.text = currentSelectingEquip.GetComponent<Equipment>().description;
             if (currentSelectingEquip.GetComponent<Equipment>().isEquiped == true)
+            {
                 EquipButtonText.text = "Equiped";
+                EquipButtonText.fontSize = 50;
+            }
             else
+            {
                 EquipButtonText.text = "Equip";
+                EquipButtonText.fontSize = 50;
+            }
+
         }
         else
         {

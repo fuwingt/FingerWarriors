@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 198181996062612478}
   - component: {fileID: 114473284626541848}
   - component: {fileID: 199951736357276586}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: GoldPartic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4663,7 +4663,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2076235963
-  m_SortingLayer: 1
+  m_SortingLayer: -4
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0

@@ -39,9 +39,11 @@ public class ObjectGenerator : MonoBehaviour
         setHeroValue(Amon, Field_1, "Amon", 10, 35, 100, Character.Element.Fire, 1, true, icon_Amon);
         Field_1.GetComponent<Field>().activateSkillButton();
         Amon.GetComponent<Hero>().PassiveSkill(true);
+        Amon.GetComponent<Hero>().isOnField = true;
         //  Other hero
         Freyr = Instantiate(Freyr) as GameObject;
         setHeroValue(Freyr, Extra, "Freyr", 10, 30, 500, Character.Element.Water, 0, false, icon_Amon);
+
         //  Upgrade column for each hero
         for (int i = 0; i < GlobalManager.heroList.Count; i++)
         {
@@ -67,7 +69,6 @@ public class ObjectGenerator : MonoBehaviour
         HeroItemPrefab = Instantiate(HeroItemPrefab, heroPanel.transform);
         HeroItemPrefab.name = "Item";
         HeroItemPrefab.GetComponentInChildren<HeroItem>().setHero(hero.GetComponent<Hero>());
-        HeroItemPrefab.GetComponentInChildren<SwitchField>().setHero(hero);
     }
 
 
@@ -81,6 +82,8 @@ public class ObjectGenerator : MonoBehaviour
         hero.GetComponent<Hero>().setPrice(price);
         hero.GetComponent<Hero>().setElement(type);
         hero.GetComponent<Hero>().setLevel(level);
+        hero.GetComponent<Hero>().setActiveSkillDesc("???");
+        hero.GetComponent<Hero>().setPassiveSkillDesc("???");
         hero.SetActive(active);
         hero.GetComponent<Hero>().Icon = icon;
 
