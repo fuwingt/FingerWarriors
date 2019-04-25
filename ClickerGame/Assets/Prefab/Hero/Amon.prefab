@@ -22,8 +22,8 @@ GameObject:
   - component: {fileID: 212219833131255850}
   - component: {fileID: 95435217040306488}
   - component: {fileID: 50887055171191992}
-  - component: {fileID: 114326870541969508}
   - component: {fileID: 114829068588167058}
+  - component: {fileID: 114348411774500900}
   m_Layer: 0
   m_Name: Amon
   m_TagString: Hero
@@ -69,7 +69,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &114326870541969508
+--- !u!114 &114348411774500900
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -77,29 +77,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 1408781890271014}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 030a76175bd7235488fc739897f63584, type: 3}
+  m_Script: {fileID: 11500000, guid: 688ef9263babbc74795ebef3ce5ca489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   name: 
   element: 0
   Icon: {fileID: 0}
-  SkillObjectPrefab: {fileID: 1706595649075364, guid: 8161da4f10839a74eb65ee00abbf472a,
-    type: 2}
+  SkillObjectPrefab: {fileID: 0}
   currentEquipment: {fileID: 0}
-  FloatingText: {fileID: 1193224117081010, guid: cb90b3cc5c9ec26458f21b62fd7fb965,
-    type: 2}
   fieldBuff: 1
   requiredEnergy: 50
   energyPerAttack: 10
   isOnField: 0
-  power: 0
-  extraPower: 0
+  power: 1
+  extraPower: 1
   powerRatio: 1
-  skillPower: 0
-  extraSkillPower: 0
+  skillPower: 1
+  extraSkillPower: 1
   skillPowerRatio: 1
-  criticalChance: 50
+  criticalChance: 10
   criticalRatio: 1.5
+  activeSkillDesc: 
+  passiveSkillDesc: 
   price: 0
   level: 0
 --- !u!114 &114829068588167058

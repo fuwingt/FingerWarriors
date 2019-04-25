@@ -12,15 +12,29 @@ public class Monster : Character
     [SerializeField] protected float hp;
     [SerializeField] protected float maxHp;
     protected float basicHp;
-
+    protected float maxCoolDown;
+    protected float coolDown;
 
     protected float goldDrop = 10;
 
-    void Start()
+    protected virtual void Start()
     {
         inventoryManager = GameObject.Find("InventoryManager").GetComponent<Inventory>();
         monsterManager = GameObject.Find("MonsterManager").GetComponent<MonsterManager>();
         globalManager = GameObject.Find("GlobalManager").GetComponent<GlobalManager>();
+    }
+
+    protected virtual void Update()
+    {
+        if (!monsterManager.isBossStage) return;
+
+        coolDown -= Time.deltaTime * 1.5f;
+        PassiveSkill();
+        if (coolDown <= 0)
+        {
+            ActiveSkill();
+            coolDown = maxCoolDown;
+        }
     }
 
     public void Init()

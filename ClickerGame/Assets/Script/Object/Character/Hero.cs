@@ -1,7 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
+using Skills;
 
-public abstract class Hero : Character
+public class Hero : Character
 {
+    //  Public
     public enum Type
     {
         Melee,
@@ -11,40 +14,59 @@ public abstract class Hero : Character
     public Sprite Icon;
     public GameObject SkillObjectPrefab;
     public GameObject currentEquipment = null;
-    public GameObject FloatingText;
     public float fieldBuff = 1;
-    public float requiredEnergy = 50;
-    public float energyPerAttack = 10;
     public bool isOnField = false;
+    //  Private
 
-    protected GlobalManager globalManager;
-    protected MonsterManager monsterManager;
-    protected GameObject monsterPanel;
-    [SerializeField] protected float power = 1;
-    [SerializeField] protected float extraPower = 1;
-    [SerializeField] protected float powerRatio = 1;
-    [SerializeField] protected float skillPower = 1;
-    [SerializeField] protected float extraSkillPower = 1;
-    [SerializeField] protected float skillPowerRatio = 1;
-    [SerializeField] protected float criticalChance = 10;
-    [SerializeField] protected float criticalRatio = 1.5f;
-    protected Type type;
-    [SerializeField] protected string activeSkillDesc;
-    [SerializeField] protected string passiveSkillDesc;
-    [SerializeField] private float price;
+    // Private string
+    [SerializeField] private string skill;
+    [SerializeField] private string activeSkillDesc;
+    [SerializeField] private string passiveSkillDesc;
+    //  Private int
     [SerializeField] private int level;
-    private int upgradeCount;
+    [SerializeField] private int upgradeCount;
+    //  Private float
+    [SerializeField] private float power = 1;
+    [SerializeField] private float extraPower = 1;
+    [SerializeField] private float powerRatio = 1;
+    [SerializeField] private float skillPower = 1;
+    [SerializeField] private float extraSkillPower = 1;
+    [SerializeField] private float skillPowerRatio = 1;
+    [SerializeField] private float criticalChance = 10;
+    [SerializeField] private float criticalRatio = 1.5f;
+    [SerializeField] private float requiredEnergy;
+    [SerializeField] private float energyPerAttack;
+    [SerializeField] private float price;
+    //  Others
+    private Type type;
+    private GlobalManager globalManager;
+    private MonsterManager monsterManager;
+    private SkillManager skillManager;
+    private GameObject monsterPanel;
 
-
-    public abstract void ActiveSkill();
-    public abstract void PassiveSkill(bool isActivated);
-
-    protected virtual void Start()
+    void Start()
     {
         globalManager = GameObject.Find("GlobalManager").GetComponent<GlobalManager>();
         monsterManager = GameObject.Find("MonsterManager").GetComponent<MonsterManager>();
+        skillManager = GameObject.Find("SkillManager").GetComponent<SkillManager>();
         monsterPanel = GameObject.Find("MonsterPanel").gameObject;
     }
+
+    public void ActiveSkill()
+    {
+        float result = ElementEffect(getElement(), monsterManager.GetCurrentMonster().GetComponent<Monster>().getElement(), skillPower + extraSkillPower);
+
+        skillManager.TurnOnActiveSkill(skill, result);
+    }
+    public void PassiveSkill(bool isActivated)
+    {
+        float buffRate = 1.5f;
+        if (skillManager == null) skillManager = GameObject.Find("SkillManager").GetComponent<SkillManager>();
+
+        skillManager.TurnOnPassiveSkill("AttackBuffFront", buffRate, isActivated);
+    }
+
+
 
     public float Attack(GameObject monster)
     {
@@ -175,6 +197,7 @@ public abstract class Hero : Character
         return result;
     }
 
+    //  Getter
     public float getSkillPower()
     {
         return skillPower;
@@ -240,6 +263,27 @@ public abstract class Hero : Character
         return passiveSkillDesc;
     }
 
+    public string getSkill()
+    {
+        return skill;
+    }
+
+    public Type getType()
+    {
+        return type;
+    }
+
+    public float getRequiredEnergy()
+    {
+        return requiredEnergy;
+    }
+
+    public float getEnergyPerAttack()
+    {
+        return energyPerAttack;
+    }
+
+    //  Setter
     public void setSkillPower(float skillPower)
     {
         this.skillPower = skillPower;
@@ -295,6 +339,11 @@ public abstract class Hero : Character
         this.criticalRatio = criticalRatio;
     }
 
+    public void setSkill(string skill)
+    {
+        this.skill = skill;
+    }
+
     public void setActiveSkillDesc(string activeSkillDesc)
     {
         this.activeSkillDesc = activeSkillDesc;
@@ -303,6 +352,21 @@ public abstract class Hero : Character
     public void setPassiveSkillDesc(string passiveSkillDesc)
     {
         this.passiveSkillDesc = passiveSkillDesc;
+    }
+
+    public void setType(Type type)
+    {
+        this.type = type;
+    }
+
+    public void setRequiredEnergy(float requiredEnergy)
+    {
+        this.requiredEnergy = requiredEnergy;
+    }
+
+    public void setEnergyPerAttack(float energyPerAttack)
+    {
+        this.energyPerAttack = energyPerAttack;
     }
 
 

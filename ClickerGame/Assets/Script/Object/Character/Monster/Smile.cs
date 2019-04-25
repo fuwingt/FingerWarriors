@@ -4,22 +4,12 @@ using UnityEngine;
 
 public class Smile : Monster
 {
-    private float maxCoolDown = 5;
-    private float coolDown = 5;
-
-    void Update()
+    protected override void Start()
     {
-        if (!monsterManager.isBossStage) return;
-
-        coolDown -= Time.deltaTime * 1.5f;
-        PassiveSkill();
-        if (coolDown <= 0)
-        {
-            ActiveSkill();
-            coolDown = maxCoolDown;
-        }
+        base.Start();
+        maxCoolDown = 5;
+        coolDown = 5;
     }
-
     protected override void PassiveSkill()
     {
         hp += Time.deltaTime;

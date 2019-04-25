@@ -36,13 +36,20 @@ public class ObjectGenerator : MonoBehaviour
     {
         //	First hero  
         Amon = Instantiate(Amon) as GameObject;
-        setHeroValue(Amon, Field_1, "Amon", 10, 35, 100, Character.Element.Fire, 1, true, icon_Amon);
+        setHeroValue(Amon, Field_1, "Amon", 10, 35, 100, Character.Element.Fire, 1, Hero.Type.Melee, 50, 1,
+                    "FireSlash",
+                    "Make damage with Fire skill power x 3.",
+                    "Attack of All the heroes in front x 1.5.",
+                    true, icon_Amon);
         Field_1.GetComponent<Field>().activateSkillButton();
         Amon.GetComponent<Hero>().PassiveSkill(true);
         Amon.GetComponent<Hero>().isOnField = true;
         //  Other hero
         Freyr = Instantiate(Freyr) as GameObject;
-        setHeroValue(Freyr, Extra, "Freyr", 10, 30, 500, Character.Element.Water, 0, false, icon_Amon);
+        setHeroValue(Freyr, Extra, "Freyr", 10, 30, 500, Character.Element.Water, 0, Hero.Type.Ranged, 30, 3,
+                    "Freeze",
+                    "Make damage with Water skill power. Stop the time 2 sec in Boss stage.",
+                    "Attack of All the heroes in back x 1.2", false, icon_Amon);
 
         //  Upgrade column for each hero
         for (int i = 0; i < GlobalManager.heroList.Count; i++)
@@ -73,19 +80,28 @@ public class ObjectGenerator : MonoBehaviour
 
 
 
-    private void setHeroValue(GameObject hero, GameObject parentField, string name, float power, float skillPower_1, float price, Character.Element type, int level, bool active, Sprite icon)
+    private void setHeroValue(GameObject hero, GameObject parentField, string name, float power,
+                                float skillPower, float price, Character.Element element, int level,
+                                Hero.Type type, float requiredEnergy, float energyPerAttack,
+                                string skill, string activeSkillDesc, string passiveSkillDesc, bool active, Sprite icon)
     {
-        hero.GetComponent<Hero>().setName(name);
         hero.transform.SetParent(parentField.transform);
-        hero.GetComponent<Hero>().setPower(power);
-        hero.GetComponent<Hero>().setSkillPower(skillPower_1);
-        hero.GetComponent<Hero>().setPrice(price);
-        hero.GetComponent<Hero>().setElement(type);
-        hero.GetComponent<Hero>().setLevel(level);
-        hero.GetComponent<Hero>().setActiveSkillDesc("???");
-        hero.GetComponent<Hero>().setPassiveSkillDesc("???");
+
+        Hero h = hero.GetComponent<Hero>();
+        h.setName(name);
+        h.setPower(power);
+        h.setSkillPower(skillPower);
+        h.setPrice(price);
+        h.setElement(element);
+        h.setLevel(level);
+        h.setType(type);
+        h.setRequiredEnergy(requiredEnergy);
+        h.setEnergyPerAttack(energyPerAttack);
+        h.setSkill(skill);
+        h.setActiveSkillDesc(activeSkillDesc);
+        h.setPassiveSkillDesc(passiveSkillDesc);
+        h.Icon = icon;
         hero.SetActive(active);
-        hero.GetComponent<Hero>().Icon = icon;
 
         GlobalManager.heroList.Add(hero);
 

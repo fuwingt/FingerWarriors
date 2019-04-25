@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 95492356546014246}
   - component: {fileID: 50830628156152340}
   - component: {fileID: 114194564461850930}
-  - component: {fileID: 114663697796112144}
+  - component: {fileID: 114474134852413612}
   m_Layer: 0
   m_Name: Freyr
   m_TagString: Hero
@@ -88,7 +88,7 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
---- !u!114 &114663697796112144
+--- !u!114 &114474134852413612
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -96,29 +96,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 1351607457733172}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c0b9cd62ba84534f8dea76f956c7a21, type: 3}
+  m_Script: {fileID: 11500000, guid: 688ef9263babbc74795ebef3ce5ca489, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   name: 
   element: 0
   Icon: {fileID: 0}
-  SkillObjectPrefab: {fileID: 1044958901639440, guid: bfea89e80a666cc4081939c5479ca2fa,
-    type: 2}
+  SkillObjectPrefab: {fileID: 0}
   currentEquipment: {fileID: 0}
-  FloatingText: {fileID: 1193224117081010, guid: cb90b3cc5c9ec26458f21b62fd7fb965,
-    type: 2}
   fieldBuff: 1
   requiredEnergy: 50
   energyPerAttack: 10
   isOnField: 0
-  power: 0
+  power: 1
   extraPower: 1
   powerRatio: 1
-  skillPower: 0
+  skillPower: 1
   extraSkillPower: 1
   skillPowerRatio: 1
   criticalChance: 10
   criticalRatio: 1.5
+  activeSkillDesc: 
+  passiveSkillDesc: 
   price: 0
   level: 0
 --- !u!212 &212836677912521342
