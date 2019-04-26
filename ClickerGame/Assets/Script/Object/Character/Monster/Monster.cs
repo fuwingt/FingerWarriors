@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using Skills;
 
 public class Monster : Character
 {
     protected Inventory inventoryManager;
     protected MonsterManager monsterManager;
     protected GlobalManager globalManager;
+    protected SkillManager skillManager;
     public Text FloatingTextPrefab;
     public GameObject GoldParticPrefab;
     public GameObject EquipmentGetCtrPrefab;
@@ -14,27 +16,37 @@ public class Monster : Character
     protected float basicHp;
     protected float maxCoolDown;
     protected float coolDown;
+    private string skill;
+    private int clickShieldCount;
+    private float dodgeChance;
 
     protected float goldDrop = 10;
 
-    protected virtual void Start()
+    void Start()
     {
         inventoryManager = GameObject.Find("InventoryManager").GetComponent<Inventory>();
         monsterManager = GameObject.Find("MonsterManager").GetComponent<MonsterManager>();
         globalManager = GameObject.Find("GlobalManager").GetComponent<GlobalManager>();
+        skillManager = GameObject.Find("SkillManager").GetComponent<SkillManager>();
+
+        clickShieldCount = 0;
+        dodgeChance = 0;
     }
 
-    protected virtual void Update()
+    void Update()
     {
         if (!monsterManager.isBossStage) return;
 
-        coolDown -= Time.deltaTime * 1.5f;
-        PassiveSkill();
-        if (coolDown <= 0)
+        if (skillManager.EnemySkills[skill].skillType == ActiveSkill.SkillType.Multiple)
         {
-            ActiveSkill();
-            coolDown = maxCoolDown;
+            coolDown -= Time.deltaTime * 1.5f;
+            if (coolDown <= 0)
+            {
+                UseSkill();
+                coolDown = maxCoolDown;
+            }
         }
+
     }
 
     public void Init()
@@ -43,6 +55,8 @@ public class Monster : Character
         {
             //  Boss stage
             EnhanceToBeBoss();
+            if (skillManager.EnemySkills[skill].skillType == ActiveSkill.SkillType.Single)
+                UseSkill();
         }
         else
         {
@@ -55,7 +69,19 @@ public class Monster : Character
     public void BeingAttacked(float result)
     {
         // Deduct hp
-        hp -= (int)result;
+        if (clickShieldCount <= 0)
+        {
+            //  Dodge chance
+            int randValue = Random.Range(1, 100);
+            if (randValue > dodgeChance)
+                hp -= (int)result;
+        }
+
+        else
+        {
+            clickShieldCount--;
+        }
+
         // Show floating text
         ShowFloatingText((int)result);
         // Animation
@@ -77,13 +103,13 @@ public class Monster : Character
 
     }
 
-    private void EnhanceToBeBoss()
+    void EnhanceToBeBoss()
     {
         maxHp *= monsterManager.bossHpRate;
         hp = maxHp;
     }
 
-    private void DropGold()
+    void DropGold()
     {
         float randValue = Random.Range(0, 100);
         if (randValue <= GlobalManager.gold10xChance)
@@ -96,22 +122,23 @@ public class Monster : Character
         }
     }
 
-    protected virtual void ActiveSkill()
+    void UseSkill()
     {
-        //  Only for Boss
+        skillManager.TurnOnMonsterSkill(skill, 0);
     }
 
-    protected virtual void PassiveSkill()
-    {
-        //  Only for Boss
-    }
-
-    private void ShowFloatingText(float power)
+    void ShowFloatingText(float power)
     {
         Text damageText = Instantiate(FloatingTextPrefab, transform.parent.position, Quaternion.identity, transform);
         damageText.transform.localScale = new Vector3(0.001f, 0.001f, 0.001f);
         damageText.text = power.ToString();
 
+    }
+
+    //  Getter
+    public string getSkill()
+    {
+        return skill;
     }
 
     public float getHp()
@@ -129,6 +156,22 @@ public class Monster : Character
         return basicHp;
     }
 
+    public float getMaxCoolDown()
+    {
+        return maxCoolDown;
+    }
+
+    public float getCoolDown()
+    {
+        return coolDown;
+    }
+
+    //  Setter
+    public void setSkill(string skill)
+    {
+        this.skill = skill;
+    }
+
     public void setHp(float hp)
     {
         this.hp = hp;
@@ -142,6 +185,26 @@ public class Monster : Character
     public void setBasicHp(float basicHp)
     {
         this.basicHp = basicHp;
+    }
+
+    public void setMaxCoolDown(float maxCoolDown)
+    {
+        this.maxCoolDown = maxCoolDown;
+    }
+
+    public void setCoolDown(float coolDown)
+    {
+        this.coolDown = coolDown;
+    }
+
+    public void setClickShieldCount(int clickShieldCount)
+    {
+        this.clickShieldCount = clickShieldCount;
+    }
+
+    public void setDodgeChance(float dodgeChance)
+    {
+        this.dodgeChance = dodgeChance;
     }
 
 

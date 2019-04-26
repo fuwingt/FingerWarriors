@@ -1,15 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Skills;
 
 public class GameController : MonoBehaviour
 {
-    public GameObject _globalManager;
     public ObjectGenerator objectGenerator;
-    public GameObject timeCountdownBar;
+    public SkillManager skillManager;
 
     void Start()
     {
+        skillManager.createSkills();
         objectGenerator.generateHeroes();
         objectGenerator.generateMonster();
         objectGenerator.generatePet();

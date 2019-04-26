@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 95928677985004890}
   - component: {fileID: 212044093346172850}
   - component: {fileID: 114214102056649194}
-  - component: {fileID: 114776078135130964}
+  - component: {fileID: 114488662598177454}
   m_Layer: 0
   m_Name: Smile
   m_TagString: Untagged
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
---- !u!114 &114776078135130964
+--- !u!114 &114488662598177454
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1193654855579574}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaa96b69eeb9a634bb93f4d87e14ac9a, type: 3}
+  m_Script: {fileID: 11500000, guid: 19f95c08c5f5ba14bb57f34bd4fd3ed1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   name: 

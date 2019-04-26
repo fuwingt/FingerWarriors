@@ -19,7 +19,8 @@ public class Hero : Character
     //  Private
 
     // Private string
-    [SerializeField] private string skill;
+    [SerializeField] private string activeSkill;
+    [SerializeField] private string passiveSkill;
     [SerializeField] private string activeSkillDesc;
     [SerializeField] private string passiveSkillDesc;
     //  Private int
@@ -56,14 +57,15 @@ public class Hero : Character
     {
         float result = ElementEffect(getElement(), monsterManager.GetCurrentMonster().GetComponent<Monster>().getElement(), skillPower + extraSkillPower);
 
-        skillManager.TurnOnActiveSkill(skill, result);
+        skillManager.TurnOnActiveSkill(activeSkill, result);
     }
+
     public void PassiveSkill(bool isActivated)
     {
         float buffRate = 1.5f;
         if (skillManager == null) skillManager = GameObject.Find("SkillManager").GetComponent<SkillManager>();
 
-        skillManager.TurnOnPassiveSkill("AttackBuffFront", buffRate, isActivated);
+        skillManager.TurnOnPassiveSkill(passiveSkill, buffRate, isActivated);
     }
 
 
@@ -263,9 +265,13 @@ public class Hero : Character
         return passiveSkillDesc;
     }
 
-    public string getSkill()
+    public string getActiveSkill()
     {
-        return skill;
+        return activeSkill;
+    }
+    public string getPassiveSkill()
+    {
+        return passiveSkill;
     }
 
     public Type getType()
@@ -339,9 +345,14 @@ public class Hero : Character
         this.criticalRatio = criticalRatio;
     }
 
-    public void setSkill(string skill)
+    public void setActiveSkill(string activeSkill)
     {
-        this.skill = skill;
+        this.activeSkill = activeSkill;
+    }
+
+    public void setPassiveSkill(string passiveSkill)
+    {
+        this.passiveSkill = passiveSkill;
     }
 
     public void setActiveSkillDesc(string activeSkillDesc)

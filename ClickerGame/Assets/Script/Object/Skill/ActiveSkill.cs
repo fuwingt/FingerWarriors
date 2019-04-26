@@ -6,9 +6,14 @@ namespace Skills
     {
         public enum SkillType
         {
+            //  Heroes
             ActiveDamage,
             Buff,
-            Debuff
+            Debuff,
+            //  Enemy
+            Multiple,
+            Single
+
         }
 
         public SkillType skillType;

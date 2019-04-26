@@ -12,10 +12,13 @@ namespace Skills
         public TimeCountdownBar timeCountdownBar;
         public GlobalManager globalManager;
         public MonsterManager monsterManager;
-        private Dictionary<string, ActiveSkill> ActiveSkills = new Dictionary<string, ActiveSkill>();
-        private Dictionary<string, PassiveSkill> PassiveSkills = new Dictionary<string, PassiveSkill>();
+        public Dictionary<string, ActiveSkill> ActiveSkills = new Dictionary<string, ActiveSkill>();
+        public Dictionary<string, PassiveSkill> PassiveSkills = new Dictionary<string, PassiveSkill>();
+        public Dictionary<string, ActiveSkill> EnemySkills = new Dictionary<string, ActiveSkill>();
 
-        void Start()
+
+
+        public void createSkills()
         {
             //	ActiveSkills (Id: 0 - 99)
             ActiveSkills.Add("FireSlash", new ActiveSkill("FireSlash", "Make fire damage to enemy", 30, 0, 0, ActiveSkill.SkillType.ActiveDamage));
@@ -24,15 +27,20 @@ namespace Skills
             //	PassiveSkills (Id: 100 - 199)
             PassiveSkills.Add("AttackBuffFront", new PassiveSkill("AttackBuffFront", "", 100, 0, PassiveSkill.SkillType.FieldBuff));
             PassiveSkills.Add("AttackBuffBack", new PassiveSkill("AttackBuffBack", "", 101, 0, PassiveSkill.SkillType.FieldBuff));
+
+            //  EnemySkills (Id: 200 - 299)
+            EnemySkills.Add("LittleRecovery", new ActiveSkill("LittleRecovery", "Recover the HP after a short period of time", 0, 200, 0, ActiveSkill.SkillType.Multiple));
+            EnemySkills.Add("ClickShield", new ActiveSkill("ClickShield", "Defend the attack before players finish the specified times of clicking", 0, 201, 0, ActiveSkill.SkillType.Single));
+            EnemySkills.Add("NormalDodge", new ActiveSkill("NormalDodge", "Dodge the attack", 0, 202, 0, ActiveSkill.SkillType.Single));
         }
 
         public void TurnOnActiveSkill(string name, float result)
         {
             int _id = ActiveSkills[name].getId();
             int _requiredEnergy = ActiveSkills[name].requiredEnergy;
-            ActiveSkill.SkillType _skilltType = ActiveSkills[name].skillType;
+            ActiveSkill.SkillType _skillType = ActiveSkills[name].skillType;
 
-            if (_skilltType == ActiveSkill.SkillType.ActiveDamage)
+            if (_skillType == ActiveSkill.SkillType.ActiveDamage)
             {
                 if (monsterManager.GetCurrentMonster() != null)
                 {
@@ -51,6 +59,15 @@ namespace Skills
                     }
                 }
             }
+            else if (_skillType == ActiveSkill.SkillType.Buff)
+            {
+
+            }
+            else if (_skillType == ActiveSkill.SkillType.Debuff)
+            {
+
+            }
+
 
 
         }
@@ -91,6 +108,37 @@ namespace Skills
             else if (_skillType == PassiveSkill.SkillType.TimeBuff)
             { }
 
+
+        }
+
+        public void TurnOnMonsterSkill(string name, float result)
+        {
+            ActiveSkill.SkillType _skillType = EnemySkills[name].skillType;
+            Monster m = monsterManager.GetCurrentMonster().GetComponent<Monster>();
+
+            if (_skillType == ActiveSkill.SkillType.Multiple)
+            {
+                switch (name)
+                {
+                    case "LittleRecovery":
+                        m.setHp(m.getHp() + m.getMaxHp() / 10);
+                        break;
+                }
+
+            }
+            else if (_skillType == ActiveSkill.SkillType.Single)
+            {
+                switch (name)
+                {
+                    case "ClickShield":
+                        m.setClickShieldCount(10);
+                        break;
+
+                    case "NormalDodge":
+                        m.setDodgeChance(20);
+                        break;
+                }
+            }
 
         }
 

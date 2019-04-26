@@ -70,7 +70,6 @@
      <Compile Include="Assets\Script\Object\Character\Hero.cs" />
      <Compile Include="Assets\Script\Object\Character\Monster\Monster.cs" />
      <Compile Include="Assets\Script\Object\Character\Monster\MonsterManager.cs" />
-     <Compile Include="Assets\Script\Object\Character\Monster\Smile.cs" />
      <Compile Include="Assets\Script\Object\Character\SkillObject.cs" />
      <Compile Include="Assets\Script\Object\Equipment\Equipment.cs" />
      <Compile Include="Assets\Script\Object\GoldPrefab.cs" />

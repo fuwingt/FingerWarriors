@@ -12,10 +12,10 @@ public class MonsterManager : MonoBehaviour
     public GameObject timeCountdownBar;
     public float normalHpRate = 1;
     public float bossHpRate = 10;
-
-    private GameObject currentMonster;
     public bool isBossStage = false;
     public bool isFarming = false;
+    private GameObject currentMonster;
+
 
     void Start()
     {
