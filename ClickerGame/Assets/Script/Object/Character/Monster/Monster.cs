@@ -9,6 +9,7 @@ public class Monster : Character
     protected GlobalManager globalManager;
     protected SkillManager skillManager;
     public Text FloatingTextPrefab;
+    public Text CriticalTextPrefab;
     public GameObject GoldParticPrefab;
     public GameObject EquipmentGetCtrPrefab;
     [SerializeField] protected float hp;
@@ -66,7 +67,7 @@ public class Monster : Character
         }
     }
 
-    public void BeingAttacked(float result)
+    public void BeingAttacked(float result, bool isCritical)
     {
         // Deduct hp
         if (clickShieldCount <= 0)
@@ -83,7 +84,7 @@ public class Monster : Character
         }
 
         // Show floating text
-        ShowFloatingText((int)result);
+        ShowFloatingText((int)result, isCritical);
         // Animation
         transform.GetComponent<Animator>().SetTrigger("IsBeingAttacked");
     }
@@ -127,9 +128,14 @@ public class Monster : Character
         skillManager.TurnOnMonsterSkill(skill, 0);
     }
 
-    void ShowFloatingText(float power)
+    void ShowFloatingText(float power, bool isCritical)
     {
-        Text damageText = Instantiate(FloatingTextPrefab, transform.parent.position, Quaternion.identity, transform);
+        Text damageText;
+        if (isCritical)
+            damageText = Instantiate(CriticalTextPrefab, transform.parent.position, Quaternion.identity, transform);
+        else
+            damageText = Instantiate(FloatingTextPrefab, transform.parent.position, Quaternion.identity, transform);
+
         damageText.transform.localScale = new Vector3(0.001f, 0.001f, 0.001f);
         damageText.text = power.ToString();
 

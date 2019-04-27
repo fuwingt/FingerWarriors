@@ -26,6 +26,10 @@ public class InputController : MonoBehaviour
     private float timeDuration;
     private int combo;
     private float comboDamageBuff;
+    private float criticalChance;
+    private float criticalRate;
+    private bool isCritical;
+
 
     void Start()
     {
@@ -33,6 +37,8 @@ public class InputController : MonoBehaviour
         comboObjectAnimator = comboObject.GetComponent<Animator>();
         combo = 0;
         comboDamageBuff = 1;
+        criticalChance = 5;
+        criticalRate = 1.5f;
     }
 
     void Update()
@@ -55,14 +61,32 @@ public class InputController : MonoBehaviour
                 totalDamage += FieldArray[i].GetComponentInChildren<Hero>().Attack(GlobalManager.currentEnemy);
             }
         }
+        // Combo Buff * attack
+        totalDamage = CriticalChance(totalDamage *= comboDamageBuff);
         // Do damage
-        if (totalDamage != 0) GlobalManager.currentEnemy.GetComponent<Monster>().BeingAttacked(totalDamage);
+        if (totalDamage != 0) GlobalManager.currentEnemy.GetComponent<Monster>().BeingAttacked(totalDamage, isCritical);
         /* To record that how many times the player clicked */
         GlobalManager.tapCount++;
         /* Start combo */
         timeDuration = 2;
         isInCombo = true;
         if (++combo % 25 == 0) comboDamageBuff *= 1.25f;
+
+    }
+
+    private float CriticalChance(float result)
+    {
+        float randValue = Random.Range(0, 100);
+        if (randValue <= criticalChance)
+        {
+            // do critical attack
+            result *= criticalRate;
+            isCritical = true;
+        }
+        else
+            isCritical = false;
+
+        return result;
     }
 
     private void CountCombo()
@@ -76,6 +100,26 @@ public class InputController : MonoBehaviour
         }
         //  Animation
         comboObjectAnimator.SetBool("isInCombo", isInCombo);
+    }
+
+    public float getCriticalChance()
+    {
+        return criticalChance;
+    }
+
+    public float getCriticalRate()
+    {
+        return criticalRate;
+    }
+
+    public void setCriticalChance(float criticalChance)
+    {
+        this.criticalChance = criticalChance;
+    }
+
+    public void setCriticalRate(float criticalRate)
+    {
+        this.criticalRate = criticalRate;
     }
 
 

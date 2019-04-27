@@ -33,8 +33,6 @@ public class Hero : Character
     [SerializeField] private float skillPower = 1;
     [SerializeField] private float extraSkillPower = 1;
     [SerializeField] private float skillPowerRatio = 1;
-    [SerializeField] private float criticalChance = 10;
-    [SerializeField] private float criticalRatio = 1.5f;
     [SerializeField] private float requiredEnergy;
     [SerializeField] private float energyPerAttack;
     [SerializeField] private float price;
@@ -74,7 +72,7 @@ public class Hero : Character
     {
 
         // Calculate the damage result with element and Critical chance
-        float result = ElementEffect(getElement(), monster.GetComponent<Monster>().getElement(), CriticalChanceSystem(power, extraPower, powerRatio, fieldBuff, criticalChance, criticalRatio));
+        float result = ElementEffect(getElement(), monster.GetComponent<Monster>().getElement(), CalculateDamage(power, extraPower, powerRatio, fieldBuff));
 
         // Animaition
         transform.GetComponent<Animator>().SetTrigger("isAttack");
@@ -182,20 +180,13 @@ public class Hero : Character
         return _result;
     }
 
-    protected float CriticalChanceSystem(float power, float extraPower, float powerRatio, float fieldBuff, float criticalChance, float criticalRatio)
+    protected float CalculateDamage(float power, float extraPower, float powerRatio, float fieldBuff)
     {
         float result;
         float randValue = Random.Range(0, 100);
-        if (randValue <= criticalChance)
-        {
-            // do critical attack
-            result = ((power + extraPower) * powerRatio * fieldBuff) * criticalRatio;
-        }
-        else
-        {
-            // critical attack not happen
-            result = (power + extraPower) * powerRatio * fieldBuff;
-        }
+
+        result = (power + extraPower) * powerRatio * fieldBuff;
+
         return result;
     }
 
@@ -245,15 +236,7 @@ public class Hero : Character
         return upgradeCount;
     }
 
-    public float getCriticalChance()
-    {
-        return criticalChance;
-    }
 
-    public float getCriticalRatio()
-    {
-        return criticalRatio;
-    }
 
     public string getActiveSkillDesc()
     {
@@ -325,11 +308,6 @@ public class Hero : Character
         this.upgradeCount = upgradeCount;
     }
 
-    public void setCriticalChance(float criticalChance)
-    {
-        this.criticalChance = criticalChance;
-    }
-
     public void setPowerRatio(float powerRatio)
     {
         this.powerRatio = powerRatio;
@@ -338,11 +316,6 @@ public class Hero : Character
     public void setSkillPowerRatio(float skillPowerRatio)
     {
         this.skillPowerRatio = skillPowerRatio;
-    }
-
-    public void setCriticalRatio(float criticalRatio)
-    {
-        this.criticalRatio = criticalRatio;
     }
 
     public void setActiveSkill(string activeSkill)

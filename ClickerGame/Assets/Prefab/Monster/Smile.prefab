@@ -82,6 +82,8 @@ MonoBehaviour:
   element: 0
   FloatingTextPrefab: {fileID: 114274698517134494, guid: 8d698adf4e478794db39e2a50ed05eef,
     type: 2}
+  CriticalTextPrefab: {fileID: 114367873089658930, guid: 6b4b6aa3c2f60924d9f000875289eded,
+    type: 2}
   GoldParticPrefab: {fileID: 1957621756793834, guid: f364eb8531235d04894d86b85acd07e4,
     type: 2}
   EquipmentGetCtrPrefab: {fileID: 1807189342875894, guid: f7e5460f840f8c342b95e92dc964c88d,

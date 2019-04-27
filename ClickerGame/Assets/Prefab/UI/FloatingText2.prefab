@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 224967358448517740}
   - component: {fileID: 222923396355976388}
   - component: {fileID: 114274698517134494}
-  - component: {fileID: 114351116848722026}
   - component: {fileID: 95788075303424136}
+  - component: {fileID: 114251794618807008}
   m_Layer: 0
   m_Name: FloatingText2
   m_TagString: Untagged
@@ -48,6 +48,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114251794618807008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1910196394923120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ccf0e80189b30e4429143c885c294979, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DestroyTime: 1.5
+  Offset: {x: 0, y: 2, z: 0}
+  RandomIntensity: {x: 2, y: 1, z: 0}
 --- !u!114 &114274698517134494
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -81,20 +95,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 12345
---- !u!114 &114351116848722026
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1910196394923120}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccf0e80189b30e4429143c885c294979, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DestroyTime: 1
-  Offset: {x: 0, y: 2, z: 0}
-  RandomIntensity: {x: 3, y: 2, z: 0}
 --- !u!222 &222923396355976388
 CanvasRenderer:
   m_ObjectHideFlags: 1

@@ -8,7 +8,7 @@ public class SkillObject : MonoBehaviour
 
     void activateSkill()
     {
-        GlobalManager.currentEnemy.GetComponent<Monster>().BeingAttacked(result);
+        GlobalManager.currentEnemy.GetComponent<Monster>().BeingAttacked(result, false);
     }
 
     void Destroy()
