@@ -23,7 +23,7 @@ public class PetItem : MonoBehaviour
         PetField = GameObject.Find("PetField");
         ExtraField = GameObject.Find("ExtraField");
 
-        if (pet.getlevel() == 0)
+        if (pet.getLevel() == 0)
             JoinButton.GetComponent<Button>().interactable = false;
 
         QuitButton.GetComponent<Button>().interactable = false;
@@ -42,10 +42,10 @@ public class PetItem : MonoBehaviour
         {
             GlobalManager.setGold(GlobalManager.getGold() - pet.getPrice());
             pet.setSkillBuffRate(pet.getSkillBuffRate() * 1.2f);
-            pet.setLevel(pet.getlevel() + 1);
+            pet.setLevel(pet.getLevel() + 1);
             pet.setPrice(pet.getPrice() * pet.getPriceRate());
 
-            if (pet.getlevel() == 1)
+            if (pet.getLevel() == 1)
                 JoinButton.GetComponent<Button>().interactable = true;
         }
         else
@@ -56,7 +56,7 @@ public class PetItem : MonoBehaviour
 
     public void Join()
     {
-        if (pet.getlevel() == 0) return;
+        if (pet.getLevel() == 0) return;
 
         // If there is a pet already
         if (PetField.transform.childCount != 0)
@@ -75,7 +75,7 @@ public class PetItem : MonoBehaviour
 
     public void Quit()
     {
-        if (pet.getlevel() == 0) return;
+        if (pet.getLevel() == 0) return;
         pet.transform.SetParent(ExtraField.transform);
         pet.gameObject.SetActive(false);
         pet.PetEffectOff();
@@ -92,8 +92,8 @@ public class PetItem : MonoBehaviour
 
     private void UpdateInfo()
     {
-        descriptionText.text = pet.description;
-        levelText.text = "Lv. " + pet.getlevel();
+        descriptionText.text = pet.skillDesc;
+        levelText.text = "Lv. " + pet.getLevel();
 
         if (GlobalManager.getGold() >= pet.getPrice())
             UpgradeButton.GetComponent<Button>().interactable = true;

@@ -55,7 +55,7 @@ public class HeroItem : MonoBehaviour
         isSelectingField = true;
         // Show arrow logo
         for (int i = 0; i < FieldArray.Length; i++)
-            FieldArray[i].GetComponent<Field>().activateLogo();
+            FieldArray[i].GetComponent<Field>().activateLogo(true);
     }
 
 
@@ -65,11 +65,10 @@ public class HeroItem : MonoBehaviour
         if (hero == null) return;
         hero.gameObject.SetActive(false);
         hero.isOnField = false;
+        hero.currentFieldID = 6;
         hero.PassiveSkill(false);
 
         hero.transform.parent.GetComponent<Field>().deactivateSkillButton();
-
-        hero.isOnField = false;
 
         hero.transform.SetParent(ExtraField.transform);
     }
@@ -89,6 +88,7 @@ public class HeroItem : MonoBehaviour
                         // Join
                         hero.gameObject.SetActive(true);
                         hero.isOnField = true;
+                        hero.currentFieldID = hit.collider.GetComponent<Field>().ID;
 
                         if (hero.transform.parent.tag == "FrontField" || hero.transform.parent.tag == "BackField")
                             hero.transform.parent.GetComponent<Field>().deactivateSkillButton();
@@ -108,6 +108,7 @@ public class HeroItem : MonoBehaviour
 
                         hero.gameObject.SetActive(true);
                         hero.isOnField = true;
+                        hero.currentFieldID = hit.collider.GetComponent<Field>().ID;
                         hero.transform.parent.GetComponent<Field>().deactivateSkillButton();
                         hero.transform.SetParent(hit.collider.gameObject.transform);
                         hero.PassiveSkill(true);
@@ -124,7 +125,7 @@ public class HeroItem : MonoBehaviour
             isSelectingField = false;
             // Hide arrow logo
             for (int i = 0; i < FieldArray.Length; i++)
-                FieldArray[i].GetComponent<Field>().activateLogo();
+                FieldArray[i].GetComponent<Field>().activateLogo(false);
         }
     }
 
@@ -137,7 +138,7 @@ public class HeroItem : MonoBehaviour
         {
             GlobalManager.setGold(GlobalManager.getGold() - upgradePrice);
             hero.setUpgradeCount(hero.getUpgradeCount() + 1);
-            hero.setPower(Mathf.Round(hero.getPower() * 1.3f));
+            hero.setAtk(Mathf.Round(hero.getAtk() * 1.3f));
             hero.setSkillPower(Mathf.Round(hero.getSkillPower() * 1.1f));
             hero.setPrice(Mathf.Round(hero.getPrice() * 1.15f));
             hero.setLevel(hero.getLevel() + 1);
@@ -162,20 +163,20 @@ public class HeroItem : MonoBehaviour
         {
             heroName = hero.getName();
             upgradePrice = hero.getPrice();
-            heroPower = hero.getPower();
-            heroExtraPower = hero.getExtraPower();
+            heroPower = hero.getAtk();
+            heroExtraPower = hero.getExtraAtk();
             heroSkillPower = hero.getSkillPower();
             heroExtraSkillPower = hero.getExtraSkillPower();
             heroLevel = hero.getLevel();
 
             NameText.text = heroName;
             LevelText.text = "Lv. " + heroLevel;
-            PowerText.text = "DPS: " + (heroPower + heroExtraPower)
-                                + "\nSkill Power: " + (heroSkillPower + heroExtraSkillPower);
+            PowerText.text = "ATK: " + GlobalManager.NumberConverter((int)(heroPower + heroExtraPower))
+                                + "\nSP: " + GlobalManager.NumberConverter((int)(heroSkillPower + heroExtraSkillPower));
 
-            UpgradeText.text = "$" + upgradePrice + " Level Up"
-                                + "\n+ DPS: "
-                                + "\n+ Skill Power: ";
+            UpgradeText.text = "$" + GlobalManager.NumberConverter((int)upgradePrice) + " Level Up"
+                                + "\n+ ATK "
+                                + "\n+ Skill Power";
         }
 
         if (heroInfoPanel == null)

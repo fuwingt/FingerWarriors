@@ -9,7 +9,8 @@ namespace Skills
         {
             FieldBuff,
             GoldBuff,
-            TimeBuff
+            TimeBuff,
+            ElementBuff
         }
 
         public bool isActived;

@@ -7,15 +7,15 @@ public class GlobalManager : MonoBehaviour
 {
     /* Store all the heroes */
     public static List<GameObject> heroList = new List<GameObject>();
+    public static List<GameObject> petList = new List<GameObject>();
     /* Store all the monsters */
-    public static List<GameObject> currentHeroes = new List<GameObject>();
     public static GameObject currentEnemy;
     public static GameObject currentPet;
     public static float gold10xChance = 10;
     public static float bossHpRatio = 10;
     public static bool isInfoPanelOpen = false;
     public static int tapCount = 0;
-
+    public static int bossTakenDownCount = 0;
     public static GameObject[] FieldArray = new GameObject[6];
     [Header("Field")]
     public GameObject Field1;
@@ -24,25 +24,26 @@ public class GlobalManager : MonoBehaviour
     public GameObject Field4;
     public GameObject Field5;
     public GameObject Field6;
-
-
-    public Text InfoBoard;
+    public InputController inputController;
+    public Text Stagetext;
+    public Text GoldText;
+    public Text ATKInfo;
+    public Text EnergyInfo;
+    public Text CritRateInfo;
+    public Text CritChanceInfo;
     public int itemCount;
     public int stage;
 
     /* monster's HP would be increase in each 10 stage by monsterHpRate */
-    private float monsterHpRate;
     private float maxEnergy;
     private float energy;
     private string playerName;
     private static float gold = 500;
-    private static float bossTimeDuration;
 
     void Start()
     {
         // Default value for beginning
         itemCount = 0;
-        monsterHpRate = 1;
         maxEnergy = 100;
         energy = maxEnergy;
 
@@ -52,17 +53,64 @@ public class GlobalManager : MonoBehaviour
         FieldArray[3] = Field4;
         FieldArray[4] = Field5;
         FieldArray[5] = Field6;
+
+        for (int i = 0; i < FieldArray.Length; i++)
+        {
+            FieldArray[i].GetComponent<Field>().ID = i;
+        }
     }
 
     void Update()
     {
-        UpdateInfoBoard();
+        UpdateInfo();
     }
 
-    private void UpdateInfoBoard()
+    public static string NumberConverter(int value)
     {
-        InfoBoard.text = "Stage: " + stage
-                        + "\nGold: " + gold;
+        string convertedString = "";
+        if (value >= 1000000000)
+        {
+            convertedString = (value / 1000000000f).ToString("f2") + "B";
+        }
+        else if (value >= 1000000)
+        {
+            convertedString = (value / 1000000f).ToString("f2") + "M";
+        }
+        else if (value >= 1000)
+        {
+            convertedString = (value / 1000f).ToString("f2") + "K";
+        }
+        else
+            convertedString = value.ToString();
+
+        return convertedString;
+    }
+
+    private void UpdateInfo()
+    {
+        int totalATK = 0;
+        int totalEnergyPerClick = 0;
+        for (int i = 0; i < FieldArray.Length; i++)
+        {
+            if (FieldArray[i].transform.childCount != 0)
+            {
+                totalATK += (int)FieldArray[i].GetComponentInChildren<Hero>().getAtk();
+                totalEnergyPerClick += (int)FieldArray[i].GetComponentInChildren<Hero>().getEnergyPerAttack();
+            }
+        }
+
+        Stagetext.text = "Stage: " + stage;
+        GoldText.text = NumberConverter((int)gold);
+        ATKInfo.text = "Basic ATK: \n" +
+                        NumberConverter(totalATK);
+        EnergyInfo.text = "Energy/Click: \n" +
+                            NumberConverter(totalEnergyPerClick);
+        CritRateInfo.text = "Crit Rate: \n" +
+                            inputController.getCriticalRate() + "%";
+        CritChanceInfo.text = "Crit Chance: \n" +
+                            inputController.getCriticalChance() + "%";
+
+
     }
 
 
@@ -85,11 +133,6 @@ public class GlobalManager : MonoBehaviour
     public float getEnergy()
     {
         return energy;
-    }
-
-    public float getMonsterHpRate()
-    {
-        return monsterHpRate;
     }
 
     /* Setter */
@@ -120,8 +163,4 @@ public class GlobalManager : MonoBehaviour
         }
     }
 
-    public void setMonsterHpRate(float monsterHpRate)
-    {
-        this.monsterHpRate = monsterHpRate;
-    }
 }

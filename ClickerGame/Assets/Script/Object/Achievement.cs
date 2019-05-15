@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Achievement
 {
-    public int currentProgress = 0;
-    public int maxProgress;
+    public float currentProgress = 0;
+    public float maxProgress;
     public bool isAchieved;
     private new string name;
     private string description;
@@ -36,43 +36,43 @@ public class Achievement
     }
 
     //	Getter
-    public string GetName()
+    public string getName()
     {
         return name;
     }
-    public string GetDesc()
+    public string getDesc()
     {
         return description;
     }
 
-    public float GetReward()
+    public float getReward()
     {
         return reward;
     }
 
-    public GameObject GetItemPrefab()
+    public GameObject getItemPrefab()
     {
         return itemPrefab;
     }
 
 
     //	Setter
-    public void SetName(string name)
+    public void setName(string name)
     {
         this.name = name;
     }
 
-    public void SetDesc(string desc)
+    public void setDesc(string desc)
     {
         this.description = desc;
     }
 
-    public void SetReward(float reward)
+    public void setReward(float reward)
     {
         this.reward = reward;
     }
 
-    public void SetItemPrefab(GameObject itemPrefab)
+    public void setItemPrefab(GameObject itemPrefab)
     {
         this.itemPrefab = itemPrefab;
     }

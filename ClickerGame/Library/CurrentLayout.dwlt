@@ -108,10 +108,10 @@ MonoBehaviour:
     y: 30
     width: 1504
     height: 870
-  m_MinSize: {x: 811, y: 271}
-  m_MaxSize: {x: 22006, y: 10021}
+  m_MinSize: {x: 815, y: 271}
+  m_MaxSize: {x: 22010, y: 10021}
   vertical: 0
-  controlID: 110
+  controlID: 59
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -157,8 +157,8 @@ MonoBehaviour:
     y: 0
     width: 204
     height: 870
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 204, y: 221}
+  m_MaxSize: {x: 4004, y: 4021}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -252,15 +252,17 @@ MonoBehaviour:
     - {fileID: 1107896788242846736, guid: 42c6ea99da0263a4aafa9925208f477a, type: 2}
     - {fileID: 1107582976535977100, guid: 3a1bb779a5f5b3f4db0a48d6360545bd, type: 2}
     - {fileID: 1107910077091293466, guid: 6d9582a6948ff0745bacebf07d219a2f, type: 2}
+    - {fileID: 1107060722005976174, guid: d0a86f1ba34314d4db494fc8a6d4c8cb, type: 2}
+    - {fileID: 1107783085977289148, guid: 0e50eb699ad21d5498399854f1d05254, type: 2}
     m_ValueSerializationHelper:
-    - e00: 0.49894738
+    - e00: 0.5013158
       e01: 0
       e02: 0
-      e03: -9.947388
+      e03: -10.065765
       e10: 0
-      e11: 0.49894738
+      e11: 0.5013158
       e12: 0
-      e13: 329.66315
+      e13: 329.29605
       e20: 0
       e21: 0
       e22: 1
@@ -269,14 +271,14 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
-    - e00: 0.49894738
+    - e00: 0.5013158
       e01: 0
       e02: 0
-      e03: -9.947388
+      e03: -10.065765
       e10: 0
-      e11: 0.49894738
+      e11: 0.5013158
       e12: 0
-      e13: 323.67578
+      e13: 323.28027
       e20: 0
       e21: 0
       e22: 1
@@ -285,14 +287,14 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
-    - e00: 0.7270697
+    - e00: 0.45970076
       e01: 0
       e02: 0
-      e03: -42.85927
+      e03: 31.549225
       e10: 0
-      e11: 0.7270697
+      e11: 0.45970076
       e12: 0
-      e13: 310.63165
+      e13: 338.50458
       e20: 0
       e21: 0
       e22: 1
@@ -317,14 +319,14 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
-    - e00: 1.9841784
+    - e00: 0.5013158
       e01: 0
       e02: 0
-      e03: -594.1731
+      e03: -10.065765
       e10: 0
-      e11: 1.9841784
+      e11: 0.5013158
       e12: 0
-      e13: 172.66096
+      e13: 326.28815
       e20: 0
       e21: 0
       e22: 1
@@ -349,14 +351,14 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
-    - e00: 1.7335625
+    - e00: 0.5013158
       e01: 0
       e02: 0
-      e03: -496.23215
+      e03: -10.065765
       e10: 0
-      e11: 1.7335625
+      e11: 0.5013158
       e12: 0
-      e13: 252.35619
+      e13: 359.375
       e20: 0
       e21: 0
       e22: 1
@@ -365,14 +367,14 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
-    - e00: 0.46289062
+    - e00: 0.3863382
       e01: 0
       e02: 0
-      e03: 26.109375
+      e03: 123.36127
       e10: 0
-      e11: 0.46289062
+      e11: 0.3863382
       e12: 0
-      e13: 342.6582
+      e13: 329.87097
       e20: 0
       e21: 0
       e22: 1
@@ -413,14 +415,46 @@ MonoBehaviour:
       e31: 0
       e32: 0
       e33: 1
-    - e00: 1.3923819
+    - e00: 0.39165297
       e01: 0
       e02: 0
-      e03: 103.46646
+      e03: 99.59703
       e10: 0
-      e11: 1.3923819
+      e11: 0.39165297
       e12: 0
-      e13: 145.31123
+      e13: 362.74323
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    - e00: 1.4901173
+      e01: 0
+      e02: 0
+      e03: -207.82123
+      e10: 0
+      e11: 1.4901173
+      e12: 0
+      e13: 160.92937
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
+    - e00: 0.5013158
+      e01: 0
+      e02: 0
+      e03: -10.065765
+      e10: 0
+      e11: 0.5013158
+      e12: 0
+      e13: 364.38815
       e20: 0
       e21: 0
       e22: 1
@@ -544,14 +578,14 @@ MonoBehaviour:
     height: 849
   m_PersistentViewDataDictionary: {fileID: 0}
   m_SceneLighting: 1
-  lastFramingTime: 15478.87142492601
+  lastFramingTime: 12459.274665620787
   m_2DMode: 1
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -1.6089395, y: -0.93615425, z: 90.09863}
+    m_Target: {x: -0.29694745, y: -1.3295999, z: 18.617188}
     speed: 2
-    m_Value: {x: -1.6089395, y: -0.93615425, z: 90.09863}
+    m_Value: {x: -0.29694745, y: -1.3295999, z: 18.617188}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -583,9 +617,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 8.307588
+    m_Target: 9.85114
     speed: 2
-    m_Value: 8.307588
+    m_Value: 9.85114
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -624,23 +658,23 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 362f0000
-    m_LastClickedID: 12086
-    m_ExpandedIDs: ec38f8ff36fef8ffeec6f9ffb48dfaff4094faff6eeafaff1abefdffa875fffff0fbffff00000000a62e0000362f00000c32000034320000
+    m_SelectedIDs: a02f0000
+    m_LastClickedID: 12192
+    m_ExpandedIDs: 4efbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: CriticalText
-      m_OriginalName: CriticalText
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: -514796
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 7}
     m_SearchString: 
@@ -687,34 +721,34 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Prefab/UI
+    - Assets
   m_ViewMode: 1
   m_StartGridSize: 67
   m_LastFolders:
-  - Assets/Prefab/UI
+  - Assets
   m_LastFoldersGridSize: 67
-  m_LastProjectPath: C:\Users\Wing\Desktop\FingerWarriors\repos\ClickerGame
+  m_LastProjectPath: "C:\\Users\\Wing\\Desktop\\\u65B0\u589E\u8CC7\u6599\u593E\\FingerWarriors\\FingerWarriors\\repos\\ClickerGame"
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: b82d0000
-    m_LastClickedID: 11704
-    m_ExpandedIDs: 0000000088290000c22a0000ce2b0000d42b00003c2c0000ce2c0000082d0000702d0000002e00001c2e0000043500000635000000ca9a3bffffff7f
+    m_SelectedIDs: a0290000
+    m_LastClickedID: 10656
+    m_ExpandedIDs: 00000000a0290000de2a0000aa2b0000f62b0000fc2b0000642c0000f82c0000342d0000ac2d00004c2e00006e2e0000343600003636000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Others
-      m_OriginalName: Others
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 11690
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 8}
     m_SearchString: 
@@ -728,7 +762,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000088290000c22a0000ce2b0000d42b00003c2c0000ce2c0000082d0000702d0000002e00001c2e00000435000006350000
+    m_ExpandedIDs: 00000000a0290000de2a0000aa2b0000f62b0000fc2b0000642c0000f82c0000342d0000ac2d00004c2e00006e2e00003436000036360000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -755,8 +789,8 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
-    m_ExpandedInstanceIDs: 022d0000542d0000083c0000e42c0000b80900002a0a00006a0a00006c0a0000920a0000782f000010340000f64f000068300000f04d0000f82b0000062b00009c2d0000b02c0000362c0000442b0000000000007056000074560000222d0000882a0000
+    m_HadKeyboardFocusLastEvent: 0
+    m_ExpandedInstanceIDs: 022d0000542d0000083c0000e42c0000b80900002a0a00006a0a00006c0a0000920a0000782f000010340000f64f000068300000f04d0000062b0000b02c0000362c0000442b00007056000074560000222d0000882a0000bc29000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -772,7 +806,7 @@ MonoBehaviour:
       m_IsRenaming: 0
       m_OriginalEventType: 11
       m_IsRenamingFilename: 1
-      m_ClientGUIView: {fileID: 8}
+      m_ClientGUIView: {fileID: 4}
     m_CreateAssetUtility:
       m_EndAction: {fileID: 0}
       m_InstanceID: 0

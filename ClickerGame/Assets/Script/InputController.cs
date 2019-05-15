@@ -70,7 +70,7 @@ public class InputController : MonoBehaviour
         /* Start combo */
         timeDuration = 2;
         isInCombo = true;
-        if (++combo % 25 == 0) comboDamageBuff *= 1.25f;
+        if (++combo % 25 == 0) comboDamageBuff *= 1.05f;
 
     }
 

@@ -12,10 +12,10 @@ namespace Skills
         public TimeCountdownBar timeCountdownBar;
         public GlobalManager globalManager;
         public MonsterManager monsterManager;
+        public GameObject skillLogo;
         public Dictionary<string, ActiveSkill> ActiveSkills = new Dictionary<string, ActiveSkill>();
         public Dictionary<string, PassiveSkill> PassiveSkills = new Dictionary<string, PassiveSkill>();
         public Dictionary<string, ActiveSkill> EnemySkills = new Dictionary<string, ActiveSkill>();
-
 
 
         public void createSkills()
@@ -32,7 +32,11 @@ namespace Skills
             EnemySkills.Add("LittleRecovery", new ActiveSkill("LittleRecovery", "Recover the HP after a short period of time", 0, 200, 0, ActiveSkill.SkillType.Multiple));
             EnemySkills.Add("ClickShield", new ActiveSkill("ClickShield", "Defend the attack before players finish the specified times of clicking", 0, 201, 0, ActiveSkill.SkillType.Single));
             EnemySkills.Add("NormalDodge", new ActiveSkill("NormalDodge", "Dodge the attack", 0, 202, 0, ActiveSkill.SkillType.Single));
+
+            //  PetSkills (Id: 300 - 399)
+            PassiveSkills.Add("FireBuff", new PassiveSkill("FireBuff", "Fire attack up", 301, 0, PassiveSkill.SkillType.ElementBuff));
         }
+
 
         public void TurnOnActiveSkill(string name, float result)
         {
@@ -42,7 +46,7 @@ namespace Skills
 
             if (_skillType == ActiveSkill.SkillType.ActiveDamage)
             {
-                if (monsterManager.GetCurrentMonster() != null)
+                if (GlobalManager.currentEnemy != null)
                 {
                     if (globalManager.getEnergy() >= _requiredEnergy)
                     {
@@ -76,6 +80,7 @@ namespace Skills
         {
             PassiveSkill.SkillType _skillType = PassiveSkills[name].skillType;
 
+
             if (_skillType == PassiveSkill.SkillType.FieldBuff)
             {
                 string target = "";
@@ -107,6 +112,51 @@ namespace Skills
             { }
             else if (_skillType == PassiveSkill.SkillType.TimeBuff)
             { }
+            else if (_skillType == PassiveSkill.SkillType.ElementBuff)
+            {
+                Character.Element element;
+
+                switch (name)
+                {
+                    case "FireBuff":
+                        element = Character.Element.Fire;
+                        break;
+                    case "WaterBuff":
+                        element = Character.Element.Water;
+                        break;
+                    case "WindBuff":
+                        element = Character.Element.Wind;
+                        break;
+                    case "LighteBuff":
+                        element = Character.Element.Light;
+                        break;
+                    case "DarkBuff":
+                        element = Character.Element.Dark;
+                        break;
+                    default:
+                        element = Character.Element.Fire;
+                        Debug.Log("Element is null.");
+                        break;
+
+                }
+
+                for (int i = 0; i < GlobalManager.FieldArray.Length; i++)
+                {
+                    // If there are any hero on field
+                    if (GlobalManager.FieldArray[i].transform.childCount == 1)
+                    {
+                        Hero h = GlobalManager.FieldArray[i].transform.GetChild(0).GetComponent<Hero>();
+                        // If the element of hero is Fire
+                        if (h.getElement() == element)
+                        {
+                            if (isActivated)
+                                h.setAtkRate(buffRate);
+                            else
+                                h.setAtkRate(h.getAtkRate() / buffRate);
+                        }
+                    }
+                }
+            }
 
 
         }
@@ -114,7 +164,7 @@ namespace Skills
         public void TurnOnMonsterSkill(string name, float result)
         {
             ActiveSkill.SkillType _skillType = EnemySkills[name].skillType;
-            Monster m = monsterManager.GetCurrentMonster().GetComponent<Monster>();
+            Monster m = GlobalManager.currentEnemy.GetComponent<Monster>();
 
             if (_skillType == ActiveSkill.SkillType.Multiple)
             {
@@ -131,6 +181,7 @@ namespace Skills
                 switch (name)
                 {
                     case "ClickShield":
+                        skillLogo.SetActive(true);
                         m.setClickShieldCount(10);
                         break;
 

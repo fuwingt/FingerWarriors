@@ -11,7 +11,7 @@ public class AchievementItem : MonoBehaviour
     public Text progressText;
     public Text rewardText;
     public GameObject rewardButton;
-
+    public GameObject progressBarSprite;
     // Private
     private Achievement achievement;
 
@@ -29,17 +29,19 @@ public class AchievementItem : MonoBehaviour
         }
     }
 
-    private void UpdateInfo()
+    void UpdateInfo()
     {
         if (achievement != null)
         {
-            descriptionText.text = achievement.GetDesc();
+            descriptionText.text = achievement.getDesc();
+
             progressText.text = achievement.currentProgress + "/" + achievement.maxProgress;
+            progressBarSprite.GetComponent<Image>().fillAmount = achievement.currentProgress / achievement.maxProgress;
 
             if (achievement.currentProgress >= achievement.maxProgress)
             {
                 rewardButton.GetComponent<Button>().interactable = true;
-                achievement.currentProgress = achievement.maxProgress;
+                //achievement.currentProgress = achievement.maxProgress;
                 achievement.isAchieved = true;
             }
             else
@@ -51,6 +53,8 @@ public class AchievementItem : MonoBehaviour
         }
 
     }
+
+
 
     public void SetAchievement(Achievement achievement)
     {

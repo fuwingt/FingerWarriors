@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Equipment : MonoBehaviour
 {
+    public int id;
     public GameObject SelectingBorder;
-    public GameObject User = null;
-    public new string name;
+    public int ownerId;
+    public GameObject owner;
+    private new string name;
     public string description;
     public float price;
     public enum Type
@@ -27,7 +29,7 @@ public class Equipment : MonoBehaviour
     public int value;
     public bool isEquiped = false;
 
-    public void CreateEquip()
+    public void setEquip()
     {
         // This function is to Create the equipment
         name = "Bronze Sword";
@@ -48,8 +50,8 @@ public class Equipment : MonoBehaviour
             case Type.Weapon:
                 if (rank == Rank.Bronze)
                 {
-                    // Bronze weapon, increase hero's power with the value between 10 - 15
-                    hero.GetComponent<Hero>().setExtraPower(value);
+                    // Bronze weapon, increase hero's atk with the value between 10 - 15
+                    hero.GetComponent<Hero>().setExtraAtk(value);
                 }
                 break;
 
@@ -71,10 +73,21 @@ public class Equipment : MonoBehaviour
         {
             GlobalManager.setGold(GlobalManager.getGold() + price);
             Destroy(gameObject);
+            Debug.Log("list: " + Inventory.equipmentList.Count);
         }
         else
             Debug.Log("Equipment cannot be sell while it is equiped.");
 
+    }
+
+    public string getName()
+    {
+        return name;
+    }
+
+    public void setName(string name)
+    {
+        this.name = name;
     }
 
 }

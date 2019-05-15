@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DestroyTime: 1.5
-  Offset: {x: 0, y: 1, z: 0}
+  Offset: {x: 0, y: 0, z: 0}
   RandomIntensity: {x: 1, y: 0.5, z: 0}
 --- !u!222 &222364273714263976
 CanvasRenderer:
@@ -109,7 +109,7 @@ RectTransform:
   m_GameObject: {fileID: 1119106401459128}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.00936, y: 0.00936, z: 0.00936}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0

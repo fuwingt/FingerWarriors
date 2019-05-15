@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class MonsterManager : MonoBehaviour
 {
-    public static List<GameObject> monsterList = new List<GameObject>();
 
+    //  Objects
     public GlobalManager globalManager;
     public GameObject MonsterField;
     public GameObject MonsterExtraField;
     public GameObject timeCountdownBar;
+
+    //  Public
+    public static List<GameObject> monsterList = new List<GameObject>();
     public float normalHpRate = 1;
     public float bossHpRate = 10;
     public bool isBossStage = false;
     public bool isFarming = false;
-    private GameObject currentMonster;
 
+    //  Private
+    private GameObject currentEnemy;
 
-    void Start()
-    {
-
-    }
 
     void Update()
     {
@@ -32,27 +32,32 @@ public class MonsterManager : MonoBehaviour
     private void StatusUpdate()
     {
         //	Assign current monster
-        if (MonsterField.transform.childCount != 0 && currentMonster == null)
+        if (MonsterField.transform.childCount != 0 && currentEnemy == null)
         {
-            currentMonster = MonsterField.transform.GetChild(0).gameObject;
+            currentEnemy = MonsterField.transform.GetChild(0).gameObject;
+            GlobalManager.currentEnemy = currentEnemy;
         }
 
-        if (currentMonster == null) return;
+        if (currentEnemy == null) return;
 
         //	Check Death
-        if (currentMonster.GetComponent<Monster>().getHp() <= 0)
+        if (currentEnemy.GetComponent<Monster>().getHp() <= 0)
         {
-            currentMonster.GetComponent<Monster>().Death();
+            currentEnemy.GetComponent<Monster>().Death();
 
             if (!isFarming) globalManager.stage++;
 
             //	If player beat the boss
             if (isBossStage)
             {
+                GlobalManager.bossTakenDownCount++;
                 timeCountdownBar.SetActive(false);
                 timeCountdownBar.transform.GetChild(0).gameObject.SetActive(false);
                 timeCountdownBar.transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
+                //  Reset
                 timeCountdownBar.GetComponent<TimeCountdownBar>().Start();
+                //  Enhance the normal monster
+                normalHpRate *= 1.75f;
             }
             //	Entry next stage after monster dead
             if (globalManager.stage % 10 == 0 && globalManager.stage != 0)
@@ -97,20 +102,23 @@ public class MonsterManager : MonoBehaviour
     public void NextMonster()
     {
         //	Move the current monster to extra field
-        currentMonster.transform.SetParent(MonsterExtraField.transform);
-        currentMonster.SetActive(false);
+        currentEnemy.transform.SetParent(MonsterExtraField.transform);
+        currentEnemy.SetActive(false);
 
         //	Random choose one of the monster from the list
-        currentMonster = monsterList[Random.Range(0, monsterList.Count - 1)];
-        currentMonster.transform.SetParent(MonsterField.transform);
-        currentMonster.SetActive(true);
-        currentMonster.GetComponent<Monster>().Init();
+        int r = Random.Range(0, monsterList.Count);
+        //if (r == monsterList.Count) r = 0;
+        Debug.Log("Hi , i am here, r = " + r);
+        currentEnemy = monsterList[r];
+        GlobalManager.currentEnemy = currentEnemy;
+
+        currentEnemy.transform.SetParent(MonsterField.transform);
+        currentEnemy.SetActive(true);
+        currentEnemy.GetComponent<Monster>().Init();
     }
 
-    public GameObject GetCurrentMonster()
-    {
-        return currentMonster;
-    }
+
+
 
 
 

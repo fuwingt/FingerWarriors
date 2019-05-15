@@ -12,7 +12,7 @@ public class Inventory : MonoBehaviour
     public GameObject EquipButton;
     public Text EquipButtonText;
     public GameObject SellButton;
-    public static Equipment[] equipmentList = new Equipment[30];
+    public static List<Equipment> equipmentList = new List<Equipment>();
     public static GameObject currentSelectingEquip = null;
     public static GameObject lastSelectingEquip = null;
     private bool isSelectingHero = false;
@@ -39,30 +39,24 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public void AddEquipment(GameObject equipment)
+    public void AddEquipment()
     {
-        // 1. Add into List
-        for (int i = 0; i < equipmentList.Length; i++)
+        // If the list is full, Return.
+        if (equipmentList.Count >= 30)
         {
-            if (equipmentList[i] == null)
-            {
-                Equipment eq = equipment.GetComponent<Equipment>();
-                equipmentList[i] = eq;
-                Debug.Log("Equipment " + eq.name + " add into inventory successfully.");
-                Debug.Log("Player got an equipment: " + eq.name + " (power: " + eq.value + ").");
-                // 2. Show on the Menu
-                equipment = Instantiate(equipment, EquipmentMenu.transform);
-
-                return;
-            }
-
-            // If the loop is run through the whole list and cannot find a empty place, Return.
-            if (i == equipmentList.Length - 1 && equipmentList[i] != null)
-            {
-                Debug.Log("Not enough space in inventory.");
-                return;
-            }
+            Debug.Log("Not enough space in inventory.");
+            return;
         }
+        // 1. Add into List
+        Equipment eq = EquipmentPrefab.GetComponent<Equipment>();
+
+        // 2. Show on the Menu
+        GameObject ePrefab = Instantiate(EquipmentPrefab, EquipmentMenu.transform);
+        ePrefab.GetComponent<Equipment>().setName("Bronze Sword");
+        ePrefab.GetComponent<Equipment>().value = Random.Range(10, 16);
+        ePrefab.GetComponent<Equipment>().description = "increase " + ePrefab.GetComponent<Equipment>().value + " power to hero.";
+        equipmentList.Add(eq);
+
     }
 
     public static void ShowSelectingBorder(GameObject equipment)
@@ -92,7 +86,7 @@ public class Inventory : MonoBehaviour
         if (currentSelectingEquip.GetComponent<Equipment>().isEquiped)
         {
             currentSelectingEquip.GetComponent<Equipment>().isEquiped = false;
-            currentSelectingEquip.GetComponent<Equipment>().User.GetComponent<Hero>().PeelOff();
+            currentSelectingEquip.GetComponent<Equipment>().owner.GetComponent<Hero>().PeelOff();
             return;
         }
         // Called by button click
@@ -144,7 +138,7 @@ public class Inventory : MonoBehaviour
         {
             EquipButton.SetActive(true);
             SellButton.SetActive(true);
-            EquipmentNameText.text = currentSelectingEquip.GetComponent<Equipment>().name;
+            EquipmentNameText.text = currentSelectingEquip.GetComponent<Equipment>().getName();
             EquipmentDescText.text = currentSelectingEquip.GetComponent<Equipment>().description;
             if (currentSelectingEquip.GetComponent<Equipment>().isEquiped == true)
             {

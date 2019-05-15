@@ -9,17 +9,13 @@ public class Field : MonoBehaviour
     public GameObject SkillButton;
     public GameObject BorderImage;
     public GameObject Image_icon;
-    [Header("Border")]
-    public Sprite Border_Fire;
-    public Sprite Border_Water;
-    public Sprite Border_Wind;
-    public Sprite Border_Light;
-    public Sprite Border_Dark;
+
     [Header("Logo")]
     public Sprite ArrowLogo;
+    public int ID;
     public float fieldBuff = 1;
 
-    private Hero Hero;
+    private Hero hero;
 
     void Update()
     {
@@ -29,9 +25,11 @@ public class Field : MonoBehaviour
         }
     }
 
-    public void activateLogo()
+    //  Call from switch field
+    public void activateLogo(bool isRaycastTarget)
     {
         Animator animator = gameObject.GetComponent<Animator>();
+        GetComponent<Image>().raycastTarget = isRaycastTarget;
         bool isLogoShowUp = animator.GetBool("isLogoShowUp");
         animator.SetBool("isLogoShowUp", !isLogoShowUp);
     }
@@ -39,32 +37,12 @@ public class Field : MonoBehaviour
 
     public void activateSkillButton()
     {
-        Hero = transform.GetComponentInChildren<Hero>();
-        Image_icon.GetComponent<Image>().sprite = Hero.Icon;
+        hero = transform.GetComponentInChildren<Hero>();
+        Image_icon.GetComponent<Image>().sprite = hero.Icon;
         SkillButton.SetActive(true);
-        SkillButton.GetComponent<SkillButton>().hero = Hero;
+        SkillButton.GetComponent<SkillButton>().hero = hero;
+        BorderImage.GetComponent<Image>().sprite = hero.ElementBorder;
 
-        switch (Hero.getElement())
-        {
-            case Character.Element.Fire:
-                BorderImage.GetComponent<Image>().sprite = Border_Fire;
-                break;
-            case Character.Element.Water:
-                BorderImage.GetComponent<Image>().sprite = Border_Water;
-                break;
-            case Character.Element.Wind:
-                BorderImage.GetComponent<Image>().sprite = Border_Wind;
-                break;
-            case Character.Element.Light:
-                BorderImage.GetComponent<Image>().sprite = Border_Light;
-                break;
-            case Character.Element.Dark:
-                BorderImage.GetComponent<Image>().sprite = Border_Dark;
-                break;
-            default:
-                Debug.LogError("Error in switch case.");
-                break;
-        }
     }
 
     public void deactivateSkillButton()

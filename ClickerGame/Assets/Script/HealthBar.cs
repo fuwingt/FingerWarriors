@@ -23,7 +23,6 @@ public class HealthBar : MonoBehaviour
     public Text HpText;
     public GameObject ElementIcon;
 
-    private Image healthBar;
     private float maxHp;
     private float currentHp;
 
@@ -39,7 +38,7 @@ public class HealthBar : MonoBehaviour
             maxHp = GlobalManager.currentEnemy.GetComponent<Monster>().getMaxHp();
             currentHp = (int)GlobalManager.currentEnemy.GetComponent<Monster>().getHp();
             ChangeBarColor();
-            HpText.text = currentHp.ToString();
+            HpText.text = GlobalManager.NumberConverter((int)currentHp);
             GetComponent<Image>().fillAmount = currentHp / maxHp;
         }
         else

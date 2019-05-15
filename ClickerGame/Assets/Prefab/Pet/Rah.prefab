@@ -20,8 +20,8 @@ GameObject:
   m_Component:
   - component: {fileID: 224971509362277394}
   - component: {fileID: 212793264507715208}
-  - component: {fileID: 114132619775759614}
   - component: {fileID: 114324176863879940}
+  - component: {fileID: 114217782015256234}
   m_Layer: 0
   m_Name: Rah
   m_TagString: Untagged
@@ -29,7 +29,7 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &114132619775759614
+--- !u!114 &114217782015256234
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -37,13 +37,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1695935898078512}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db863cb1049f38347be80e10f89b98c0, type: 3}
+  m_Script: {fileID: 11500000, guid: 7740f37e208e7a948949ae68c10f26d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 0}
   PetItemPrefab: {fileID: 1259081984719740, guid: 63d2ded69b0da284297e7b800d42eb45,
     type: 2}
-  description: Fire Attack x 1.5
+  skillDesc: 
 --- !u!114 &114324176863879940
 MonoBehaviour:
   m_ObjectHideFlags: 1

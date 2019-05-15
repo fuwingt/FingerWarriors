@@ -4,34 +4,39 @@ using Skills;
 
 public class Monster : Character
 {
-    protected Inventory inventoryManager;
-    protected MonsterManager monsterManager;
-    protected GlobalManager globalManager;
-    protected SkillManager skillManager;
+    //  Objects
     public Text FloatingTextPrefab;
     public Text CriticalTextPrefab;
     public GameObject GoldParticPrefab;
     public GameObject EquipmentGetCtrPrefab;
-    [SerializeField] protected float hp;
-    [SerializeField] protected float maxHp;
-    protected float basicHp;
-    protected float maxCoolDown;
-    protected float coolDown;
+    public GameObject DamagePanel;
+    private Inventory inventoryManager;
+    private MonsterManager monsterManager;
+    private GlobalManager globalManager;
+    private SkillManager skillManager;
+
+    //
     private string skill;
     private int clickShieldCount;
+    private float hp;
+    private float maxHp;
+    private float basicHp;
+    private float maxCoolDown;
+    private float coolDown;
     private float dodgeChance;
+    private float goldDrop;
 
-    protected float goldDrop = 10;
+
 
     void Start()
     {
-        inventoryManager = GameObject.Find("InventoryManager").GetComponent<Inventory>();
-        monsterManager = GameObject.Find("MonsterManager").GetComponent<MonsterManager>();
-        globalManager = GameObject.Find("GlobalManager").GetComponent<GlobalManager>();
-        skillManager = GameObject.Find("SkillManager").GetComponent<SkillManager>();
-
+        SetManager();
         clickShieldCount = 0;
         dodgeChance = 0;
+        goldDrop = 10;
+
+        maxHp = basicHp * monsterManager.normalHpRate;
+        hp = maxHp;
     }
 
     void Update()
@@ -52,6 +57,7 @@ public class Monster : Character
 
     public void Init()
     {
+        SetManager();
         if (globalManager.stage % 10 == 0 && globalManager.stage != 0)
         {
             //  Boss stage
@@ -95,8 +101,7 @@ public class Monster : Character
         // Test:
         // Drop equipment to player
         // Automatically collected into inventory
-        inventoryManager.GetComponent<Inventory>().EquipmentPrefab.GetComponent<Equipment>().CreateEquip();
-        inventoryManager.GetComponent<Inventory>().AddEquipment(inventoryManager.GetComponent<Inventory>().EquipmentPrefab);
+        inventoryManager.GetComponent<Inventory>().AddEquipment();
         // Gold brust out 
         Instantiate(GoldParticPrefab, gameObject.transform.position, Quaternion.identity);
         // "Equipment Get" textbox
@@ -132,13 +137,23 @@ public class Monster : Character
     {
         Text damageText;
         if (isCritical)
-            damageText = Instantiate(CriticalTextPrefab, transform.parent.position, Quaternion.identity, transform);
+            damageText = Instantiate(CriticalTextPrefab, transform.parent.position, Quaternion.identity, DamagePanel.transform);
         else
             damageText = Instantiate(FloatingTextPrefab, transform.parent.position, Quaternion.identity, transform);
 
         damageText.transform.localScale = new Vector3(0.001f, 0.001f, 0.001f);
-        damageText.text = power.ToString();
+        damageText.text = GlobalManager.NumberConverter((int)power);
 
+    }
+
+    void SetManager()
+    {
+        inventoryManager = GameObject.Find("InventoryManager").GetComponent<Inventory>();
+        monsterManager = GameObject.Find("MonsterManager").GetComponent<MonsterManager>();
+        globalManager = GameObject.Find("GlobalManager").GetComponent<GlobalManager>();
+        skillManager = GameObject.Find("SkillManager").GetComponent<SkillManager>();
+
+        DamagePanel = GameObject.Find("DamagePanel");
     }
 
     //  Getter
@@ -170,6 +185,11 @@ public class Monster : Character
     public float getCoolDown()
     {
         return coolDown;
+    }
+
+    public int getClickShieldCount()
+    {
+        return clickShieldCount;
     }
 
     //  Setter

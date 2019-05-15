@@ -9,9 +9,10 @@ public class AchievementManager : MonoBehaviour
     public GameObject ScrollPanel;
     public Dictionary<string, Achievement> Achievements = new Dictionary<string, Achievement>();
 
-    void Start()
+    public void Init()
     {
         Achievements.Add("TapCount", new Achievement("TapCount", "Tap to Attack!", 500, 0, 10));
+        Achievements.Add("DefeatBoss", new Achievement("DefeatBoss", "Defeat Boss!", 1000, 0, 10));
 
         foreach (KeyValuePair<string, Achievement> kvp in Achievements)
         {
@@ -21,15 +22,17 @@ public class AchievementManager : MonoBehaviour
 
     void Update()
     {
+        if (Achievements == null) return;
         // Achievements
         Achievements["TapCount"].currentProgress = GlobalManager.tapCount;
+        Achievements["DefeatBoss"].currentProgress = GlobalManager.bossTakenDownCount;
     }
 
     public void createAchievement(string keyword)
     {
         GameObject achievementObject = (GameObject)Instantiate(AchievementItemPrefab, ScrollPanel.transform);
         achievementObject.GetComponent<AchievementItem>().SetAchievement(Achievements[keyword]);
-        Achievements[keyword].SetItemPrefab(achievementObject);
+        Achievements[keyword].setItemPrefab(achievementObject);
     }
 
 }

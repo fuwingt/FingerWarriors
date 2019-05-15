@@ -12,10 +12,12 @@ public class Hero : Character
     }
 
     public Sprite Icon;
+    public Sprite ElementBorder;
     public GameObject SkillObjectPrefab;
     public GameObject currentEquipment = null;
     public float fieldBuff = 1;
     public bool isOnField = false;
+    public int currentFieldID = 6;
     //  Private
 
     // Private string
@@ -24,15 +26,16 @@ public class Hero : Character
     [SerializeField] private string activeSkillDesc;
     [SerializeField] private string passiveSkillDesc;
     //  Private int
+    private int id;
     [SerializeField] private int level;
     [SerializeField] private int upgradeCount;
     //  Private float
-    [SerializeField] private float power = 1;
-    [SerializeField] private float extraPower = 1;
-    [SerializeField] private float powerRatio = 1;
+    [SerializeField] private float atk = 1;
+    [SerializeField] private float extraAtk = 1;
+    [SerializeField] private float atkRate = 1;
     [SerializeField] private float skillPower = 1;
     [SerializeField] private float extraSkillPower = 1;
-    [SerializeField] private float skillPowerRatio = 1;
+    [SerializeField] private float skillPowerRate = 1;
     [SerializeField] private float requiredEnergy;
     [SerializeField] private float energyPerAttack;
     [SerializeField] private float price;
@@ -53,7 +56,7 @@ public class Hero : Character
 
     public void ActiveSkill()
     {
-        float result = ElementEffect(getElement(), monsterManager.GetCurrentMonster().GetComponent<Monster>().getElement(), skillPower + extraSkillPower);
+        float result = ElementEffect(getElement(), GlobalManager.currentEnemy.GetComponent<Monster>().getElement(), skillPower + extraSkillPower);
 
         skillManager.TurnOnActiveSkill(activeSkill, result);
     }
@@ -67,12 +70,11 @@ public class Hero : Character
     }
 
 
-
     public float Attack(GameObject monster)
     {
 
         // Calculate the damage result with element and Critical chance
-        float result = ElementEffect(getElement(), monster.GetComponent<Monster>().getElement(), CalculateDamage(power, extraPower, powerRatio, fieldBuff));
+        float result = ElementEffect(getElement(), monster.GetComponent<Monster>().getElement(), CalculateDamage(atk, extraAtk, atkRate, fieldBuff));
 
         // Animaition
         transform.GetComponent<Animator>().SetTrigger("isAttack");
@@ -89,16 +91,18 @@ public class Hero : Character
         currentEquipment = Equipment;
         currentEquipment.GetComponent<Equipment>().EquipmentEffect(gameObject);
         currentEquipment.GetComponent<Equipment>().isEquiped = true;
-        currentEquipment.GetComponent<Equipment>().User = gameObject;
+        currentEquipment.GetComponent<Equipment>().ownerId = id;
+        currentEquipment.GetComponent<Equipment>().owner = gameObject;
     }
 
     public void PeelOff()
     {
         if (currentEquipment != null)
         {
-            currentEquipment.GetComponent<Equipment>().User = gameObject;
+            currentEquipment.GetComponent<Equipment>().ownerId = -1;
+            currentEquipment.GetComponent<Equipment>().owner = null;
             currentEquipment.GetComponent<Equipment>().isEquiped = false;
-            extraPower = 0; extraSkillPower = 0;
+            extraAtk = 0; extraSkillPower = 0;
             currentEquipment = null;
         }
     }
@@ -196,14 +200,14 @@ public class Hero : Character
         return skillPower;
     }
 
-    public float getPower()
+    public float getAtk()
     {
-        return power;
+        return atk;
     }
 
-    public float getExtraPower()
+    public float getExtraAtk()
     {
-        return extraPower;
+        return extraAtk;
     }
 
     public float getExtraSkillPower()
@@ -216,14 +220,14 @@ public class Hero : Character
         return price;
     }
 
-    public float getPowerRatio()
+    public float getAtkRate()
     {
-        return powerRatio;
+        return atkRate;
     }
 
-    public float getSkillPowerRatio()
+    public float getSkillPowerRate()
     {
-        return skillPowerRatio;
+        return skillPowerRate;
     }
 
     public int getLevel()
@@ -236,7 +240,10 @@ public class Hero : Character
         return upgradeCount;
     }
 
-
+    public int getId()
+    {
+        return id;
+    }
 
     public string getActiveSkillDesc()
     {
@@ -278,14 +285,14 @@ public class Hero : Character
         this.skillPower = skillPower;
     }
 
-    public void setPower(float power)
+    public void setAtk(float atk)
     {
-        this.power = power;
+        this.atk = atk;
     }
 
-    public void setExtraPower(float extraPower)
+    public void setExtraAtk(float extraAtk)
     {
-        this.extraPower = extraPower;
+        this.extraAtk = extraAtk;
     }
 
     public void setExtraSkillPower(float extraSkillPower)
@@ -308,14 +315,14 @@ public class Hero : Character
         this.upgradeCount = upgradeCount;
     }
 
-    public void setPowerRatio(float powerRatio)
+    public void setAtkRate(float atkRate)
     {
-        this.powerRatio = powerRatio;
+        this.atkRate = atkRate;
     }
 
-    public void setSkillPowerRatio(float skillPowerRatio)
+    public void setSkillPowerRate(float skillPowerRate)
     {
-        this.skillPowerRatio = skillPowerRatio;
+        this.skillPowerRate = skillPowerRate;
     }
 
     public void setActiveSkill(string activeSkill)
@@ -351,6 +358,11 @@ public class Hero : Character
     public void setEnergyPerAttack(float energyPerAttack)
     {
         this.energyPerAttack = energyPerAttack;
+    }
+
+    public void setId(int id)
+    {
+        this.id = id;
     }
 
 
